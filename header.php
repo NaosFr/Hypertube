@@ -1,6 +1,5 @@
 <?php 
-include('php/connexion.php');
-session_start();
+include_once('php/connexion.php');
 
 if ($_SESSION['id'] == "" || $_SESSION['login'] == "") {
 	echo '<!-- ******* HEADER ***************** -->
@@ -9,9 +8,9 @@ if ($_SESSION['id'] == "" || $_SESSION['login'] == "") {
 			<div class="float_menu_rigth">
 				<form action="#" onsubmit="return false" accept-charset="utf-8" class="search_form">
 
-				    <input type="text" name="search" maxlength="40" required/>
+					<input type="text" name="search" maxlength="40" required/>
 
-				    <input type="submit" value="SEARCH" class="submit_search transition" onclick="search()" />
+					<input type="submit" value="SEARCH" class="submit_search transition" onclick="search()" />
 				</form>
 				<a href="signin.php"><h2>SIGN IN</h2></a>
 				<a href="signin.php?el=register"><h2>REGISTER</h2></a>
@@ -28,9 +27,9 @@ else{
 			<div class="float_menu_rigth">
 				<form action="#" onsubmit="return false" accept-charset="utf-8" class="search_form">
 
-				    <input type="text" name="search" maxlength="40" required/>
+					<input type="text" name="search" maxlength="40" required/>
 
-				    <input type="submit" value="SEARCH" class="submit_search transition" onclick="search()" />
+					<input type="submit" value="SEARCH" class="submit_search transition" onclick="search()" />
 				</form>	
 
 				<a href="setting.php"><img src="assets/icon/settings.svg" alt="setting"/></a>

@@ -3,8 +3,8 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost:8889
--- Généré le :  sam. 24 mars 2018 à 15:38
--- Version du serveur :  5.6.35
+-- Généré le :	sam. 24 mars 2018 à 15:38
+-- Version du serveur :	5.6.35
 -- Version de PHP :  7.1.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -21,15 +21,15 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `users` (
-  `id_user` int(11) NOT NULL,
-  `email` varchar(255) DEFAULT NULL,
-  `login` varchar(255) DEFAULT NULL,
-  `passwd` varchar(300) DEFAULT NULL,
-  `last_name` text,
-  `first_name` text,
-  `confirm` int(11) DEFAULT NULL,
-  `cle` text NOT NULL,
-  `cle_passwd` text
+	`id_user` int(11) NOT NULL,
+	`email` varchar(255) DEFAULT NULL,
+	`login` varchar(255) DEFAULT NULL,
+	`passwd` varchar(300) DEFAULT NULL,
+	`last_name` text,
+	`first_name` text,
+	`confirm` int(11) DEFAULT NULL,
+	`cle` text NOT NULL,
+	`cle_passwd` text
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -48,7 +48,7 @@ INSERT INTO `users` (`id_user`, `email`, `login`, `passwd`, `last_name`, `first_
 -- Index pour la table `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`id_user`);
+	ADD PRIMARY KEY (`id_user`);
 
 --
 -- AUTO_INCREMENT pour les tables déchargées
@@ -58,4 +58,4 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT pour la table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+	MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;

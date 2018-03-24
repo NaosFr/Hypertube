@@ -1,7 +1,5 @@
 <?php 
 session_start();
-setcookie('id', '');
-setcookie('login', '');
 $_SESSION['id'] = "";
 $_SESSION['login'] = "";
 

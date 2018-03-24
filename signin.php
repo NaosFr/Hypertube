@@ -1,6 +1,5 @@
 <?php 
-include('connexion.php');
-session_start();
+include_once('php/connexion.php');
 
 if ($_GET['el'] === "register") {
 	$type = '<script type="text/javascript">
@@ -20,9 +19,9 @@ else{
 ?>
 
 <!DOCTYPE html>
-<html id='HTML' xmlns:og="http://ogp.me/ns#" lang="fr">
+<html lang="<?php echo $lang['html'] ?>">
 <head>
-	<?php include 'meta.php'; ?>
+	<?php include_once('meta.php'); ?>
 
 <!-- ******* CSS ***************** -->
 	<link rel="stylesheet" type="text/css" href="css/main.css">
@@ -39,29 +38,29 @@ else{
 
 <body>
 	
-	<?php include 'header.php'; ?>
+	<?php include_once('header.php'); ?>
 
 <!-- ******* LOGIN ***************** -->
 	<section class="template_login">
-	    <form action="#" onsubmit="return false" accept-charset="utf-8" class="form">
+		<form action="#" onsubmit="return false" accept-charset="utf-8" class="form">
 
-	      <label for="login_login"><p>PSEUDO</p></label>
-	      <br/>
-	      <input type="login" name="login_login" maxlength="40" required/>
+			<label for="login_login"><p>PSEUDO</p></label>
+			<br/>
+			<input type="login" name="login_login" maxlength="40" required/>
 
-	      <label for="password_login"><p>PASSWORD</p></label>
-	      <br/>
-	      <input type="password" name="password_login" maxlength="20" required />
+			<label for="password_login"><p>PASSWORD</p></label>
+			<br/>
+			<input type="password" name="password_login" maxlength="20" required />
 
-	      <p class="forgot">FORGOT PASSWORD</p>
+			<p class="forgot">FORGOT PASSWORD</p>
 
-	      <input type="submit" value="SIGN IN" class="submit transition" onclick="login()" />
-	      </form>			
+			<input type="submit" value="SIGN IN" class="submit transition" onclick="login()" />
+		</form>			
 	</section>
 
 <!-- ******* REGISTER ***************** -->
 	<section class="template_register">
-    	<form action="#" onsubmit="return false" accept-charset="utf-8" class="form">
+		<form action="#" onsubmit="return false" accept-charset="utf-8" class="form">
 			<label for="email"><p>EMAIL</p></label>
 			<br/>
 			<input type="email" name="email" maxlength="40" required />
@@ -92,14 +91,14 @@ else{
 
 <!-- ******* PASSWD FORGOT ***************** -->
 	<section class="template_passwd_forgot">
-        <form action="#" onsubmit="return false" accept-charset="utf-8" class="form">
+		<form action="#" onsubmit="return false" accept-charset="utf-8" class="form">
 
 			<label for="email_forgot"><p>EMAIL</p></label>
 			<br/>
 			<input type="email" name="email_forgot" required />
 
 			<input type="submit" value="SEND" class="submit transition" onclick="forgot_passwd()" />
-        </form>
+		</form>
 	</section>
 
 <!-- ******* JAVASCRIPT ***************** -->
@@ -108,66 +107,66 @@ else{
 <script type="text/javascript">
 	function login(){
 
-	        var formData = {
-	            'login'             : $('input[name=login_login]').val(),
-	            'password'          : $('input[name=password_login]').val(),
-	            'submit'    		: "login"
-	        };
+		var formData = {
+			'login'				: $('input[name=login_login]').val(),
+			'password'			: $('input[name=password_login]').val(),
+			'submit'			: "login"
+		};
 
-	        $.ajax({
-	            type        : 'POST',
-	            url         : 'php/login_register.php',
-	            data        : formData,
-	            encode      : true,
-	            success		: function(data){
-	            	$('#alert').html(data);
-	            	$('input[name=password_login]').val('');
-	            }
-	        })
-		}
+		$.ajax({
+			type		: 'POST',
+			url			: 'php/login_register.php',
+			data		: formData,
+			encode		: true,
+			success		: function(data){
+				$('#alert').html(data);
+				$('input[name=password_login]').val('');
+			}
+		})
+	}
 
 	function register(){
 
-	        var formData = {
-	            'login'             : $('input[name=login]').val(),
-	            'password'          : $('input[name=password]').val(),
-	            'password_conf'     : $('input[name=password_conf]').val(),
-	            'email'          	: $('input[name=email]').val(),
-	            'first_name'        : $('input[name=first_name]').val(),
-	            'last_name'         : $('input[name=last_name]').val(),
-	            'submit'    		: "register"
-	        };
+		var formData = {
+			'login'				: $('input[name=login]').val(),
+			'password'			: $('input[name=password]').val(),
+			'password_conf'		: $('input[name=password_conf]').val(),
+			'email'				: $('input[name=email]').val(),
+			'first_name'		: $('input[name=first_name]').val(),
+			'last_name'			: $('input[name=last_name]').val(),
+			'submit'			: "register"
+		};
 
-	        $.ajax({
-	            type        : 'POST',
-	            url         : 'php/login_register.php',
-	            data        : formData,
-	            encode      : true,
-	            success		: function(data){
-	            	$('#alert').html(data);
-	            	$('input[name=password]').val('');
-	            	$('input[name=password_conf]').val('');
-	            }
-	        })
-		}
+		$.ajax({
+			type		: 'POST',
+			url			: 'php/login_register.php',
+			data		: formData,
+			encode		: true,
+			success		: function(data){
+				$('#alert').html(data);
+				$('input[name=password]').val('');
+				$('input[name=password_conf]').val('');
+			}
+		})
+	}
 
 	function forgot_passwd(){
 
-	        var formData = {
-	            'email'             : $('input[name=email_forgot]').val(),
-	            'submit'    		: "forgot"
-	        };
+		var formData = {
+			'email'				: $('input[name=email_forgot]').val(),
+			'submit'			: "forgot"
+		};
 
-	        $.ajax({
-	            type        : 'POST',
-	            url         : 'php/login_register.php',
-	            data        : formData,
-	            encode      : true,
-	            success		: function(data){
-	            	$('#alert').html(data);
-	            }
-	        })
-		}
+		$.ajax({
+			type		: 'POST',
+			url			: 'php/login_register.php',
+			data		: formData,
+			encode		: true,
+			success		: function(data){
+				$('#alert').html(data);
+			}
+		})
+	}
 
 
 

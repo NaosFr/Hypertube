@@ -1,6 +1,5 @@
 <?php
-include('connexion.php');
-session_start();
+include_once('connexion.php');
 
 if ($_POST['submit'] == "login") {
 

@@ -1,6 +1,7 @@
+<?php include_once('php/connexion.php'); ?>
 <meta charset="utf-8">
 <title>HYPERTUBE</title>
-<meta name="Content-Language" content="fr">
+<meta name="Content-Language" content="<?php echo $lang['html'] ?>">
 <meta name="Description" content="">
 <meta name="keyword" content="">
 <meta name="Subject" content="">

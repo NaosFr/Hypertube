@@ -1,6 +1,5 @@
 <?php
-include('php/connexion.php');
-session_start();
+include_once('php/connexion.php');
 
 if ($_SESSION['id'] == "" || $_SESSION['login'] == "") {
 	echo '<script>document.location.href="index.php"</script>';
@@ -24,16 +23,16 @@ if (isset($_POST['password']) && $_POST['password'] != "" && isset($_POST['email
 	}
 	else{
 		echo "<style>#alert_div { background-color: #568456!important;} </style>";
-	    $txt =  '<div id="alert_div"><p id="text_alert">ERROR : email or password wrong!</p><span class="closebtn" onclick="del_alert()">&times;</span></div>';
+		$txt =  '<div id="alert_div"><p id="text_alert">ERROR : email or password wrong!</p><span class="closebtn" onclick="del_alert()">&times;</span></div>';
 	}
 }
 
 ?>
 
 <!DOCTYPE html>
-<html id='HTML' xmlns:og="http://ogp.me/ns#" lang="fr">
+<html lang="<?php echo $lang['html'] ?>">
 <head>
-	<?php include 'meta.php'; ?>
+	<?php include_once('meta.php'); ?>
 		
 	<!-- ******* CSS ***************** -->
 	<link rel="stylesheet" type="text/css" href="css/main.css">
@@ -50,12 +49,12 @@ if (isset($_POST['password']) && $_POST['password'] != "" && isset($_POST['email
 
 <body>
 
-<?php include 'header.php'; ?>
+<?php include_once('header.php'); ?>
 
 <!-- ******* FORMULAIRE ***************** -->
 	<section class="template_delete">
 		<!-- Form -->
-          <form action="#" onsubmit="return false" accept-charset="utf-8" class="form">
+			<form action="#" onsubmit="return false" accept-charset="utf-8" class="form">
 
 			<label for="email"><p>EMAIL</p></label>
 			<br/>
@@ -65,14 +64,14 @@ if (isset($_POST['password']) && $_POST['password'] != "" && isset($_POST['email
 			<br/>
 			<input type="password" name="password" maxlength="20" required />
 
-        	<!-- SIGN IN -->
+			<!-- SIGN IN -->
 			<input type="submit" name="go_delete_account" value="DELETE" class="submit" style="margin-top: 25px;" onclick="del_account()" />
-          </form>
-          <!-- /end Form -->
+			</form>
+			<!-- /end Form -->
 	</section>
 
 
-<script type="text/javascript" src="js/jquery.js"></script>
-<script type="text/javascript" src="js/main.js"></script>
+	<script type="text/javascript" src="js/jquery.js"></script>
+	<script type="text/javascript" src="js/main.js"></script>
 </body>
 </html>

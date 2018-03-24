@@ -1,6 +1,5 @@
 <?php
-include('connexion.php');
-session_start();
+include_once('connexion.php');
 
 /////////////////////////////////
 ////////// CHANGE PROFIL
@@ -56,7 +55,7 @@ if (isset($_POST['email']) && $_POST['email'] != ""
 				$stmt->execute();
 		
 				echo "<style>#alert_div { background-color: #568456!important;} </style>";
-	        	echo '<div id="alert_div"><p id="text_alert">Setting change</p><span class="closebtn" onclick="del_alert()">&times;</span></div>';
+				echo '<div id="alert_div"><p id="text_alert">Setting change</p><span class="closebtn" onclick="del_alert()">&times;</span></div>';
 			}
 			else{
 				echo '<div id="alert_div"><p id="text_alert">SYSTEM ERROR !</p><span class="closebtn" onclick="del_alert()">&times;</span></div>';
