@@ -31,9 +31,7 @@
 
 	<form action="#" onsubmit="return false" accept-charset="utf-8" id="form_filter">
 		
-	
-	
-			<input type="text" id="years" name="years" readonly/>
+		<input type="text" id="years" name="years" readonly/>
 	
 		<div id="slider-years" class="slider"></div>
 
@@ -41,16 +39,34 @@
 		
 		<div id="slider-score" class="slider"></div>
 
-
-
 		<input type="submit" value="FILTER" class="submit_filter transition" onclick="login()" />
 	</form>
 
 </section>
 
+<section id="movies"></section>
 <!-- ******* JAVASCRIPT ***************** -->
 <script type="text/javascript" src="js/main.js"></script>
 <script type="text/javascript">
+	
+	function search_movie(){
+
+		var formData = {
+			'movie'		: $('input[name=search]').val(),
+			'submit'	: "search"
+		};
+
+		$.ajax({
+			type		: 'POST',
+			url			: 'php/search.php',
+			data		: formData,
+			encode		: true,
+			success		: function(data){
+				$('#movies').html(data);
+			}
+		})
+	}
+
 	// SLIDER YEARS
 		$("#slider-years").slider({
 			range: true,

@@ -41,7 +41,7 @@ html,body{
   margin: 0;
   padding: 0;
   position: absolute;
-  overflow: auto;
+  overflow: hidden;
   background-color: #141414;
   position: relative;
 }
@@ -342,4 +342,43 @@ header img:hover{
 .delete a{
     color: #bb6464;
     font-size: 10px;
+}
+
+/*****************************************************************
+  MOVIES
+*****************************************************************/
+
+#movies{
+  position: absolute;
+  height: 88%;
+  left: 200px;
+  top: 80px;
+  overflow: auto!important;
+}
+
+#movies div{
+  margin: 4px;
+  width: 200px;
+  display: inline-block;
+  position: relative;
+  text-align: center;
+}
+
+#movies div img{
+  width: 100%;
+}
+
+.info_movie{
+  display: none!important;
+    position: absolute!important;
+    top: -4PX;
+    left: -4px;
+    height: 100%;
+    width: 100%!important;
+    background-color: #000000b3;
+    font-size: 23px;
+}
+
+#movies div:hover .info_movie{
+  display: block!important;
 }
