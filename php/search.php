@@ -1,13 +1,12 @@
 <?php
 include_once('connexion.php');
 
-if ($_POST['submit'] === "search") {
-
-if (isset($_POST['movie']) && $_POST['movie'] != "")
+if ($_POST['submit'] === "search")
 {
+	if (isset($_POST['movie']) && $_POST['movie'] != "")
+	{
 		$title = htmlspecialchars($_POST['movie']);
-
-		//$title = urlencode($_GET['title']);
+		$title = urlencode($title);
 		$content = json_decode(file_get_contents('https://yts.am/api/v2/list_movies.json?sort_by=title&order_by=asc&query_term='.$title), true);
 		if ($content["data"]["movie_count"] > 0)
 		{
@@ -24,10 +23,7 @@ if (isset($_POST['movie']) && $_POST['movie'] != "")
 		}
 		else
 			echo "No result !";
-
-
-}
-
+	}
 }
 
 ?>

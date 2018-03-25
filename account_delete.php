@@ -1,8 +1,10 @@
 <?php
 include_once('php/connexion.php');
 
-if ($_SESSION['id'] == "" || $_SESSION['login'] == "") {
-	echo '<script>document.location.href="index.php"</script>';
+if ($_SESSION['id'] == "" || $_SESSION['login'] == "")
+{
+	header('Location: /');
+	exit;
 }
 
 if (isset($_POST['password']) && $_POST['password'] != "" && isset($_POST['email']) && $_POST['email'] != "")

@@ -41,7 +41,7 @@ else
 <!DOCTYPE html>
 <html lang="<?php echo $lang['html'] ?>">
 <head>
-	<?php include_once('meta.php'); ?>
+	<?php include_once('../meta.php'); ?>
 
 	<!-- ******* CSS ***************** -->
 	<link rel="stylesheet" type="text/css" href="../css/main.css">
@@ -87,7 +87,7 @@ else
 <body>
 <!-- ******* HEADER ***************** -->
 	<header class="float_menu">
-		<a href="../index.php"><img src="../assets/icon/logo.png" alt="logo" class="logo"/></a>
+		<a href="/"><img src="../assets/icon/logo.png" alt="logo" class="logo"/></a>
 	</header>
 
 <!-- ******* ERROR ***************** -->

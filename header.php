@@ -4,7 +4,7 @@ include_once('php/connexion.php');
 if ($_SESSION['id'] == "" || $_SESSION['login'] == "") {
 	echo '<!-- ******* HEADER ***************** -->
 	<header class="float_menu">
-			<a href="index.php"><img src="assets/icon/logo.png" alt="logo" class="logo"/></a>
+			<a href="/"><img src="assets/icon/logo.png" alt="logo" class="logo"/></a>
 			<div class="float_menu_rigth">
 				<form action="#" onsubmit="return false" accept-charset="utf-8" class="search_form">
 
@@ -23,7 +23,7 @@ if ($_SESSION['id'] == "" || $_SESSION['login'] == "") {
 else{
 	echo '<!-- ******* HEADER ***************** -->
 	<header class="float_menu">
-			<a href="index.php"><img src="assets/icon/logo.png" alt="logo" class="logo"/></a>
+			<a href="/"><img src="assets/icon/logo.png" alt="logo" class="logo"/></a>
 			<div class="float_menu_rigth">
 				<form action="#" onsubmit="return false" accept-charset="utf-8" class="search_form">
 

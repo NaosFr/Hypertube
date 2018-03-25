@@ -24,7 +24,7 @@ if ($_POST['submit'] == "login") {
 					$_SESSION['id'] = $data['id_user'];
 					$_SESSION['login'] = $login;
 					
-					echo '<script>document.location.href="../index.php";</script>';
+					echo '<script>document.location.href="/"</script>';
 					exit;
 				}
 			}
@@ -92,6 +92,9 @@ else if ($_POST['submit'] === "register") {
 				}
 				else
 				{
+					echo "<style>#alert_div { background-color: #568456!important;} </style>";
+					echo '<div id="alert_div"><p id="text_alert">SUCCES : Please confirm your email !</p><span class="closebtn" onclick="del_alert()">&times;</span></div>';
+					
 					$cle = md5(microtime(TRUE)*100000);
 
 					$req = $bdd->prepare('INSERT INTO users (email, login, first_name, last_name, passwd, confirm, cle) VALUES (:email, :login, :first_name, :last_name, :passwd, 0, :cle)');
@@ -125,8 +128,6 @@ else if ($_POST['submit'] === "register") {
 					mkdir('../data/'.$id.'');
 					copy('../data/user.jpg', '../data/'.$id.'/user.jpg');
 
-					echo "<style>#alert_div { background-color: #568456!important;} </style>";
-					echo '<div id="alert_div"><p id="text_alert">SUCCES : Please confirm your email !</p><span class="closebtn" onclick="del_alert()">&times;</span></div>';
 					exit;
 			}
 		}

@@ -1,6 +1,15 @@
 <?php 
 include_once('php/connexion.php');
 
+if (!isset($_GET['el']))
+	$_GET['el'] = "";
+
+if ($_SESSION['id'] != "" || $_SESSION['login'] != "")
+{
+	header('Location: /');
+	exit;
+}
+
 if ($_GET['el'] === "register") {
 	$type = '<script type="text/javascript">
 				$(".template_login").hide();
@@ -52,7 +61,7 @@ else{
 			<br/>
 			<input type="password" name="password_login" maxlength="20" required />
 
-			<p class="forgot">FORGOT PASSWORD</p>
+			<p class="forgot">PASSWORD FORGOT</p>
 
 			<input type="submit" value="SIGN IN" class="submit transition" onclick="login()" />
 		</form>			

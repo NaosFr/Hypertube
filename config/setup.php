@@ -13,8 +13,20 @@ try
 
 	$bdd->query('SET time_zone = "+00:00";');
 
+	//users
+	$bdd->query("CREATE TABLE users(
+				id_user INT UNSIGNED AUTO_INCREMENT PRIMARY KEY NOT NULL,
+				email TEXT NOT NULL,
+				login TEXT NOT NULL,
+				passwd TEXT NOT NULL,
+				last_name TEXT NOT NULL,
+				first_name TEXT NOT NULL,
+				confirm BIT NOT NULL DEFAULT 0,
+				cle TEXT NOT NULL,
+				cle_passwd TEXT)");
+
 	header('Location: /');
-	exit();
+	exit;
 }
 catch (Exception $e)
 {

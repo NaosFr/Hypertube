@@ -58,9 +58,9 @@ if (isset($_POST['email']) && $_POST['email'] != "")
 <body>
 <!-- ******* HEADER ***************** -->
 	<header class="float_menu">
-			<a href="../index.php"><img src="assets/icon/logo.png" alt="logo" class="logo"/></a>
+			<a href="/"><img src="assets/icon/logo.png" alt="logo" class="logo"/></a>
 			<div class="float_menu_rigth">
-				<a href="index.php"><h2>HOME</h2></a>
+				<a href="/"><h2>HOME</h2></a>
 			</div>
 	</header>
 
