@@ -10,30 +10,25 @@
 		<input type="submit">
 	</form>
 	<?php
-	function remove($el)
-	{
-		return ($el[3]);
-	}
 	if (check_get('title'))
 	{
-		$opts = array(
-			'http' => array(
-			'method' => "GET",
-			'header' => "Accept-language: en\r\n"."Cookie: foo=bar\r\n"
-			)
-		);
-		$context = stream_context_create($opts);
-		$title = htmlspecialchars($_GET['title']);
-		$title = preg_replace("/ +/", "%20", $title);
-		$content = file_get_contents('http://www.imdb.com/find?q='.$title.'&s=tt&ttype=ft&ref_=fn_tt_pop', false, $context);
-		preg_match_all("/(<td class=\"result_text\">)(.*?)(<\/td>)/si", $content, $titles);
-		preg_match_all("/(<td class=\"primary_photo\">)(.*?)(src=\")(.*?)(\")(.*?)(<\/td>)/si", $content, $photos);
-		$src = $photos[4];
-		$title = $titles[0];
-		foreach ($src as $key => $el)
-			$src[$key] = preg_replace_callback("/(.*?)(@)(.*?)(.)(.*?)/si", "remove", $el);
-		foreach ($title as $key => $el)
-			echo $el."<br />";
+		$title = urlencode($_GET['title']);
+		$content = json_decode(file_get_contents('https://yts.am/api/v2/list_movies.json?sort_by=title&order_by=asc&query_term='.$title), true);
+		if ($content["data"]["movie_count"] > 0)
+		{
+			foreach ($content["data"]["movies"] as $el)
+			{
+				?>
+				<a href="/movie?id=<?php echo $el['imdb_code'] ?>">
+					<img src="<?php echo $el["large_cover_image"] ?>" />
+					<?php echo $el["year"] ?>
+					<?php echo $el["rating"] ?>
+				</a>
+				<?php
+			}
+		}
+		else
+			echo "No result !";
 	}
 	?>
 </body>
