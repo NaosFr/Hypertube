@@ -1,10 +1,6 @@
 <?php
 include_once('connexion.php');
 
-/////////////////////////////////
-////////// CHANGE PROFIL
-/////////////////////////////////
-
 if ($_POST['submit'] === "search") {
 
 if (isset($_POST['movie']) && $_POST['movie'] != "")
