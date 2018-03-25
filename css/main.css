@@ -165,7 +165,6 @@ header img:hover{
 .template_login, .template_register, .template_passwd_forgot, .template_setting, .template_delete{
 	position: absolute;
 	overflow: auto;
-	height: 100%;
 	width: 100%;
 	margin-top: 80px;
 	overflow: hidden;
