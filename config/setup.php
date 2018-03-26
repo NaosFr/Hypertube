@@ -25,6 +25,12 @@ try
 				cle TEXT NOT NULL,
 				cle_passwd TEXT)");
 
+	//hash
+	$bdd->query("CREATE TABLE hash(
+				id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY NOT NULL,
+				hash TEXT NOT NULL,
+				path TEXT NOT NULL)");
+
 	header('Location: /');
 	exit;
 }

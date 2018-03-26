@@ -12,7 +12,7 @@ if ($_POST['submit'] === "search")
 		{
 			foreach ($content["data"]["movies"] as $el)
 			{
-				echo '<a href="/movie?id='.$el['imdb_code'].'"><div>
+				echo '<a href="/movie.php?id='.$el['imdb_code'].'"><div>
 						<img src="'.$el["large_cover_image"].'" />
 						<div class="info_movie transition">
 							<p>'.$el["year"].'</p>

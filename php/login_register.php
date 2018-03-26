@@ -118,7 +118,7 @@ else if ($_POST['submit'] === "register") {
 							       <title>Welcome to Matcha</title>
 							      </head>
 							      <body>
-							       <p>To validate your account, please click on the link below or copy / paste in your internet browser.<br>http://localhost:8888/php/activation.php?log='.urlencode($login).'&cle='.urlencode($cle).'<br>------------------------------------------------------------------------------------------<br>This is an automatic email, please do not reply.</p>
+							       <p>To validate your account, please click on the link below or copy / paste in your internet browser.<br>http://'.$_SERVER['SERVER_NAME'].':'.$_SERVER['SERVER_PORT'].'/php/activation.php?log='.urlencode($login).'&cle='.urlencode($cle).'<br>------------------------------------------------------------------------------------------<br>This is an automatic email, please do not reply.</p>
 							      </body>
 							     </html>';
 

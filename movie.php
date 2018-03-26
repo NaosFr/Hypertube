@@ -1,0 +1,80 @@
+<?php
+include_once('php/connexion.php');
+
+if (!check_get('id'))
+{
+	header('Location: /');
+	exit;
+}
+
+$content = json_decode(file_get_contents('https://yts.am/api/v2/list_movies.json?sort_by=title&order_by=asc&query_term='.$_GET['id']), true);
+
+if ($content["data"]["movie_count"] != 1)
+{
+	header('Location: /');
+	exit;
+}
+$movie = $content["data"]["movies"][0];
+?>
+<!DOCTYPE html>
+<html>
+<head>
+	<?php include_once('meta.php'); ?>
+	<script type="text/javascript" src="js/jquery.js"></script>
+	<script type="text/javascript" src="js/movie.js"></script>
+</head>
+<body>
+	<?php
+	// display movie name
+
+	// echo $movie["title"]."<br />";
+
+	foreach ($movie["torrents"] as $el)
+	{
+		echo "<span style=\"cursor: pointer;\" onclick=\"getPath('".$el['hash']."')\">".$movie["title"]." - ".$el["quality"]." ".$el["size"]." ".$el["seeds"]." ".$el["peers"]."</span>";
+		echo "<br />";
+		echo "<br />";
+		echo "<br />";
+		echo "<br />";
+	}
+
+	?>
+	<video id="video" style="background-color: red; height: 720px; width: 1280px;">
+	</video>
+
+	<?php
+
+	// display cast and crew
+
+	// $content = json_decode(file_get_contents('https://api.themoviedb.org/3/movie/'.$_GET['id'].'/credits?api_key=68a139112eb59bd80702070df4874941'), true);
+	// echo "cast<br />";
+	// $i = 0;
+	// foreach ($content["cast"] as $el)
+	// {
+	// 	if ($el["profile_path"] != "null")
+	// 	{
+	// 		echo $el["name"];
+	// 		echo "<br />";
+	// 		echo "<img src=\"http://image.tmdb.org/t/p/w500".$el["profile_path"]."\" />";
+	// 		echo "<br />";
+	// 		$i++;
+	// 	}
+	// 	if ($i > 4)
+	// 		break ;
+	// }
+	// echo "<br />";
+	// echo "crew<br />";
+	// foreach ($content["crew"] as $el)
+	// {
+	// 	if ($el["profile_path"] != "null" && $el["profile_path"] != "" && ($el["job"] == "Producer" || $el["job"] == "Director" || $el["job"] == "Executive Producer"  || $el["job"] == "Writer"))
+	// 	{
+	// 		echo $el["name"]." ".$el["job"];
+	// 		echo "<br />";
+	// 		echo "<img src=\"http://image.tmdb.org/t/p/w500".$el["profile_path"]."\" />";
+	// 		echo "<br />";
+	// 	}
+	// }
+
+	?>
+</body>
+</html>
