@@ -22,7 +22,7 @@ if ($_POST['submit'] === "search")
 			}
 		}
 		else
-			echo "No result !";
+			echo '<p class="no_result">No result !</p>';
 	}
 }
 
