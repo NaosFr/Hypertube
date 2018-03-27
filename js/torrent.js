@@ -33,4 +33,10 @@ else
 			}
 		});
 	});
+	engine.on('download', function(data) {
+		console.log('piece downloaded :', data);
+	});
+	engine.on('idle', function() {
+		console.log('torrent end');
+	});
 }
