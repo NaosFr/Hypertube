@@ -34,7 +34,7 @@ if ($_POST['submit'] === "search")
 				</div></a>';
 		}
 	}
-	else
+	else if ($page == 1)
 		echo '<p class="no_result">'.$lang['search_empty'].'</p>';
 }
 

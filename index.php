@@ -71,6 +71,41 @@
 	
 	let genre = "";
 	let page = 1;
+	let scroll = 1;
+
+	$(document).ready(function ()
+	{
+		$('#movies').bind('scroll', check_scroll);
+	});
+
+	function check_scroll(e)
+	{
+		var elem = $(e.currentTarget);
+		if (elem[0].scrollHeight - elem.scrollTop() == elem.outerHeight() && scroll == 1)
+		{
+			scroll = 0;
+
+			var formData = {
+				'movie'		: $('input[name=search]').val(),
+				'genre'		: genre,
+				'page'		: page,
+				'submit'	: "search"
+			};
+
+			$.ajax({
+				type		: 'POST',
+				url			: 'php/search.php',
+				data		: formData,
+				encode		: true,
+				success		: function(data){
+					$('#movies').append(data);
+					scroll = 1;
+				}
+			});
+
+			page++;
+		}
+	}
 
 	function setGenre(name)
 	{
