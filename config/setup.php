@@ -55,9 +55,10 @@ try
 
 	//hash
 	$bdd->query("CREATE TABLE hash(
-				id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY NOT NULL,
+				id_hash INT UNSIGNED AUTO_INCREMENT PRIMARY KEY NOT NULL,
 				hash TEXT NOT NULL,
-				path TEXT NOT NULL)");
+				path TEXT NOT NULL,
+				downloaded INT UNSIGNED NOT NULL)");
 
 	header('Location: /');
 	exit;
