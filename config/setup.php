@@ -25,6 +25,37 @@ try
 				cle TEXT NOT NULL,
 				cle_passwd TEXT)");
 
+	//genres
+	$bdd->query("CREATE TABLE genres(
+				id_genre INT UNSIGNED AUTO_INCREMENT PRIMARY KEY NOT NULL,
+				genre TEXT NOT NULL)");
+
+	$bdd->query("INSERT INTO genres (genre) VALUES
+				('Action'),
+				('Adventure'),
+				('Animation'),
+				('Biography'),
+				('Comedy'),
+				('Crime'),
+				('Documentary'),
+				('Drama'),
+				('Family'),
+				('Fantasy'),
+				('Film Noir'),
+				('History'),
+				('Horror'),
+				('Music'),
+				('Musical'),
+				('Mystery'),
+				('Romance'),
+				('Sci-Fi'),
+				('Short'),
+				('Sport'),
+				('Superhero'),
+				('Thriller'),
+				('War'),
+				('Western')");
+
 	//hash
 	$bdd->query("CREATE TABLE hash(
 				id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY NOT NULL,
