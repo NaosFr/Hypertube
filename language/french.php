@@ -53,6 +53,14 @@ $lang['setting_number'] = 'ERREUR : Le mot de passe doit contenir un chiffre !';
 $lang['setting_letter'] = 'ERREUR : Le mot de passe doit contenir une lettre !';
 $lang['setting_password'] = 'Mot de passe modifié';
 $lang['setting_wrong'] = 'ERREUR : Mauvais mot de passe !';
+$lang['setting_email'] = 'EMAIL';
+$lang['setting_login'] = 'PSEUDO';
+$lang['setting_first_name'] = 'PRÉNOM';
+$lang['setting_last_name'] = 'NOM';
+$lang['setting_modify'] = 'MODIFIER';
+$lang['setting_old'] = 'ANCIEN MOT DE PASSE';
+$lang['setting_new'] = 'NOUVEAU MOT DE PASSE';
+$lang['setting_delete'] = 'SUPPRIMER LE COMPTE';
 
 // ACCOUNT_DELETE
 $lang['account_delete_wrong'] = "ERREUR : Email ou mot de passe faux !";
@@ -80,7 +88,16 @@ $lang['passwd_forgot_email'] = 'EMAIL';
 $lang['passwd_forgot_register'] = 'INSCRIPTION';
 $lang['passwd_forgot_send'] = 'ENVOYER';
 
-
+// SIGNIN
+$lang['signin_login'] = 'PSEUDO';
+$lang['signin_password'] = 'MOT DE PASSE';
+$lang['signin_forgot'] = 'MOT DE PASSE OUBLIÉ';
+$lang['signin_signin'] = 'CONNEXION';
+$lang['signin_first_name'] = 'PRÉNOM';
+$lang['signin_last_name'] = 'NOM';
+$lang['signin_confirmation'] = 'CONFIRMATION';
+$lang['signin_create'] = 'CRÉER LE COMPTE';
+$lang['signin_send'] = 'ENVOYER';
 
 
 

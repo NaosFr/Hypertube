@@ -53,6 +53,14 @@ $lang['setting_number'] = 'ERROR : Password must include a number !';
 $lang['setting_letter'] = 'ERROR : Password must include a letter !';
 $lang['setting_password'] = 'Password changed';
 $lang['setting_wrong'] = 'ERROR : Wrong password !';
+$lang['setting_email'] = 'EMAIL';
+$lang['setting_login'] = 'LOGIN';
+$lang['setting_first_name'] = 'FIRST NAME';
+$lang['setting_last_name'] = 'LAST NAME';
+$lang['setting_modify'] = 'MODIFY';
+$lang['setting_old'] = 'OLD PASSWORD';
+$lang['setting_new'] = 'NEW PASSWORD';
+$lang['setting_delete'] = 'DELETE ACCOUNT';
 
 // ACCOUNT_DELETE
 $lang['account_delete_wrong'] = "ERROR : Email or password wrong !";
@@ -80,7 +88,16 @@ $lang['passwd_forgot_email'] = 'EMAIL';
 $lang['passwd_forgot_register'] = 'REGISTER';
 $lang['passwd_forgot_send'] = 'SEND';
 
-
+// SIGNIN
+$lang['signin_login'] = 'LOGIN';
+$lang['signin_password'] = 'PASSWORD';
+$lang['signin_forgot'] = 'PASSWORD FORGOT';
+$lang['signin_signin'] = 'SIGN IN';
+$lang['signin_first_name'] = 'FIRST NAME';
+$lang['signin_last_name'] = 'LAST NAME';
+$lang['signin_confirmation'] = 'CONFIRMATION';
+$lang['signin_create'] = 'CREATE ACCOUNT';
+$lang['signin_send'] = 'SEND';
 
 
 

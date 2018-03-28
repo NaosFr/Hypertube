@@ -96,7 +96,7 @@ else if ($_POST['submit'] === "register") {
 				else
 				{
 					echo "<style>#alert_div { background-color: #568456!important;} </style>";
-					echo '<div id="alert_div"><p id="text_alert">'.$lang['login_register_confirm'].'/p><span class="closebtn" onclick="del_alert()">&times;</span></div>';
+					echo '<div id="alert_div"><p id="text_alert">'.$lang['login_register_confirm'].'</p><span class="closebtn" onclick="del_alert()">&times;</span></div>';
 					
 					$cle = md5(microtime(TRUE)*100000);
 
