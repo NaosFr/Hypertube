@@ -23,10 +23,16 @@
 
 <section class="navbar_filter">
 	<div class="theme">
-		<div><p>ACTION</p></div>
-		<div><p>DRAMA</p></div>
-		<div><p>FICTION</p></div>
-		<div><p>POLICE</p></div>
+		<?php
+		$req = $bdd->prepare('SELECT genre FROM genres');
+		$req->execute(array());
+		while ($data = $req->fetch())
+		{
+			?>
+			<div><p><?php echo strtoupper($data['genre']) ?></p></div>
+			<?php
+		}
+		?>
 	</div>
 
 	<form action="#" onsubmit="return false" accept-charset="utf-8" id="form_filter">
