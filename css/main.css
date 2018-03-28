@@ -188,7 +188,7 @@ header img:hover{
 
 .navbar_filter{
 	width: 200px;
-	height: 103%;
+	height: 100%;
 	overflow: auto;
 	background-color: #292929;
 	border-right: 3px solid #c13c54;
@@ -350,7 +350,7 @@ header img:hover{
 #movies{
 	padding: 10px;
 	position: absolute;
-	height: 88%;
+	height: calc(100% - 100px);
 	left: 200px;
 	top: 80px;
 	overflow: auto!important;

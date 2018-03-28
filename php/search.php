@@ -12,10 +12,12 @@ if ($_POST['submit'] === "search")
 	$genre = urlencode($genre);
 	$page = htmlspecialchars($_POST['page']);
 	$page = urlencode($page);
-	$url = 'https://yts.am/api/v2/list_movies.json?sort_by=title&order_by=asc&limit=50';
+	$url = 'https://yts.am/api/v2/list_movies.json?limit=50';
 	$url .= '&page='.$page;
 	if (!empty($title))
-		$url .= '&query_term='.$title;
+		$url .= '&sort_by=title&order_by=asc&query_term='.$title;
+	else
+		$url .= '&sort_by=rating&order_by=desc';
 	if (!empty($genre))
 		$url .= '&genre='.$genre;
 	$content = json_decode(file_get_contents($url), true);
