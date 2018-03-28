@@ -22,7 +22,7 @@ if ($_POST['submit'] === "search")
 			}
 		}
 		else
-			echo '<p class="no_result">No result !</p>';
+			echo '<p class="no_result">'.$lang['search_empty'].'</p>';
 	}
 }
 

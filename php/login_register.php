@@ -1,6 +1,9 @@
 <?php
 include_once('connexion.php');
 
+if (!check_post('submit'))
+	exit;
+
 if ($_POST['submit'] == "login") {
 
 	if (isset($_POST['login']) && isset($_POST['password'])
@@ -17,7 +20,7 @@ if ($_POST['submit'] == "login") {
 				$data = $req->fetch();
 				if ($data['confirm'] == 0)
 				{
-					echo '<div id="alert_div"><p id="text_alert">ERROR : Email not confirmed !</p><span class="closebtn" onclick="del_alert()">&times;</span></div>';
+					echo '<div id="alert_div"><p id="text_alert">'.$lang['login_register_email'].'</p><span class="closebtn" onclick="del_alert()">&times;</span></div>';
 				}
 				else
 				{
@@ -30,7 +33,7 @@ if ($_POST['submit'] == "login") {
 			}
 			else
 			{
-				echo '<div id="alert_div"><p id="text_alert">ERROR : login or password wrong!</p><span class="closebtn" onclick="del_alert()">&times;</span></div>';
+				echo '<div id="alert_div"><p id="text_alert">'.$lang['login_register_wrong'].'</p><span class="closebtn" onclick="del_alert()">&times;</span></div>';
 			}
 	}
 
@@ -47,24 +50,24 @@ else if ($_POST['submit'] === "register") {
 		
 			if ($_POST['password'] != $_POST['password_conf'])
 			{
-				echo '<div id="alert_div"><p id="text_alert">ERROR : Passwords don\'t match</p><span class="closebtn" onclick="del_alert()">&times;</span></div>';
+				echo '<div id="alert_div"><p id="text_alert">'.$lang['login_register_match'].'</p><span class="closebtn" onclick="del_alert()">&times;</span></div>';
 			}
 			else if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL))
 			{
-				echo '<div id="alert_div"><p id="text_alert">ERROR : ERROR : Not a valid email !</p><span class="closebtn" onclick="del_alert()">&times;</span></div>';
+				echo '<div id="alert_div"><p id="text_alert">'.$lang['login_register_invalid'].'</p><span class="closebtn" onclick="del_alert()">&times;</span></div>';
 			}
 			else if (strlen($_POST['password']) < 5)
 			{
-				echo '<div id="alert_div"><p id="text_alert">ERROR : Password too short !</p><span class="closebtn" onclick="del_alert()">&times;</span></div>';
+				echo '<div id="alert_div"><p id="text_alert">'.$lang['login_register_short'].'</p><span class="closebtn" onclick="del_alert()">&times;</span></div>';
 				$txt = "";
 			}
 			else if (!preg_match("#[0-9]+#", $_POST['password']))
 			{
-				echo '<div id="alert_div"><p id="text_alert">ERROR : ERROR : Password must include a number !</p><span class="closebtn" onclick="del_alert()">&times;</span></div>';
+				echo '<div id="alert_div"><p id="text_alert">'.$lang['login_register_number'].'</p><span class="closebtn" onclick="del_alert()">&times;</span></div>';
 			}
 			else if (!preg_match("#[a-zA-Z]+#", $_POST['password']))
 			{
-				echo '<div id="alert_div"><p id="text_alert">ERROR : Password must include a letter !</p><span class="closebtn" onclick="del_alert()">&times;</span></div>';
+				echo '<div id="alert_div"><p id="text_alert">'.$lang['login_register_letter'].'</p><span class="closebtn" onclick="del_alert()">&times;</span></div>';
 			}
 			else{
 				$email = htmlspecialchars($_POST['email']);
@@ -84,16 +87,16 @@ else if ($_POST['submit'] === "register") {
 
 				if($req->rowCount() > 0)
 				{
-					echo '<div id="alert_div"><p id="text_alert">ERROR : Pseudo already use !</p><span class="closebtn" onclick="del_alert()">&times;</span></div>';
+					echo '<div id="alert_div"><p id="text_alert">'.$lang['login_register_used_login'].'</p><span class="closebtn" onclick="del_alert()">&times;</span></div>';
 				}
 				else if ($req2->rowCount() > 0)
 				{
-					echo '<div id="alert_div"><p id="text_alert">ERROR : Email already use !</p><span class="closebtn" onclick="del_alert()">&times;</span></div>';
+					echo '<div id="alert_div"><p id="text_alert">'.$lang['login_register_used_email'].'</p><span class="closebtn" onclick="del_alert()">&times;</span></div>';
 				}
 				else
 				{
 					echo "<style>#alert_div { background-color: #568456!important;} </style>";
-					echo '<div id="alert_div"><p id="text_alert">SUCCES : Please confirm your email !</p><span class="closebtn" onclick="del_alert()">&times;</span></div>';
+					echo '<div id="alert_div"><p id="text_alert">'.$lang['login_register_confirm'].'/p><span class="closebtn" onclick="del_alert()">&times;</span></div>';
 					
 					$cle = md5(microtime(TRUE)*100000);
 
@@ -110,15 +113,15 @@ else if ($_POST['submit'] === "register") {
 					ini_set( 'display_errors', 1 );
 			    	error_reporting( E_ALL );
 
-					$sujet = "Active your account" ;
+					$sujet = $lang['login_register_activate_subject'];
 					$header = "From: adm@hypertube.com\nMIME-Version: 1.0\nContent-Type: text/html; charset=utf-8\n";
 
 					$message = '<html>
 							      <head>
-							       <title>Welcome to Matcha</title>
+							       <title>'.$lang['login_register_activate_title'].'</title>
 							      </head>
 							      <body>
-							       <p>To validate your account, please click on the link below or copy / paste in your internet browser.<br>http://'.$_SERVER['SERVER_NAME'].':'.$_SERVER['SERVER_PORT'].'/php/activation.php?log='.urlencode($login).'&cle='.urlencode($cle).'<br>------------------------------------------------------------------------------------------<br>This is an automatic email, please do not reply.</p>
+							       <p>'.$lang['login_register_activate_text'].'<br>http://'.$_SERVER['SERVER_NAME'].':'.$_SERVER['SERVER_PORT'].'/php/activation.php?log='.urlencode($login).'&cle='.urlencode($cle).'<br>------------------------------------------------------------------------------------------<br>'.$lang['login_register_automatic'].'</p>
 							      </body>
 							     </html>';
 
@@ -140,7 +143,7 @@ else if ($_POST['submit'] === "forgot") {
 
 		if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL))
 		{
-			echo '<div id="alert_div"><p id="text_alert">ERROR : Not a valid email !</p><span class="closebtn" onclick="del_alert()">&times;</span></div>';
+			echo '<div id="alert_div"><p id="text_alert">'.$lang['login_register_invalid'].'</p><span class="closebtn" onclick="del_alert()">&times;</span></div>';
 		}
 		else{
 			$email = htmlspecialchars($_POST['email']);
@@ -154,23 +157,23 @@ else if ($_POST['submit'] === "forgot") {
 			ini_set( 'display_errors', 1 );
 			error_reporting( E_ALL );
 
-			$sujet = "Reset password" ;
+			$sujet = $lang['login_register_reset_subject'];
 
 			$header = "From: adm@hypertube.com\nMIME-Version: 1.0\nContent-Type: text/html; charset=utf-8\n";
 
 					$message = '<html>
 							      <head>
-							       <title>Reset password</title>
+							       <title>'.$lang['login_register_reset_title'].'</title>
 							      </head>
 							      <body>
-							       <p>To change your password, please click on the link below or copy / paste in your internet browser.<br>http://localhost:8888/php/new_passwd.php?log='.$email.'&cle='.urlencode($cle_passwd).'<br>------------------------------------------------------------------------------------------<br>This is an automatic email, please do not reply.</p>
+							       <p>'.$lang['login_register_reset_text'].'<br>http://'.$_SERVER['SERVER_NAME'].':'.$_SERVER['SERVER_PORT'].'/php/new_passwd.php?log='.$email.'&cle='.urlencode($cle_passwd).'<br>------------------------------------------------------------------------------------------<br>'.$lang['login_register_automatic'].'</p>
 							      </body>
 							     </html>';
 
 			mail($email, $sujet, $message, $header);
 
 			echo "<style>#alert_div { background-color: #568456!important;} </style>";
-			echo '<div id="alert_div"><p id="text_alert">SUCCES : Email send ! </p><span class="closebtn" onclick="del_alert()">&times;</span></div>';
+			echo '<div id="alert_div"><p id="text_alert">'.$lang['login_register_sent'].'</p><span class="closebtn" onclick="del_alert()">&times;</span></div>';
 		}
 	}
 }

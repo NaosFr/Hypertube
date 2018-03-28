@@ -13,8 +13,8 @@ if (isset($_POST['password']) && $_POST['password'] != "" && isset($_POST['email
 	$passwd = htmlspecialchars($_POST['password']);
 	$passwd = hash("whirlpool", htmlspecialchars($passwd));
 
-	$req = $bdd->prepare('SELECT * FROM users WHERE email = ? AND passwd = ?');
-	$req->execute(array($email, $passwd));
+	$req = $bdd->prepare('SELECT * FROM users WHERE email = ? AND passwd = ? AND id_user = ?');
+	$req->execute(array($email, $passwd, $_SESSION['id']));
 	if($req->rowCount() == 1)
 	{
 		$data = $req->fetch();
