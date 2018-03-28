@@ -8,7 +8,7 @@ if ($_SESSION['id'] == "" || $_SESSION['login'] == "") {
 			<div class="float_menu_rigth">
 				<form action="#" onsubmit="return false" accept-charset="utf-8" class="search_form">
 
-					<input type="text" name="search" maxlength="40" required/>
+					<input type="text" name="search" maxlength="40" />
 
 					<input type="submit" value="'.$lang['header_search'].'" class="submit_search transition" onclick="search_movie()" />
 				</form>
@@ -27,7 +27,7 @@ else{
 			<div class="float_menu_rigth">
 				<form action="#" onsubmit="return false" accept-charset="utf-8" class="search_form">
 
-					<input type="text" name="search" maxlength="40" required/>
+					<input type="text" name="search" maxlength="40" />
 
 					<input type="submit" value="'.$lang['header_search'].'" class="submit_search transition" onclick="search_movie()" />
 				</form>	

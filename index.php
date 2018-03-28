@@ -15,7 +15,7 @@
 
 </head>
 
-<body>
+<body onload="search_movie();">
 
 <?php include_once('header.php'); ?>
 
@@ -29,7 +29,7 @@
 		while ($data = $req->fetch())
 		{
 			?>
-			<div><p><?php echo strtoupper($data['genre']) ?></p></div>
+			<div id="<?php echo $data['genre'] ?>" onclick="setGenre('<?php echo $data['genre'] ?>')"><p><?php echo strtoupper($data['genre']) ?></p></div>
 			<?php
 		}
 		?>
@@ -55,10 +55,33 @@
 <script type="text/javascript" src="js/main.js"></script>
 <script type="text/javascript">
 	
+	let genre = "";
+	let page = 1;
+
+	function setGenre(name)
+	{
+		if ($("#" + genre))
+			$("#" + genre).css('background-color', '');
+		if (genre == name)
+		{
+			genre = '';
+		}
+		else
+		{
+			genre = name;
+			if ($("#" + genre))
+				$("#" + genre).css('background-color', 'blue');
+		}
+		search_movie();
+	}
+
 	function search_movie(){
+		page = 1;
 
 		var formData = {
 			'movie'		: $('input[name=search]').val(),
+			'genre'		: genre,
+			'page'		: page,
 			'submit'	: "search"
 		};
 
@@ -70,7 +93,9 @@
 			success		: function(data){
 				$('#movies').html(data);
 			}
-		})
+		});
+
+		page++;
 	}
 
 	// SLIDER YEARS

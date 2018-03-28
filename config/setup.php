@@ -41,7 +41,6 @@ try
 				('Drama'),
 				('Family'),
 				('Fantasy'),
-				('Film Noir'),
 				('History'),
 				('Horror'),
 				('Music'),
@@ -49,9 +48,7 @@ try
 				('Mystery'),
 				('Romance'),
 				('Sci-Fi'),
-				('Short'),
 				('Sport'),
-				('Superhero'),
 				('Thriller'),
 				('War'),
 				('Western')");
