@@ -13,6 +13,20 @@
 	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
+	<style type="text/css">
+		.background_image{
+			background: #292929;
+		    width: 200px;
+		    height: 80px;
+		    text-align: center;
+		    justify-content: center;
+		    -webkit-justify-content: center;
+		    align-items: center;
+		    -webkit-align-items: center;
+		    display: -webkit-flex;
+		}
+	</style>
+
 </head>
 
 <body onload="search_movie();">
@@ -70,7 +84,7 @@
 		{
 			genre = name;
 			if ($("#" + genre))
-				$("#" + genre).css('background-color', 'blue');
+				$("#" + genre).css('background-color', '#353535');
 		}
 		search_movie();
 	}
