@@ -10,10 +10,10 @@ if ($_SESSION['id'] == "" || $_SESSION['login'] == "") {
 
 					<input type="text" name="search" maxlength="40" required/>
 
-					<input type="submit" value="SEARCH" class="submit_search transition" onclick="search_movie()" />
+					<input type="submit" value="'.$lang['header_search'].'" class="submit_search transition" onclick="search_movie()" />
 				</form>
-				<a href="signin.php"><h2>SIGN IN</h2></a>
-				<a href="signin.php?el=register"><h2>REGISTER</h2></a>
+				<a href="signin.php"><h2>'.$lang['header_signin'].'</h2></a>
+				<a href="signin.php?el=register"><h2>'.$lang['header_register'].'</h2></a>
 			</div>
 	</header>
 
@@ -29,7 +29,7 @@ else{
 
 					<input type="text" name="search" maxlength="40" required/>
 
-					<input type="submit" value="SEARCH" class="submit_search transition" onclick="search_movie()" />
+					<input type="submit" value="'.$lang['header_search'].'" class="submit_search transition" onclick="search_movie()" />
 				</form>	
 
 				<a href="setting.php"><img src="assets/icon/settings.svg" alt="setting"/></a>

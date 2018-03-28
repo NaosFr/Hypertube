@@ -7,7 +7,7 @@ if (isset($_POST['email']) && $_POST['email'] != "")
 	if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL))
 	{
 		echo "<style>.alert { display: block!important; } </style>";
-		$txt = "ERROR : Not a valid email";
+		$txt = $lang['passwd_forgot_invalid'];
 	}
 	else{
 		$email = htmlspecialchars($_POST['email']);
@@ -21,24 +21,24 @@ if (isset($_POST['email']) && $_POST['email'] != "")
 		ini_set( 'display_errors', 1 );
 		error_reporting( E_ALL );
 
-		$sujet = "Reset password" ;
+		$sujet = $lang['passwd_forgot_reset_subject'];
 
 		$header = "From: adm@matcha.com\nMIME-Version: 1.0\nContent-Type: text/html; charset=utf-8\n";
 
 				$message = '<html>
 								<head>
-									<title>Reset password</title>
+									<title>'.$lang['passwd_forgot_reset_subject'].'</title>
 								</head>
 								<body>
 									<img src="http://localhost:8888/assets/icon/favicon.png" style="width: 100px;">
-									<p>To change your password, please click on the link below or copy / paste in your internet browser.<br>http://localhost:8888/php/new_passwd.php?log='.$email.'&cle='.urlencode($cle_passwd).'<br>------------------------------------------------------------------------------------------<br>This is an automatic email, please do not reply.</p>
+									<p>'.$lang['passwd_forgot_reset_text'].'<br>http://localhost:8888/php/new_passwd.php?log='.$email.'&cle='.urlencode($cle_passwd).'<br>------------------------------------------------------------------------------------------<br>'.$lang['passwd_forgot_automatic'].'</p>
 								</body>
 							</html>';
 
 		mail($email, $sujet, $message, $header);
 
 		echo "<style>#alert_div { background-color: #568456!important;} </style>";
-		$txt =  '<div id="alert_div"><p id="text_alert">Email send</p><span class="closebtn" onclick="del_alert()">&times;</span></div>';
+		$txt =  '<div id="alert_div"><p id="text_alert">'.$lang['passwd_forgot_sent'].'</p><span class="closebtn" onclick="del_alert()">&times;</span></div>';
 	}
 }
 
@@ -60,7 +60,7 @@ if (isset($_POST['email']) && $_POST['email'] != "")
 	<header class="float_menu">
 			<a href="/"><img src="assets/icon/logo.png" alt="logo" class="logo"/></a>
 			<div class="float_menu_rigth">
-				<a href="/"><h2>HOME</h2></a>
+				<a href="/"><h2><?php echo $lang['passwd_forgot_home'] ?></h2></a>
 			</div>
 	</header>
 
@@ -76,13 +76,13 @@ if (isset($_POST['email']) && $_POST['email'] != "")
 			<!-- Form -->
 			<form method="post" action="passwd_forgot.php" accept-charset="utf-8">
 
-				<label for="email"><p>EMAIL</p></label>
+				<label for="email"><p><?php echo $lang['passwd_forgot_email'] ?></p></label>
 				<br/>
 				<input type="email" name="email" required />
 				
-				<p class="register"><a href="account_register.php">REGISTER</a></p>
+				<p class="register"><a href="account_register.php"><?php echo $lang['passwd_forgot_register'] ?></a></p>
 				<!-- SIGN IN -->
-				<input type="submit" name="go_login_account" value="SEND" class="submit"/>
+				<input type="submit" name="go_login_account" value="<?php echo $lang['passwd_forgot_send'] ?>" class="submit"/>
 			</form>
 			<!-- /end Form -->
 	</section>

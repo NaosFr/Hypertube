@@ -15,7 +15,7 @@ $lang['activation_login'] = 'LOGIN HYPERTUBE';
 $lang['login_register_email'] = 'ERROR : Email not confirmed !';
 $lang['login_register_wrong'] = 'ERROR : Login or password wrong !';
 $lang['login_register_match'] = 'ERROR : Passwords don\'t match !';
-$lang['login_register_invalid'] = 'ERROR : Invalid email';
+$lang['login_register_invalid'] = 'ERROR : Invalid email !';
 $lang['login_register_short'] = 'ERROR : Password too short !';
 $lang['login_register_number'] = 'ERROR : Password must include a number !';
 $lang['login_register_letter'] = 'ERROR : Password must include a letter !';
@@ -53,5 +53,65 @@ $lang['setting_number'] = 'ERROR : Password must include a number !';
 $lang['setting_letter'] = 'ERROR : Password must include a letter !';
 $lang['setting_password'] = 'Password changed';
 $lang['setting_wrong'] = 'ERROR : Wrong password !';
+
+// ACCOUNT_DELETE
+$lang['account_delete_wrong'] = "ERROR : Email or password wrong !";
+$lang['account_delete_email'] = "EMAIL";
+$lang['account_delete_password'] = "PASSWORD";
+$lang['account_delete_delete'] = "DELETE";
+
+// HEADER
+$lang['header_search'] = 'SEARCH';
+$lang['header_signin'] = 'SIGN IN';
+$lang['header_register'] = 'REGISTER';
+
+// INDEX
+$lang['index_filter'] = 'FILTER';
+
+// PASSWD_FORGOT
+$lang['passwd_forgot_invalid'] = 'ERROR : Invalid email !';
+$lang['passwd_forgot_reset_subject'] = 'Reset password';
+$lang['passwd_forgot_reset_title'] = 'Reset password';
+$lang['passwd_forgot_reset_text'] = 'To change your password, please click on the link below or copy / paste it in your browser.';
+$lang['passwd_forgot_automatic'] = 'This is an automatic email, please do not reply.';
+$lang['passwd_forgot_sent'] = 'Email sent';
+$lang['passwd_forgot_home'] = 'HOME';
+$lang['passwd_forgot_email'] = 'EMAIL';
+$lang['passwd_forgot_register'] = 'REGISTER';
+$lang['passwd_forgot_send'] = 'SEND';
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ?>

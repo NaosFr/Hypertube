@@ -39,7 +39,7 @@
 		
 		<div id="slider-score" class="slider"></div>
 
-		<input type="submit" value="FILTER" class="submit_filter transition" onclick="login()" />
+		<input type="submit" value="<?php echo $lang['index_filter'] ?>" class="submit_filter transition" onclick="login()" />
 	</form>
 
 </section>

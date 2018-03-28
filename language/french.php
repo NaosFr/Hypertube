@@ -54,4 +54,68 @@ $lang['setting_letter'] = 'ERREUR : Le mot de passe doit contenir une lettre !';
 $lang['setting_password'] = 'Mot de passe modifié';
 $lang['setting_wrong'] = 'ERREUR : Mauvais mot de passe !';
 
+// ACCOUNT_DELETE
+$lang['account_delete_wrong'] = "ERREUR : Email ou mot de passe faux !";
+$lang['account_delete_email'] = "EMAIL";
+$lang['account_delete_password'] = "MOT DE PASSE";
+$lang['account_delete_delete'] = "SUPPRIMER";
+
+// HEADER
+$lang['header_search'] = 'CHERCHER';
+$lang['header_signin'] = 'CONNEXION';
+$lang['header_register'] = 'INSCRIPTION';
+
+// INDEX
+$lang['index_filter'] = 'FILTRER';
+
+// PASSWD_FORGOT
+$lang['passwd_forgot_invalid'] = 'ERREUR : Email invalide !';
+$lang['passwd_forgot_reset_subject'] = 'Réinitialiser le mot de passe';
+$lang['passwd_forgot_reset_title'] = 'Réinitialiser le mot de passe';
+$lang['passwd_forgot_reset_text'] = 'Pour changer votre mot de passe, veuillez cliquer sur le lien ci-dessous ou copiez / collez-le dans votre navigateur.';
+$lang['passwd_forgot_automatic'] = 'Ceci est un email automatique, merci de ne pas répondre.';
+$lang['passwd_forgot_sent'] = 'Email envoyé';
+$lang['passwd_forgot_home'] = 'MENU';
+$lang['passwd_forgot_email'] = 'EMAIL';
+$lang['passwd_forgot_register'] = 'INSCRIPTION';
+$lang['passwd_forgot_send'] = 'ENVOYER';
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ?>
