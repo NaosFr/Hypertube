@@ -141,6 +141,7 @@
 			encode		: true,
 			success		: function(data){
 				$('#movies').html(data);
+				$('#movies').scrollTop(0);
 			}
 		});
 
