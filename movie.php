@@ -25,6 +25,7 @@ $movie = $content["data"]["movies"][0];
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 	<link rel="stylesheet" type="text/css" href="css/form.css">
 	<link rel="stylesheet" type="text/css" href="css/responsive.css">
+	<link rel="stylesheet" type="text/css" href="css/comments.css">
 
 	<script type="text/javascript" src="js/jquery.js"></script>
 	<script type="text/javascript" src="js/movie.js"></script>
@@ -91,5 +92,16 @@ $movie = $content["data"]["movies"][0];
 	// }
 
 	?>
+	<?php
+		include_once('./movie_comments.php');
+		include_once('./php/getComments.php');
+		$comments = getCommentsByMovieID($_GET['id'], $bdd);
+		movieComments($comments);
+	?>
+	<div style="display:none" id="user-login"><?php echo $_SESSION['login']?></div>
+	<div style="display:none" id="user-first-name"><?php echo 'You'?></div>
+	<div style="display:none" id="user-last-name"><?php echo ''?></div>
+	<div style="display:none" id="movie-id"><?php echo $_GET['id']?></div>
 </body>
+	<script type="text/javascript" src="./js/comments.js"></script>
 </html>

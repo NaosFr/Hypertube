@@ -29,7 +29,15 @@ CREATE TABLE `users` (
 	`first_name` text,
 	`confirm` int(11) DEFAULT NULL,
 	`cle` text NOT NULL,
-	`cle_passwd` text
+	`cle_passwd` text,
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `comments` (
+	`id_comments` int(11) NOT NULL,
+	`user_id` int(11) NOT NULL,
+	`movie_id` varchar(255) DEFAULT NULL,
+	`content` varchar(3000) DEFAULT NULL,
+	`created_at` varchar(255) DEFAULT NULL,
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -50,6 +58,9 @@ INSERT INTO `users` (`id_user`, `email`, `login`, `passwd`, `last_name`, `first_
 ALTER TABLE `users`
 	ADD PRIMARY KEY (`id_user`);
 
+ALTER TABLE `comments`
+	ADD PRIMARY KEY (`id_comments`);
+
 --
 -- AUTO_INCREMENT pour les tables déchargées
 --
@@ -59,3 +70,6 @@ ALTER TABLE `users`
 --
 ALTER TABLE `users`
 	MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+ALTER TABLE `comments`
+	MODIFY `id_comments` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
