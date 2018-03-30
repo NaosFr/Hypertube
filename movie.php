@@ -95,12 +95,13 @@ $movie = $content["data"]["movies"][0];
 	<?php
 		include_once('./movie_comments.php');
 		include_once('./php/getComments.php');
-		$comments = getCommentsByMovieID($_GET['id']);
+		$comments = getCommentsByMovieID($_GET['id'], $bdd);
 		movieComments($comments);
 	?>
-	<div style="display:none" id="user-login">gduron</div>
-	<div style="display:none" id="user-first-name">Gaetan</div>
-	<div style="display:none" id="user-last-name">Duron</div>
+	<div style="display:none" id="user-login"><?php echo $_SESSION['login']?></div>
+	<div style="display:none" id="user-first-name"><?php echo 'You'?></div>
+	<div style="display:none" id="user-last-name"><?php echo ''?></div>
+	<div style="display:none" id="movie-id"><?php echo $_GET['id']?></div>
 </body>
 	<script type="text/javascript" src="./js/comments.js"></script>
 </html>

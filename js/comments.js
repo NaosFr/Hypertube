@@ -1,5 +1,8 @@
-const sendNewMessage = (content, data) => {
-
+const sendNewMessage = (content, date, movie) => {
+	const xhttp = new XMLHttpRequest();
+	xhttp.open("POST", "php/addComment.php", true);
+	xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	xhttp.send(`content=${content}&date=${date}&movie=${movie}`);	
 };
 
 const clearMessageBox = () => {
@@ -55,7 +58,9 @@ const addNewMessage = (content) => {
 	messageList.innerHTML += tmp;
 
 	clearMessageBox();
-	sendNewMessage(content, date);
+
+	const movie = document.getElementById("movie-id").innerHTML;
+	sendNewMessage(content, date, movie);
 };
 
 const button = document.getElementById("comment-button");

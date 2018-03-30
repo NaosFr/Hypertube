@@ -3,7 +3,7 @@ function createMessages($comments) {
 	$commentsHTML = '';
 
 	foreach ($comments as $comment) {
-		$commentsHTML .= '
+		$commentsHTML = '
 			<div class="message">
 				<div class="message-head">
 					<div class="message-head--content">
@@ -24,7 +24,7 @@ function createMessages($comments) {
 					'.$comment['content'].'
 				</p>
 			</div>
-		';
+		'.$commentsHTML;
 	}
 	return $commentsHTML;
 }

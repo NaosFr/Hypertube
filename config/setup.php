@@ -24,6 +24,14 @@ try
 				confirm BIT NOT NULL DEFAULT 0,
 				cle TEXT NOT NULL,
 				cle_passwd TEXT)");
+	
+	//comments
+	$bdd->query("CREATE TABLE comments(
+				id_comment INT UNSIGNED AUTO_INCREMENT PRIMARY KEY NOT NULL,
+				user_id INT NOT NULL,
+				movie_id TEXT NOT NULL,
+				content TEXT NOT NULL,
+				created_at TEXT NOT NULL)");
 
 	//hash
 	$bdd->query("CREATE TABLE hash(

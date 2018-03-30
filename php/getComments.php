@@ -1,23 +1,23 @@
 <?php
-include_once('php/connexion.php');
-
-function getCommentsByMovieID ($id) {
+function getCommentsByMovieID ($id, $bdd) {
 	$comments = [
 			[
-				'last_name'=>'Wyborska',
-				'first_name'=>'Hugo',
-				'login'=>'hugowyb',
-				'date'=>'March 18',
-				'content'=>'Researchers at Whitehead Institute have uncovered a framework for regeneration that may explain and predict how stem cells in adult, regenerating tissue determine where to form replacement structures.'
-			],
-			[
-				'last_name'=>'Wyborska',
-				'first_name'=>'Hugo',
-				'login'=>'hugowyb',
-				'date'=>'March 18',
-				'content'=>'Researchers at Whitehead Institute have uncovered a framework for regeneration that may explain and predict how stem cells in adult, regenerating tissue determine where to form replacement structures.'
+				'last_name'=>'No comments yet',
+				'first_name'=>'',
+				'login'=>'',
+				'date'=>'',
+				'content'=>''
 			],
 		];
+	
+	$req = $bdd->prepare('SELECT users.login, users.first_name, users.last_name, content, created_at AS date FROM comments JOIN users ON comments.user_id=users.id_user WHERE movie_id = :movie_id;');
+	$req->execute(array(
+		'movie_id' => $id,
+	));
+	if($req->rowCount() > 0)
+	{
+		$comments = $req->fetchAll();
+	}
 
 	return $comments;
 }	
