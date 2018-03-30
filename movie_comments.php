@@ -2,6 +2,31 @@
 function createMessages($comments) {
 	$commentsHTML = '';
 
+	if ($comments[0]['last_name'] == 'No comments yet')
+	{
+		return '
+			<div class="message">
+				<div class="message-head">
+					<div class="message-head--content">
+						<p class="author">
+							'.$comments[0]['last_name'].'
+						</p>
+						<a href="#">
+							<p class="login">
+							</p>
+						</a>
+						<p class="date">
+						</p>
+					</div>
+				</div>
+				<p class="content">
+					Be the first to write a comment !
+				</p>
+			</div>
+
+		';
+	}
+
 	foreach ($comments as $comment) {
 		$commentsHTML = '
 			<div class="message">
