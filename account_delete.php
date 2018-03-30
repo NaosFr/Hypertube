@@ -13,8 +13,8 @@ if (isset($_POST['password']) && $_POST['password'] != "" && isset($_POST['email
 	$passwd = htmlspecialchars($_POST['password']);
 	$passwd = hash("whirlpool", htmlspecialchars($passwd));
 
-	$req = $bdd->prepare('SELECT * FROM users WHERE email = ? AND passwd = ?');
-	$req->execute(array($email, $passwd));
+	$req = $bdd->prepare('SELECT * FROM users WHERE email = ? AND passwd = ? AND id_user = ?');
+	$req->execute(array($email, $passwd, $_SESSION['id']));
 	if($req->rowCount() == 1)
 	{
 		$data = $req->fetch();
@@ -25,7 +25,7 @@ if (isset($_POST['password']) && $_POST['password'] != "" && isset($_POST['email
 	}
 	else{
 		echo "<style>#alert_div { background-color: #568456!important;} </style>";
-		$txt =  '<div id="alert_div"><p id="text_alert">ERROR : email or password wrong!</p><span class="closebtn" onclick="del_alert()">&times;</span></div>';
+		$txt =  '<div id="alert_div"><p id="text_alert">'.$lang['account_delete_wrong'].'</p><span class="closebtn" onclick="del_alert()">&times;</span></div>';
 	}
 }
 
@@ -58,16 +58,16 @@ if (isset($_POST['password']) && $_POST['password'] != "" && isset($_POST['email
 		<!-- Form -->
 			<form action="#" onsubmit="return false" accept-charset="utf-8" class="form">
 
-			<label for="email"><p>EMAIL</p></label>
+			<label for="email"><p><?php echo $lang['account_delete_email'] ?></p></label>
 			<br/>
 			<input type="email" name="email" maxlength="40" required />
 			
-			<label for="password"><p>PASSWORD</p></label>
+			<label for="password"><p><?php echo $lang['account_delete_password'] ?></p></label>
 			<br/>
 			<input type="password" name="password" maxlength="20" required />
 
 			<!-- SIGN IN -->
-			<input type="submit" name="go_delete_account" value="DELETE" class="submit" style="margin-top: 25px;" onclick="del_account()" />
+			<input type="submit" name="go_delete_account" value="<?php echo $lang['account_delete_delete'] ?>" class="submit" style="margin-top: 25px;" onclick="del_account()" />
 			</form>
 			<!-- /end Form -->
 	</section>

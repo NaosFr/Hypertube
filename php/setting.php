@@ -5,6 +5,9 @@ include_once('connexion.php');
 ////////// CHANGE PROFIL
 /////////////////////////////////
 
+if (!check_post('submit'))
+	exit;
+
 if ($_POST['submit'] === "change_profil") {
 
 
@@ -28,10 +31,10 @@ if (isset($_POST['email']) && $_POST['email'] != ""
 
 		if($req_login->rowCount() > 0)
 		{
-			echo '<div id="alert_div"><p id="text_alert">ERROR : Pseudo already used !</p><span class="closebtn" onclick="del_alert()">&times;</span></div>';
+			echo '<div id="alert_div"><p id="text_alert">'.$lang['setting_used_login'].'</p><span class="closebtn" onclick="del_alert()">&times;</span></div>';
 		}
 		else if ($req_email->rowCount() > 0) {
-			echo '<div id="alert_div"><p id="text_alert">ERROR : Email already used !</p><span class="closebtn" onclick="del_alert()">&times;</span></div>';
+			echo '<div id="alert_div"><p id="text_alert">'.$lang['setting_used_email'].'</p><span class="closebtn" onclick="del_alert()">&times;</span></div>';
 		}
 		else{
 			$req = $bdd->prepare('SELECT * FROM users WHERE login = ? AND id_user = ?');
@@ -55,15 +58,15 @@ if (isset($_POST['email']) && $_POST['email'] != ""
 				$stmt->execute();
 		
 				echo "<style>#alert_div { background-color: #568456!important;} </style>";
-				echo '<div id="alert_div"><p id="text_alert">Setting change</p><span class="closebtn" onclick="del_alert()">&times;</span></div>';
+				echo '<div id="alert_div"><p id="text_alert">'.$lang['setting_modified'].'</p><span class="closebtn" onclick="del_alert()">&times;</span></div>';
 			}
 			else{
-				echo '<div id="alert_div"><p id="text_alert">SYSTEM ERROR !</p><span class="closebtn" onclick="del_alert()">&times;</span></div>';
+				echo '<div id="alert_div"><p id="text_alert">'.$lang['setting_system'].'</p><span class="closebtn" onclick="del_alert()">&times;</span></div>';
 			}	
 		}	
 }
 else{
-	echo '<div id="alert_div"><p id="text_alert">ERROR : Not completed !</p><span class="closebtn" onclick="del_alert()">&times;</span></div>';
+	echo '<div id="alert_div"><p id="text_alert">'.$lang['setting_incomplete'].'</p><span class="closebtn" onclick="del_alert()">&times;</span></div>';
 }
 
 }
@@ -84,13 +87,13 @@ if (isset($_POST['old_password']) && $_POST['old_password'] != ""
 		$new_passwd = hash("whirlpool", htmlspecialchars($new_passwd));
 
 		if (strlen($_POST['new_password']) < 5){
-			echo '<div id="alert_div"><p id="text_alert">ERROR : Password too short</p><span class="closebtn" onclick="del_alert()">&times;</span></div>';
+			echo '<div id="alert_div"><p id="text_alert">'.$lang['setting_short'].'</p><span class="closebtn" onclick="del_alert()">&times;</span></div>';
 		}
 		else if (!preg_match("#[0-9]+#", $_POST['new_password'])){
-			echo '<div id="alert_div"><p id="text_alert">ERROR : Password must include a number</p><span class="closebtn" onclick="del_alert()">&times;</span></div>';
+			echo '<div id="alert_div"><p id="text_alert">'.$lang['setting_number'].'</p><span class="closebtn" onclick="del_alert()">&times;</span></div>';
 		}
 		else if (!preg_match("#[a-zA-Z]+#", $_POST['new_password'])){
-			echo '<div id="alert_div"><p id="text_alert">ERROR : Password must include a letter</p><span class="closebtn" onclick="del_alert()">&times;</span></div>';
+			echo '<div id="alert_div"><p id="text_alert">'.$lang['setting_letter'].'</p><span class="closebtn" onclick="del_alert()">&times;</span></div>';
 		}
 		else{
 			$req = $bdd->prepare('SELECT * FROM users WHERE login = ? AND passwd = ?');
@@ -103,10 +106,10 @@ if (isset($_POST['old_password']) && $_POST['old_password'] != ""
 				$stmt->bindParam(':passwd', $new_passwd);
 				$stmt->execute();
 				echo "<style>#alert_div { background-color: #568456!important;} </style>";
-				echo '<div id="alert_div"><p id="text_alert">Password change</p><span class="closebtn" onclick="del_alert()">&times;</span></div>';
+				echo '<div id="alert_div"><p id="text_alert">'.$lang['setting_password'].'</p><span class="closebtn" onclick="del_alert()">&times;</span></div>';
 			}
 			else{
-				echo '<div id="alert_div"><p id="text_alert">ERROR : Password Wrong</p><span class="closebtn" onclick="del_alert()">&times;</span></div>';
+				echo '<div id="alert_div"><p id="text_alert">'.$lang['setting_wrong'].'</p><span class="closebtn" onclick="del_alert()">&times;</span></div>';
 			}	
 		}	
 }

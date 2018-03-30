@@ -53,48 +53,48 @@ else{
 	<section class="template_login">
 		<form action="#" onsubmit="return false" accept-charset="utf-8" class="form">
 
-			<label for="login_login"><p>PSEUDO</p></label>
+			<label for="login_login"><p><?php echo $lang['signin_login'] ?></p></label>
 			<br/>
 			<input type="login" name="login_login" maxlength="40" required/>
 
-			<label for="password_login"><p>PASSWORD</p></label>
+			<label for="password_login"><p><?php echo $lang['signin_password'] ?></p></label>
 			<br/>
 			<input type="password" name="password_login" maxlength="20" required />
 
-			<p class="forgot">PASSWORD FORGOT</p>
+			<p class="forgot"><?php echo $lang['signin_forgot'] ?></p>
 
-			<input type="submit" value="SIGN IN" class="submit transition" onclick="login()" />
+			<input type="submit" value="<?php echo $lang['signin_signin'] ?>" class="submit transition" onclick="login()" />
 		</form>			
 	</section>
 
 <!-- ******* REGISTER ***************** -->
 	<section class="template_register">
 		<form action="#" onsubmit="return false" accept-charset="utf-8" class="form">
-			<label for="email"><p>EMAIL</p></label>
+			<label for="email"><p><?php echo $lang['signin_email'] ?></p></label>
 			<br/>
 			<input type="email" name="email" maxlength="40" required />
 			
-			<label for="login"><p>PSEUDO</p></label>
+			<label for="login"><p><?php echo $lang['signin_login'] ?></p></label>
 			<br/>
 			<input type="login" name="login" maxlength="40" required />
 
-			<label for="first_name"><p>FIRST NAME</p></label>
+			<label for="first_name"><p><?php echo $lang['signin_first_name'] ?></p></label>
 			<br/>
 			<input type="text" name="first_name" maxlength="40" required />
 			
-			<label for="last_name"><p>LAST NAME</p></label>
+			<label for="last_name"><p><?php echo $lang['signin_last_name'] ?></p></label>
 			<br/>
 			<input type="text" name="last_name" maxlength="40" required />
 
-			<label for="password"><p>PASSWORD</p></label>
+			<label for="password"><p><?php echo $lang['signin_password'] ?></p></label>
 			<br/>
 			<input type="password" name="password" maxlength="20" minlength="5" required />
 			
-			<label for="password_conf"><p>CONFIRMATION PASSWORD</p></label>
+			<label for="password_conf"><p><?php echo $lang['signin_confirmation'] ?></p></label>
 			<br/>
 			<input type="password" name="password_conf" maxlength="20" minlength="5" required />
 			
-			<input type="submit" value="CREATE ACCOUNT" class="submit transition" onclick="register()" />
+			<input type="submit" value="<?php echo $lang['signin_create'] ?>" class="submit transition" onclick="register()" />
 		</form>
 	</section>
 
@@ -102,11 +102,11 @@ else{
 	<section class="template_passwd_forgot">
 		<form action="#" onsubmit="return false" accept-charset="utf-8" class="form">
 
-			<label for="email_forgot"><p>EMAIL</p></label>
+			<label for="email_forgot"><p><?php echo $lang['signin_email'] ?></p></label>
 			<br/>
 			<input type="email" name="email_forgot" required />
 
-			<input type="submit" value="SEND" class="submit transition" onclick="forgot_passwd()" />
+			<input type="submit" value="<?php echo $lang['signin_send'] ?>" class="submit transition" onclick="forgot_passwd()" />
 		</form>
 	</section>
 

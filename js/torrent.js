@@ -10,6 +10,19 @@ else
 	let firstPiece;
 	let lastPiece;
 	let got = 0;
+	let old = 0;
+	let hash = process.argv[2];
+
+	var con = mysql.createConnection({
+		host: "127.0.0.1",
+		user: "root",
+		password: "root",
+		database: "hypertube"
+	});
+
+	con.connect(function (err) {
+		if (err) throw err;
+	});
 
 	let magnet = 'magnet:?xt=urn:btih:' + process.argv[2];
 	let engine = torrentStream(magnet, {path: '../films'});
@@ -17,21 +30,12 @@ else
 		engine.files.forEach(function(file) {
 			if (file.name.substr(file.name.length - 3) == 'mkv' || file.name.substr(file.name.length - 3) == 'mp4')
 			{
-				var con = mysql.createConnection({
-					host: "127.0.0.1",
-					user: "root",
-					password: "root",
-					database: "hypertube"
-				});
-				con.connect(function (err) {
+				let sql = "INSERT INTO hash (hash, path, downloaded) VALUES ?";
+				let values = [
+					[hash, file.path, 0]
+				];
+				con.query(sql, [values], function (err, result) {
 					if (err) throw err;
-					let sql = "INSERT INTO hash (hash, path) VALUES ?";
-					let values = [
-						[process.argv[2], file.path]
-					];
-					con.query(sql, [values], function (err, result) {
-						if (err) throw err;
-					});
 				});
 				let stream = file.createReadStream();
 
@@ -50,8 +54,16 @@ else
 		{
 			got++;
 			let percent = (got / (lastPiece + 1)) * 100;
-			percent = Math.round(percent * 100) / 100;
+			percent = Math.round(percent);
 			console.log(percent + "%");
+			if (percent >= old + 1)
+			{
+				let sql = "UPDATE hash SET downloaded = ? WHERE hash = ?";
+				con.query(sql, [percent, hash], function (err, result) {
+					if (err) throw err;
+				});
+				old = percent;
+			}
 		}
 	});
 	engine.on('idle', function() {
