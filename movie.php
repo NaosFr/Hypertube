@@ -103,5 +103,28 @@ $movie = $content["data"]["movies"][0];
 			?>
 		</div>
 	</div>
+	<?php
+	$content = json_decode(file_get_contents('https://api.themoviedb.org/3/movie/'.$_GET['id'].'/credits?api_key=68a139112eb59bd80702070df4874941'), true);
+	$i = 0;
+	foreach ($content["cast"] as $el)
+	{
+		if ($el["profile_path"] != "null")
+		{
+			echo "<p style='color: white;'>".$el["name"]."</p>";
+			echo "<img src=\"http://image.tmdb.org/t/p/w500".$el["profile_path"]."\" />";
+			$i++;
+		}
+		if ($i > 4)
+			break ;
+	}
+	foreach ($content["crew"] as $el)
+	{
+		if ($el["profile_path"] != "null" && $el["profile_path"] != "" && ($el["job"] == "Producer" || $el["job"] == "Director" || $el["job"] == "Executive Producer"  || $el["job"] == "Writer"))
+		{
+			echo "<p style='color: white;'>".$el["name"]." ".$el["job"]."</p>";
+			echo "<img src=\"http://image.tmdb.org/t/p/w500".$el["profile_path"]."\" />";
+		}
+	}
+	?>
 </body>
 </html>
