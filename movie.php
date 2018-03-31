@@ -62,7 +62,7 @@ $movie = $content["data"]["movies"][0];
 		?>
 	</div>
 
-	<iframe src="/test.php"></iframe>
+	<div id="player" style="background-color: white; width: 1280px; height: 720px; margin: 0 auto;"></div>
 
 		<div class="messages">
 				<div class="message-form">

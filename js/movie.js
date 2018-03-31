@@ -16,11 +16,8 @@ function setVideo(hash)
 			}
 			else
 			{
-				let type = "video/mp4";
-				let src = "films/" + code_html;
-				$('#video').attr('controls', true);
-				$('#video').html('<source src="' + src + '" type="' + type + '">');
-				$('#video').attr('autoplay', true);
+				let iframe = '<iframe style="height: 720px; width: 1280px;" src="php/player.php?hash=' + hash + '"></iframe>'
+				$('#player').html(iframe);
 			}
 		}
 	});
@@ -41,11 +38,8 @@ function getPath(hash)
 			}
 			else
 			{
-				let type = "video/mp4";
-				let src = "films/" + code_html;
-				$('#video').attr('controls', true);
-				$('#video').html('<source src="' + src + '" type="' + type + '">');
-				$('#video').attr('autoplay', true);
+				let iframe = '<iframe style="height: 720px; width: 1280px;" src="php/player.php?hash=' + hash + '"></iframe>'
+				$('#player').html(iframe);
 			}
 		}
 	});
