@@ -43,12 +43,12 @@ $movie = $content["data"]["movies"][0];
 <body>
 	<?php include_once('header.php'); ?>
 
-	<!-- <div id="alert" class="alert">
+	<div id="alert" class="alert">
 		<div style="display: none;" id="alert_div">
 			<p id="text_alert"></p>
 			<span class="closebtn" onclick="del_alert()">&times;</span>
 		</div>
-	</div> -->
+	</div>
 	
 	<div class="select_torrents">
 		<?php
