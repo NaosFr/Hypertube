@@ -16,7 +16,7 @@ function setVideo(hash)
 			}
 			else
 			{
-				let iframe = '<iframe style="height: 720px; width: 1280px;" src="php/player.php?hash=' + hash + '"></iframe>'
+				let iframe = '<iframe id="iframe" name="iframe" src="php/player.php?hash=' + hash + '"></iframe>'
 				$('#player').html(iframe);
 			}
 		}
@@ -38,7 +38,7 @@ function getPath(hash)
 			}
 			else
 			{
-				let iframe = '<iframe style="height: 720px; width: 1280px;" src="php/player.php?hash=' + hash + '"></iframe>'
+				let iframe = '<iframe id="iframe" name="iframe" src="php/player.php?hash=' + hash + '"></iframe>'
 				$('#player').html(iframe);
 			}
 		}

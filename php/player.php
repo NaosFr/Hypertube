@@ -56,6 +56,7 @@ if (isset($_SERVER['HTTP_RANGE']))
 }
 header("Content-Range: bytes $start-$end/$size");
 header("Content-Length: ".$length);
+
 $buffer = 1024 * 8;
 while(!feof($fp) && ($p = ftell($fp)) <= $end)
 {

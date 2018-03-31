@@ -49,20 +49,22 @@ $movie = $content["data"]["movies"][0];
 			<span class="closebtn" onclick="del_alert()">&times;</span>
 		</div>
 	</div>
-	
-	<div class="select_torrents">
-		<?php
 
-		foreach ($movie["torrents"] as $el)
-		{
-			echo "<span onclick=\"getPath('".$el['hash']."')\">".$movie["title"]." - ".$el["quality"]." ".$el["size"]." ".$el["seeds"]." ".$el["peers"]."</span>";
-			echo "<br />";
-		}
 
-		?>
+	<div class="select_container">
+		<div class="select">
+			<?php
+
+			foreach ($movie["torrents"] as $el)
+			{
+				echo "<span style='cursor: pointer;' onclick=\"getPath('".$el['hash']."')\"> 🔴 ".$movie["title"]." - ".$el["quality"]." </span>";
+				echo "<br />";
+			}
+
+			?>
+		</div>
+		<div id="player"></div>
 	</div>
-
-	<div id="player" style="background-color: white; width: 1280px; height: 720px; margin: 0 auto;"></div>
 
 	<div class="messages">
 		<div class="message-form">

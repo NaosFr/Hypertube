@@ -17,10 +17,7 @@ function addComment(id_movie)
 		success : function(code_html, statut)
 		{
 			if (code_html == "error")
-			{
-				console.log('sbhf');
 				return ;
-			}
 			$('#message-list').prepend(code_html);
 			$('#new-message').val('');
 			if ($('#no-message'))
