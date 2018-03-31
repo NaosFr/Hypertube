@@ -27,9 +27,11 @@ $movie = $content["data"]["movies"][0];
 	<link rel="stylesheet" type="text/css" href="css/responsive.css">
 	<link rel="stylesheet" type="text/css" href="css/comments.css">
 
+	<!-- ******* JS ***************** -->
 	<script type="text/javascript" src="js/jquery.js"></script>
 	<script type="text/javascript" src="js/movie.js"></script>
 	<script type="text/javascript" src="js/main.js"></script>
+	<script type="text/javascript" src="js/comments.js"></script>
 </head>
 <body>
 	<?php include_once('header.php'); ?>
@@ -55,8 +57,10 @@ $movie = $content["data"]["movies"][0];
 	}
 
 	?>
-	<video id="video" style="background-color: black; height: 720px; width: 1280px;">
-	</video>
+	<iframe src="/test.php"></iframe>
+<!-- 	<video controls id="video" style="background-color: black; height: 720px; width: 1280px;">
+		<source src="films/test.mp4" >
+	</video> -->
 
 	<?php
 
@@ -92,16 +96,71 @@ $movie = $content["data"]["movies"][0];
 	// }
 
 	?>
-	<?php
-		include_once('./movie_comments.php');
-		include_once('./php/getComments.php');
-		$comments = getCommentsByMovieID($_GET['id'], $bdd);
-		movieComments($comments);
-	?>
-	<div style="display:none" id="user-login"><?php echo $_SESSION['login']?></div>
-	<div style="display:none" id="user-first-name"><?php echo 'You'?></div>
-	<div style="display:none" id="user-last-name"><?php echo ''?></div>
-	<div style="display:none" id="movie-id"><?php echo $_GET['id']?></div>
+	<div class="wrapper">
+		<div class="messages">
+			<div class="new-message">
+				<div class="message-form">
+					<input onkeyup="keyUp(event, '<?php echo $_GET['id'] ?>')" type="text" id="new-message" class="message-input" placeholder="What`s on your mind ?" />
+					<div class="send-button">
+						<input onclick="addComment('<?php echo $_GET['id'] ?>');" id="comment-button" type="submit" value="COMMENT"/>
+					</div>
+				</div>
+			</div>
+			<div class="messages-list" id="message-list">
+				<?php
+				$req = $bdd->prepare('SELECT users.login, users.first_name, users.last_name, comments.comment, comments.date FROM comments INNER JOIN users ON comments.id_user = users.id_user WHERE id_movie = ? ORDER BY comments.id_comment DESC');
+				$req->execute(array($_GET['id']));
+				if ($req->rowCount() == 0)
+				{
+					?>
+					<div id="no-message" class="message">
+						<div class="message-head">
+							<div class="message-head--content">
+								<p class="author">
+									No comments yet
+								</p>
+								<a href="#">
+									<p class="login">
+									</p>
+								</a>
+								<p class="date">
+								</p>
+							</div>
+						</div>
+						<p class="content">
+							Be the first to write a comment !
+						</p>
+					</div>
+					<?php
+				}
+				while ($data = $req->fetch())
+				{
+					?>
+					<div class="message">
+						<div class="message-head">
+							<div class="message-head--content">
+								<p class="author">
+									<?php echo $data['first_name'].' '.$data['last_name'] ?>
+								</p>
+								<a href="./user.php?login=<?php echo $data['login'] ?>">
+									<p class="login">
+										@<?php echo $data['login'] ?>
+									</p>
+								</a>
+								<p class="date">
+									<?php echo date("d/m/y", $data['date']) ?>
+								</p>
+							</div>
+						</div>
+						<p class="content">
+							<?php echo $data['comment'] ?>
+						</p>
+					</div>
+					<?php
+				}
+				?>
+			</div>
+		</div>
+	</div>
 </body>
-	<script type="text/javascript" src="./js/comments.js"></script>
 </html>

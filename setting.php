@@ -1,4 +1,11 @@
 <?php include_once('php/connexion.php'); ?>
+<?php
+if ($_SESSION['id'] == "" || $_SESSION['login'] == "")
+{
+	header('Location: /');
+	exit;
+}
+?>
 <!DOCTYPE html>
 <html lang="<?php echo $lang['html'] ?>">
 <head>

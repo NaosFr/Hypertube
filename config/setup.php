@@ -28,10 +28,10 @@ try
 	//comments
 	$bdd->query("CREATE TABLE comments(
 				id_comment INT UNSIGNED AUTO_INCREMENT PRIMARY KEY NOT NULL,
-				user_id INT NOT NULL,
-				movie_id TEXT NOT NULL,
-				content TEXT NOT NULL,
-				created_at TEXT NOT NULL)");
+				id_user INT NOT NULL,
+				id_movie TEXT NOT NULL,
+				comment TEXT NOT NULL,
+				date INT NOT NULL)");
 
 	//genres
 	$bdd->query("CREATE TABLE genres(

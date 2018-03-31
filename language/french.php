@@ -89,6 +89,7 @@ $lang['passwd_forgot_register'] = 'INSCRIPTION';
 $lang['passwd_forgot_send'] = 'ENVOYER';
 
 // SIGNIN
+$lang['signin_email'] = 'EMAIL';
 $lang['signin_login'] = 'PSEUDO';
 $lang['signin_password'] = 'MOT DE PASSE';
 $lang['signin_forgot'] = 'MOT DE PASSE OUBLIÉ';
