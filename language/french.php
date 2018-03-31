@@ -100,9 +100,11 @@ $lang['signin_confirmation'] = 'CONFIRMATION';
 $lang['signin_create'] = 'CRÉER LE COMPTE';
 $lang['signin_send'] = 'ENVOYER';
 
-
-
-
+// MOVIE
+$lang['movie_placeholder'] = 'Votre commentaire';
+$lang['movie_button'] = 'COMMENTER';
+$lang['movie_author'] = 'Pas de commentaires';
+$lang['movie_content'] = 'Soyez le premier à commenter';
 
 
 

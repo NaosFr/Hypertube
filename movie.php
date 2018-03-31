@@ -100,9 +100,9 @@ $movie = $content["data"]["movies"][0];
 		<div class="messages">
 			<div class="new-message">
 				<div class="message-form">
-					<input onkeyup="keyUp(event, '<?php echo $_GET['id'] ?>')" type="text" id="new-message" class="message-input" placeholder="What`s on your mind ?" />
+					<input onkeyup="keyUp(event, '<?php echo $_GET['id'] ?>')" type="text" id="new-message" class="message-input" placeholder="<?php echo $lang['movie_placeholder'] ?>" />
 					<div class="send-button">
-						<input onclick="addComment('<?php echo $_GET['id'] ?>');" id="comment-button" type="submit" value="COMMENT"/>
+						<input onclick="addComment('<?php echo $_GET['id'] ?>');" id="comment-button" type="submit" value="<?php echo $lang['movie_button'] ?>"/>
 					</div>
 				</div>
 			</div>
@@ -117,7 +117,7 @@ $movie = $content["data"]["movies"][0];
 						<div class="message-head">
 							<div class="message-head--content">
 								<p class="author">
-									No comments yet
+									<?php echo $lang['movie_author'] ?>
 								</p>
 								<a href="#">
 									<p class="login">
@@ -128,7 +128,7 @@ $movie = $content["data"]["movies"][0];
 							</div>
 						</div>
 						<p class="content">
-							Be the first to write a comment !
+							<?php echo $lang['movie_content'] ?>
 						</p>
 					</div>
 					<?php
