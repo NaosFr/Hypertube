@@ -3,7 +3,7 @@
 date_default_timezone_set("Europe/Paris");
 try
 {
-	$bdd = new PDO('mysql:dbname=hypertube;host=127.0.0.1;charset=utf8', 'root', 'root');
+	$bdd = new PDO('mysql:dbname=hypertube;host=localhost;charset=utf8', 'root', 'root');
 	$bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 	$bdd->exec("SET NAMES 'UTF8'");
 }

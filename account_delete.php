@@ -67,7 +67,7 @@ if (isset($_POST['password']) && $_POST['password'] != "" && isset($_POST['email
 			<input type="password" name="password" maxlength="20" required />
 
 			<!-- SIGN IN -->
-			<input type="submit" name="go_delete_account" value="<?php echo $lang['account_delete_delete'] ?>" class="submit" style="margin-top: 25px;" onclick="del_account()" />
+			<input type="submit" name="go_delete_account" value="<?php echo $lang['account_delete_delete'] ?>" class="submit transition" style="margin-top: 25px;" onclick="del_account()" />
 			</form>
 			<!-- /end Form -->
 	</section>

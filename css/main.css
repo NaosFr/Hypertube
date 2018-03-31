@@ -25,6 +25,10 @@ a{
 	text-decoration: none;
 }
 
+::-webkit-scrollbar { 
+    display: none; 
+}
+
 .transition{
 	-webkit-transition: .5s ease-out;
 	-moz-transition: .5s ease-out;
@@ -166,9 +170,8 @@ header img:hover{
 	position: absolute;
 	overflow: auto;
 	width: 100%;
-	margin-top: 80px;
+	margin-top: 100px;
 	overflow: hidden;
-	top: 0%;
 	text-align: center;
 	justify-content: center;
 	-webkit-justify-content: center;
@@ -343,6 +346,14 @@ header img:hover{
 	font-size: 10px;
 }
 
+/*****************************************************************
+	SELECT TORRENTS
+*****************************************************************/
+
+
+.select_torrents{
+	margin-top: 80px;
+}
 /*****************************************************************
 	MOVIES
 *****************************************************************/
