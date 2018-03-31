@@ -64,42 +64,42 @@ $movie = $content["data"]["movies"][0];
 
 	<div id="player" style="background-color: white; width: 1280px; height: 720px; margin: 0 auto;"></div>
 
-		<div class="messages">
-				<div class="message-form">
-					<input onkeyup="keyUp(event, '<?php echo $_GET['id'] ?>')" type="text" id="new-message" class="message-input" placeholder="<?php echo $lang['movie_placeholder'] ?>" />
-					<input onclick="addComment('<?php echo $_GET['id'] ?>');" id="comment-button" type="submit" value="<?php echo $lang['movie_button'] ?>"/>
-				</div>
-			<div class="messages-list" id="message-list">
-				<?php
-				$req = $bdd->prepare('SELECT users.login, users.first_name, users.last_name, comments.comment, comments.date FROM comments INNER JOIN users ON comments.id_user = users.id_user WHERE id_movie = ? ORDER BY comments.id_comment DESC');
-				$req->execute(array($_GET['id']));
-				while ($data = $req->fetch())
-				{
-					?>
-					<div class="message">
-						<div class="message-head">
-							<div class="message-head--content">
-								<p class="author">
-									<?php echo $data['first_name'].' '.$data['last_name'] ?>
-								</p>
-								<a href="./user.php?login=<?php echo $data['login'] ?>">
-									<p class="login">
-										@<?php echo $data['login'] ?>
-									</p>
-								</a>
-								<p class="date">
-									<?php echo date("d/m/y", $data['date']) ?>
-								</p>
-							</div>
-						</div>
-						<p class="content">
-							<?php echo $data['comment'] ?>
-						</p>
-					</div>
-					<?php
-				}
-				?>
-			</div>
+	<div class="messages">
+		<div class="message-form">
+			<input onkeyup="keyUp(event, '<?php echo $_GET['id'] ?>')" type="text" id="new-message" class="message-input" placeholder="<?php echo $lang['movie_placeholder'] ?>" />
+			<input onclick="addComment('<?php echo $_GET['id'] ?>');" id="comment-button" type="submit" value="<?php echo $lang['movie_button'] ?>"/>
 		</div>
+		<div class="messages-list" id="message-list">
+			<?php
+			$req = $bdd->prepare('SELECT users.login, users.first_name, users.last_name, comments.comment, comments.date FROM comments INNER JOIN users ON comments.id_user = users.id_user WHERE id_movie = ? ORDER BY comments.id_comment DESC');
+			$req->execute(array($_GET['id']));
+			while ($data = $req->fetch())
+			{
+				?>
+				<div class="message">
+					<div class="message-head">
+						<div class="message-head--content">
+							<p class="author">
+								<?php echo $data['first_name'].' '.$data['last_name'] ?>
+							</p>
+							<a href="./user.php?login=<?php echo $data['login'] ?>">
+								<p class="login">
+									@<?php echo $data['login'] ?>
+								</p>
+							</a>
+							<p class="date">
+								<?php echo date("d/m/y", $data['date']) ?>
+							</p>
+						</div>
+					</div>
+					<p class="content">
+						<?php echo $data['comment'] ?>
+					</p>
+				</div>
+				<?php
+			}
+			?>
+		</div>
+	</div>
 </body>
 </html>
