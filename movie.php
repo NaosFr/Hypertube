@@ -55,9 +55,17 @@ $movie = $content["data"]["movies"][0];
 		<div class="select">
 			<?php
 
-			foreach ($movie["torrents"] as $el)
+			if (isset($movie["torrents"]))
 			{
-				echo "<span style='cursor: pointer;' onclick=\"getPath('".$el['hash']."')\"> 🔴 ".$movie["title"]." - ".$el["quality"]." </span>";
+				foreach ($movie["torrents"] as $el)
+				{
+					echo "<span style='cursor: pointer;' onclick=\"getPath('".$el['hash']."')\"> 🔴 ".$movie["title"]." - ".$el["quality"]."</span>";
+					echo "<br />";
+				}
+			}
+			else
+			{
+				echo "<span>".$lang['movie_empty']."</span>";
 				echo "<br />";
 			}
 
@@ -85,7 +93,12 @@ $movie = $content["data"]["movies"][0];
 							echo '<div style="background-image:url(http://image.tmdb.org/t/p/w500'.$el["profile_path"].');"><p style="color: white;">'.$el["name"].' '.$el["job"].'</p></div>';
 						}
 					}
-					?>
+				?>
+				<?php echo "<span>".$movie["large_cover_image"]."</span>" ?>
+				<?php echo "<br />" ?>
+				<?php echo "<span>".$movie["rating"]."</span>" ?>
+				<?php echo "<br />" ?>
+				<?php echo "<span>".$movie["year"]."</span>" ?>
 			</div>
 		</div>
 		<div id="player"></div>
