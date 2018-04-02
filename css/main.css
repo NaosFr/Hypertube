@@ -485,3 +485,23 @@ header img:hover{
     position: relative;
     text-align: center;
 }
+
+/*****************************************************************
+  NAV MOBILE
+*****************************************************************/
+
+footer{
+  display: none;
+  border-top: 3px solid #c13c53;
+    position: fixed;
+    width: 100%;
+    background-color: #232323;
+    bottom: 0px;
+    z-index: 10;
+}
+
+footer img{
+  width: 28px;
+  display: inline-flex;
+  margin: 5px 5%;
+}

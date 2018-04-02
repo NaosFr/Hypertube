@@ -32,6 +32,17 @@
 
 @media (min-width: 400px) and (max-width: 767px){
 
+header {
+    height: 60px;
+}
+
+.float_menu_rigth a{
+	display: none;
+}
+
+footer{
+	display: block;
+}
 
 }
 
@@ -40,6 +51,19 @@
 *****************************************************************/
 
 @media all and (max-width: 399px){
+
+header {
+    height: 60px;
+}
+
+.float_menu_rigth a{
+	display: none;
+}
+
+footer{
+	display: block;
+}
+
 
 
 }
