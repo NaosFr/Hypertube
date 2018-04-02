@@ -25,6 +25,10 @@
 		    -webkit-align-items: center;
 		    display: -webkit-flex;
 		}
+
+		header{	
+			position: fixed;
+		}
 	</style>
 
 </head>
