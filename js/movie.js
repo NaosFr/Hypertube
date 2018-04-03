@@ -22,8 +22,30 @@ function setVideo(hash)
 		}
 	});
 }
-function getPath(hash)
+
+function views(id_movies)
 {
+
+	var formData = {
+		'id_movies'				: id_movies
+	};
+
+	$.ajax({
+	   	type        : 'POST',
+	   	url         : 'php/views.php',
+	   	data        : formData,
+	   	encode      : true,
+	   	success		: function(data){
+
+	   	}
+	})
+}
+
+
+function getPath(hash, id_movies)
+{
+	views(id_movies);
+
 	$.ajax(
 	{
 		url : '/php/getPath.php',

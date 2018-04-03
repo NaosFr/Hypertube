@@ -68,6 +68,15 @@ try
 				path TEXT NOT NULL,
 				downloaded INT UNSIGNED NOT NULL)");
 
+	//views
+	$bdd->query("CREATE TABLE `views` (
+			  `id_views` int(11) NOT NULL,
+			  `id_user` int(11) NOT NULL,
+			  `hash_movie` text NOT NULL
+			) ENGINE=InnoDB DEFAULT CHARSET=utf8;");
+
+
+
 	header('Location: /');
 	exit;
 }

@@ -464,7 +464,7 @@ header img:hover{
 }
 
 .div_sous_info p{
-    margin-top: -30px;
+    margin-top: 10px;
 }
 /*****************************************************************
 	MOVIES
@@ -490,6 +490,14 @@ header img:hover{
 
 #movies div img{
 	width: 100%;
+}
+
+.movie_views{
+	color: #c13c53;
+    font-size: 40px;
+    position: absolute;
+    right: 10px;
+    bottom: -30px;
 }
 
 .info_movie{

@@ -65,7 +65,7 @@ $movie = $content["data"]["movies"][0];
 			{
 				foreach ($movie["torrents"] as $el)
 				{
-					echo "<span style='cursor: pointer;' onclick=\"getPath('".$el['hash']."')\"> 🔴 ".$movie["title"]." - ".$el["quality"]."</span>";
+					echo "<span style='cursor: pointer;' onclick=\"getPath('".$el['hash']."', '".$_GET['id']."')\"> 🔴 ".$movie["title"]." - ".$el["quality"]."</span>";
 					echo "<br />";
 				}
 			}
