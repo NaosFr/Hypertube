@@ -21,3 +21,16 @@ function setLanguage(lang)
 		});
 	}
 }
+
+
+var bol = 1;
+	$("#cross").click(function(){
+    	if (bol == 1) {
+    		$('.navbar_filter').show();
+    		bol = 0;
+    	}
+    	else{
+    		$('.navbar_filter').hide();
+    		bol = 1;
+    	}	
+	});

@@ -49,8 +49,7 @@ else{
 
 echo '<!-- ******* NAV MOBILE ***************** -->
 <footer>
-	<a href="chat.php"><img src="assets/icon/chat.svg" alt="chat" /></a>
-	<a href="match.php"><img src="assets/icon/match.svg" alt="match" /></a>
+	<img src="assets/icon/search.svg" alt="search" id="cross"/>
 	<a href="index.php"><img src="assets/icon/home.svg" alt="home" /></a>
 	<a href="setting.php"><img src="assets/icon/settings.svg" alt="setting" /></a>
 	<a href="php/logout.php"><img src="assets/icon/logout.svg" alt="logout" /></a>

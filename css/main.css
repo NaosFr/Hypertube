@@ -365,6 +365,7 @@ header img:hover{
 	display: inline-flex;
 	width: 100%;
 	margin-top: 80px;
+	border-bottom: 25px solid black;
 }
 
 .select{
@@ -372,6 +373,7 @@ header img:hover{
 	text-align: left;
 	overflow: auto;
 	width: 300px;
+	height: 470px;
     background-color: white;
 }
 
@@ -399,9 +401,14 @@ header img:hover{
 	width: 100%;
 	margin-top: 30px;
 	position: relative;
+	height: 350px;
 }
 
-.info div{
+.info::-webkit-scrollbar {
+	display: none;
+}
+
+.person{
     width: 45px;
     height: 45px;
     margin: 3px;
@@ -422,8 +429,7 @@ header img:hover{
     box-shadow: 0px 10px 18px -5px rgba(0,0,0,0.30);
 }
 
-
-.info div p{
+.person p{
 	display: none;
 	position: absolute;
     top: 0px;
@@ -433,11 +439,33 @@ header img:hover{
     z-index: 33;
 }
 
-.info div:hover p{
+.person:hover p{
     display: block;
 }
 
+.affiche{
+	width: 100%;
+	margin-bottom: 30px;
+	margin-top: 30px;
+}
+.info p{
+	color: black;
+}
 
+.icon_info{
+	width: 35px!important;
+}
+
+.div_sous_info{
+    display: inline-block;
+    border: 0px;
+    margin-top: 15px;
+    margin: 10px;
+}
+
+.div_sous_info p{
+    margin-top: -30px;
+}
 /*****************************************************************
 	MOVIES
 *****************************************************************/

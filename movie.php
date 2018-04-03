@@ -37,6 +37,12 @@ $movie = $content["data"]["movies"][0];
 		.search_form{
 			display: none;
 		}
+		body{
+    		background-color: #fdfdfd;
+		}
+		header{
+			background-color: black;
+		}
 	</style>
 
 </head>
@@ -69,18 +75,24 @@ $movie = $content["data"]["movies"][0];
 				echo "<br />";
 			}
 
+			echo '<img src="'.$movie["large_cover_image"].'" alt=miniature class="affiche"/>';
+
 			?>
 
 			<div class="info">
 				<?php
 					$content = json_decode(file_get_contents('https://api.themoviedb.org/3/movie/'.$_GET['id'].'/credits?api_key=68a139112eb59bd80702070df4874941'), true);
 					$i = 0;
+
+	
+					
+
 					foreach ($content["cast"] as $el)
 					{
 						if ($el["profile_path"] != "null")
 						{
 
-							echo '<div style="background-image:url(http://image.tmdb.org/t/p/w500'.$el["profile_path"].');"><p style="color: white;">'.$el["name"].'</p></div>';
+							echo '<div class="person" style="background-image:url(http://image.tmdb.org/t/p/w500'.$el["profile_path"].');"><p style="color: white;">'.$el["name"].'</p></div>';
 							$i++;
 						}
 						if ($i > 4)
@@ -90,19 +102,19 @@ $movie = $content["data"]["movies"][0];
 					{
 						if ($el["profile_path"] != "null" && $el["profile_path"] != "" && ($el["job"] == "Producer" || $el["job"] == "Director" || $el["job"] == "Executive Producer"  || $el["job"] == "Writer"))
 						{
-							echo '<div style="background-image:url(http://image.tmdb.org/t/p/w500'.$el["profile_path"].');"><p style="color: white;">'.$el["name"].' '.$el["job"].'</p></div>';
+							echo '<div class="person" style="background-image:url(http://image.tmdb.org/t/p/w500'.$el["profile_path"].');"><p style="color: white;">'.$el["name"].' '.$el["job"].'</p></div>';
 						}
 					}
+
+					echo '<div class="div_sous_info"><img src="assets/icon/like.svg" alt="like" class="icon_info"/><p>'.$movie["rating"].'</p></div>';
+					echo '<div class="div_sous_info"><img src="assets/icon/calendar.svg" alt="calendar" class="icon_info"/><p>'.$movie["year"].'</p></div>';
+
 				?>
-				<?php echo "<span>".$movie["large_cover_image"]."</span>" ?>
-				<?php echo "<br />" ?>
-				<?php echo "<span>".$movie["rating"]."</span>" ?>
-				<?php echo "<br />" ?>
-				<?php echo "<span>".$movie["year"]."</span>" ?>
 			</div>
 		</div>
 		<div id="player"></div>
 	</div>
+
 
 	<div class="messages">
 		<div class="message-form">
