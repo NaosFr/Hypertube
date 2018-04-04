@@ -6,7 +6,7 @@ if (!check_post('id_movie') || !check_post('hash'))
 
 session_start();
 
-if ($_SESSION['id'] == "")
+if ($_SESSION['id'] == "" || $_SESSION['login'] == "")
 	exit;
 
 $movie = htmlspecialchars($_POST['id_movie']);
