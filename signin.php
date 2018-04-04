@@ -64,7 +64,21 @@ else{
 			<p class="forgot">PASSWORD FORGOT</p>
 
 			<input type="submit" value="SIGN IN" class="submit transition" onclick="login()" />
-		</form>			
+		</form>
+		<div class="l-landing-button-wrapper">
+			<a href="/php/facebook_connect.php" target="_blank">
+				<button class="o-button--fb o-button--large transition">
+				CONNECT WITH FACEBOOK
+				</button>
+			</a>
+		</div>
+		<div class="l-landing-button-wrapper">
+			<a href="/php/42_connect.php" target="_blank">
+				<button class="o-button--42 o-button--large transition">
+					CONNECT WITH 42
+				</button>
+			</a>
+		</div>
 	</section>
 
 <!-- ******* REGISTER ***************** -->

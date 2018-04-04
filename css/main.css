@@ -177,6 +177,10 @@ header img:hover{
 	display: -webkit-flex;
 }
 
+.template_login {
+	display: block;
+}
+
 
 .template_register form .submit, .template_passwd_forgot form .submit {
 	margin-top: 25px;

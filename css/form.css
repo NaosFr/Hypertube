@@ -1,4 +1,6 @@
 .form{
+	margin: auto;
+	padding-top: 1px;
 	width: 400px;
 	height: auto;
 	text-align: center;
@@ -58,4 +60,46 @@
 	cursor: pointer;
 	margin: 20px;
 	font-size: 10px;
+}
+
+.o-button--fb {
+	border: none;
+    border-radius: 5px;
+    padding: 9px 26px;
+    background: #0031ff;
+	font-family: 'Lato-Regular';
+    font-style: normal;
+    font-weight: 500;
+    -webkit-font-smoothing: antialiased;
+    font-size: 16px;
+    color: #FFFFFF;
+    letter-spacing: 0.38px;
+	margin-top: 20px;
+	cursor: pointer;
+}
+.o-button--fb:hover {
+    background:	#808080cf;
+}
+.o-button--42 {
+	border: none;
+    border-radius: 5px;
+    padding: 9px 26px;
+    background: #009b9c;
+	font-family: 'Lato-Regular';
+    font-style: normal;
+    font-weight: 500;
+    -webkit-font-smoothing: antialiased;
+    font-size: 16px;
+    color: #fff;
+    letter-spacing: 0.38px;
+	margin-top: 20px;
+	cursor: pointer;
+}
+.o-button--42:hover {
+    background:	#808080cf;
+}
+.o-button--large {
+    padding: 0px 0px;
+    width: 400px;
+    height: 60px;
 }
