@@ -70,13 +70,11 @@ try
 				downloaded INT UNSIGNED NOT NULL)");
 
 	//views
-	$bdd->query("CREATE TABLE `views` (
-			  `id_views` int(11) NOT NULL,
-			  `id_user` int(11) NOT NULL,
-			  `hash_movie` text NOT NULL
-			) ENGINE=InnoDB DEFAULT CHARSET=utf8;");
-
-
+	$bdd->query("CREATE TABLE views(
+				id_views INT UNSIGNED AUTO_INCREMENT PRIMARY KEY NOT NULL,
+				id_user INT UNSIGNED NOT NULL,
+				id_movie TEXT NOT NULL,
+				hash_movie TEXT NOT NULL)");
 
 	header('Location: /');
 	exit;

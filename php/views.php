@@ -1,23 +1,28 @@
 <?php
 include_once('connexion.php');
 
-	$movies = htmlspecialchars($_POST['id_movies']);
-	$id = $_SESSION['id'];
+if (!check_post('id_movie') || !check_post('hash'))
+	exit;
 
-	echo $movies;
-	$req = $bdd->prepare('SELECT * FROM views WHERE id_user = ? AND hash_movie = ?');
-	$req->execute(array($id, $movies));
-			
-	if($req->rowCount() == 0)
-	{
-		$req = $bdd->prepare('INSERT INTO views (id_user, hash_movie) VALUES (:id_user, :hash_movie)');
-		$req->execute(array(
-			'id_user' => $id,
-			'hash_movie' => $movies
-		));
+session_start();
 
-	}
-	
+if ($_SESSION['id'] == "")
+	exit;
 
+$movie = htmlspecialchars($_POST['id_movie']);
+$hash = htmlspecialchars($_POST['hash']);
+$id = $_SESSION['id'];
+
+$req = $bdd->prepare('SELECT * FROM views WHERE id_user = ? AND hash_movie = ? AND id_movie = ?');
+$req->execute(array($id, $hash, $movie));
+		
+if($req->rowCount() == 0)
+{
+	$req = $bdd->prepare('INSERT INTO views (id_user, hash_movie, id_movie) VALUES (:id_user, :hash_movie, :id_movie)');
+	$req->execute(array(
+		'id_user' => $id,
+		'hash_movie' => $hash,
+		'id_movie' => $movie
+	));
+}	
 ?>
-

@@ -58,7 +58,7 @@ if ($_SESSION['id'] == "" || $_SESSION['login'] == "")
 			<label for="image"><p><?php echo $lang['setting_image'] ?></p></label>
 			<br/>
 			<div id="image_box" style="cursor: pointer; background-color: #f3f3f3; border: 1px solid #e2e2e2; border-radius: 5px; width: 360px; height: 360px; margin: 0 auto;">
-				<img id="image" style="width: 360px; height: 360px;" src="<?php echo $value['image'] ?>">
+				<img id="image" style="width: 360px; height: 360px; display: block;" src="<?php echo $value['image'] ?>">
 			</div>
 			<input onchange="upload_pic();" id="file" style="height: 0px; width: 0px;" type="file" name="image" />
 		
@@ -96,11 +96,11 @@ if ($_SESSION['id'] == "" || $_SESSION['login'] == "")
 	window.addEventListener("dragover",function(e){
 		e = e || event;
 		e.preventDefault();
-	},false);
+	}, false);
 	window.addEventListener("drop",function(e){
 		e = e || event;
 		e.preventDefault();
-	},false);
+	}, false);
 
 	function get_pic(file)
 	{

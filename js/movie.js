@@ -23,11 +23,12 @@ function setVideo(hash)
 	});
 }
 
-function views(id_movies)
+function views(hash, id_movie)
 {
 
 	var formData = {
-		'id_movies'				: id_movies
+		'hash'		: hash,
+		'id_movie'	: id_movie
 	};
 
 	$.ajax({
@@ -42,9 +43,9 @@ function views(id_movies)
 }
 
 
-function getPath(hash, id_movies)
+function getPath(hash, id_movie)
 {
-	views(id_movies);
+	views(hash, id_movie);
 
 	$.ajax(
 	{

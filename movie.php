@@ -77,6 +77,8 @@ $movie = $content["data"]["movies"][0];
 
 			echo '<img src="'.$movie["large_cover_image"].'" alt=miniature class="affiche"/>';
 
+			echo "<span>".$movie['synopsis']."</span>";
+
 			?>
 
 			<div class="info">

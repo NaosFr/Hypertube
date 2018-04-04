@@ -23,6 +23,9 @@ if (isset($_POST['password']) && $_POST['password'] != "" && isset($_POST['email
 		$req2 = $bdd->prepare('DELETE FROM users WHERE id_user=:id');
 		$req2->bindParam(':id', $data['id_user'], PDO::PARAM_INT);
 		$req2->execute();
+		$req2 = $bdd->prepare('DELETE FROM comments WHERE id_user=:id');
+		$req2->bindParam(':id', $data['id_user'], PDO::PARAM_INT);
+		$req2->execute();
 		header('Location: php/logout.php');
 	}
 	else{

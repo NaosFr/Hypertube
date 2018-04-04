@@ -97,8 +97,8 @@ else{
 			<label for="image"><p><?php echo $lang['signin_image'] ?></p></label>
 			<br/>
 			<div id="image_box">
-				<img src="assets/icon/more.svg" class="icon_more_img" alt="more"/>
-				<img id="image"src="">
+				<img id="more" src="assets/icon/more.svg" class="icon_more_img" alt="more"/>
+				<img id="image" src="">
 			</div>
 			<input onchange="upload_pic();" id="file" style="height: 0px; width: 0px;" type="file" name="image" />
 			
@@ -146,6 +146,7 @@ else{
 				$("#image").attr('src', e.target.result);
 				$("#image").css("display", "initial");
 				image = file;
+				$("#more").css("display", "none");
 			}
 			reader.readAsDataURL(file);
 		}

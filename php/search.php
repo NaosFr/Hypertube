@@ -29,7 +29,7 @@ if ($_POST['submit'] === "search")
 			echo '<a href="/movie.php?id='.$el['imdb_code'].'"><div><img src="'.$el["large_cover_image"].'" />
 					<div class="info_movie transition">';
 
-			$req = $bdd->prepare('SELECT * FROM views WHERE id_user = ? AND hash_movie = ?');
+			$req = $bdd->prepare('SELECT * FROM views WHERE id_user = ? AND id_movie = ?');
 			$req->execute(array($_SESSION['id'], $el['imdb_code']));
 			
 			if($req->rowCount() != 0)
