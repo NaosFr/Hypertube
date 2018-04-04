@@ -106,6 +106,14 @@ else{
 			<label for="password_conf"><p><?php echo $lang['signin_confirmation'] ?></p></label>
 			<br/>
 			<input type="password" name="password_conf" maxlength="20" minlength="5" required />
+
+			<label for="image"><p><?php echo $lang['signin_image'] ?></p></label>
+			<br/>
+			<div id="image_box">
+				<img id="more" src="assets/icon/more.svg" class="icon_more_img" alt="more"/>
+				<img id="image" src="">
+			</div>
+			<input onchange="upload_pic();" id="file" style="height: 0px; width: 0px;" type="file" name="image" />
 			
 			<input type="submit" value="<?php echo $lang['signin_create'] ?>" class="submit transition" onclick="register()" />
 		</form>
@@ -127,6 +135,55 @@ else{
 <script type="text/javascript" src="js/jquery.js"></script>
 <script type="text/javascript" src="js/main.js"></script>
 <script type="text/javascript">
+
+	var image;
+
+	window.addEventListener("dragover",function(e){
+		e = e || event;
+		e.preventDefault();
+	},false);
+	window.addEventListener("drop",function(e){
+		e = e || event;
+		e.preventDefault();
+	},false);
+
+	function get_pic(file)
+	{
+		if (file == undefined)
+			return ;
+		if ((file.type == "image/png" || file.type == "image/jpeg") && file.size <= 1000000)
+		{
+			var reader = new FileReader();
+			reader.onload = function(e)
+			{
+				$("#image").attr('src', e.target.result);
+				$("#image").css("display", "initial");
+				image = file;
+				$("#more").css("display", "none");
+			}
+			reader.readAsDataURL(file);
+		}
+	}
+
+	function upload_pic(id)
+	{
+		var file = document.getElementById("file").files[0];
+		$(".icon_more_img").hide();
+		get_pic(file);
+	}
+
+	$(document).on('drop', '#image_box', function(e) 
+	{
+		e.preventDefault();
+		e.stopPropagation();
+		var file = e.originalEvent.dataTransfer.files[0];
+		get_pic(file);
+	});
+
+	$("#image_box").click(function() {
+		$("#file").trigger("click");
+	});
+
 	function login(){
 
 		var formData = {
@@ -149,21 +206,23 @@ else{
 
 	function register(){
 
-		var formData = {
-			'login'				: $('input[name=login]').val(),
-			'password'			: $('input[name=password]').val(),
-			'password_conf'		: $('input[name=password_conf]').val(),
-			'email'				: $('input[name=email]').val(),
-			'first_name'		: $('input[name=first_name]').val(),
-			'last_name'			: $('input[name=last_name]').val(),
-			'submit'			: "register"
-		};
+		var data = new FormData();
+
+		data.append('login', $('input[name=login]').val());
+		data.append('password', $('input[name=password]').val());
+		data.append('password_conf', $('input[name=password_conf]').val());
+		data.append('email', $('input[name=email]').val());
+		data.append('first_name', $('input[name=first_name]').val());
+		data.append('last_name', $('input[name=last_name]').val());
+		data.append('submit', 'register');
+		data.append('image', image);
 
 		$.ajax({
 			type		: 'POST',
 			url			: 'php/login_register.php',
-			data		: formData,
-			encode		: true,
+			data		: data,
+			processData	: false,
+			contentType	: false,
 			success		: function(data){
 				$('#alert').html(data);
 				$('input[name=password]').val('');

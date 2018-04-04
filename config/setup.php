@@ -23,15 +23,16 @@ try
 				first_name TEXT NOT NULL,
 				confirm BIT NOT NULL DEFAULT 0,
 				cle TEXT NOT NULL,
-				cle_passwd TEXT)");
+				cle_passwd TEXT,
+				image TEXT NOT NULL)");
 	
 	//comments
 	$bdd->query("CREATE TABLE comments(
 				id_comment INT UNSIGNED AUTO_INCREMENT PRIMARY KEY NOT NULL,
-				user_id INT NOT NULL,
-				movie_id TEXT NOT NULL,
-				content TEXT NOT NULL,
-				created_at TEXT NOT NULL)");
+				id_user INT NOT NULL,
+				id_movie TEXT NOT NULL,
+				comment TEXT NOT NULL,
+				date INT NOT NULL)");
 
 	//genres
 	$bdd->query("CREATE TABLE genres(
@@ -67,6 +68,13 @@ try
 				hash TEXT NOT NULL,
 				path TEXT NOT NULL,
 				downloaded INT UNSIGNED NOT NULL)");
+
+	//views
+	$bdd->query("CREATE TABLE views(
+				id_views INT UNSIGNED AUTO_INCREMENT PRIMARY KEY NOT NULL,
+				id_user INT UNSIGNED NOT NULL,
+				id_movie TEXT NOT NULL,
+				hash_movie TEXT NOT NULL)");
 
 	header('Location: /');
 	exit;

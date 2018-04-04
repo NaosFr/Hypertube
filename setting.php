@@ -1,4 +1,11 @@
 <?php include_once('php/connexion.php'); ?>
+<?php
+if ($_SESSION['id'] == "" || $_SESSION['login'] == "")
+{
+	header('Location: /');
+	exit;
+}
+?>
 <!DOCTYPE html>
 <html lang="<?php echo $lang['html'] ?>">
 <head>
@@ -47,6 +54,13 @@
 			<label for="last_name"><p><?php echo $lang['setting_last_name'] ?></p></label>
 			<br/>
 			<input type="text" name="last_name" maxlength="40" required value="<?php echo $value['last_name']?>"/>
+
+			<label for="image"><p><?php echo $lang['setting_image'] ?></p></label>
+			<br/>
+			<div id="image_box" style="cursor: pointer; background-color: #f3f3f3; border: 1px solid #e2e2e2; border-radius: 5px; width: 360px; height: 360px; margin: 0 auto;">
+				<img id="image" style="width: 360px; height: 360px; display: block;" src="<?php echo $value['image'] ?>">
+			</div>
+			<input onchange="upload_pic();" id="file" style="height: 0px; width: 0px;" type="file" name="image" />
 		
 			<!-- SIGN IN -->
 			<input type="submit" value="<?php echo $lang['setting_modify'] ?>" class="submit submit_setting transition" onclick="change_profil()" />
@@ -77,21 +91,69 @@
 <script type="text/javascript" src="js/jquery.js"></script>
 <script type="text/javascript" src="js/main.js"></script>
 <script type="text/javascript">
+	var image;
+
+	window.addEventListener("dragover",function(e){
+		e = e || event;
+		e.preventDefault();
+	}, false);
+	window.addEventListener("drop",function(e){
+		e = e || event;
+		e.preventDefault();
+	}, false);
+
+	function get_pic(file)
+	{
+		if (file == undefined)
+			return ;
+		if ((file.type == "image/png" || file.type == "image/jpeg") && file.size <= 1000000)
+		{
+			var reader = new FileReader();
+			reader.onload = function(e)
+			{
+				$("#image").attr('src', e.target.result);
+				$("#image").css("display", "initial");
+				image = file;
+			}
+			reader.readAsDataURL(file);
+		}
+	}
+
+	function upload_pic(id)
+	{
+		var file = document.getElementById("file").files[0];
+		get_pic(file);
+	}
+
+	$(document).on('drop', '#image_box', function(e) 
+	{
+		e.preventDefault();
+		e.stopPropagation();
+		var file = e.originalEvent.dataTransfer.files[0];
+		get_pic(file);
+	});
+
+	$("#image_box").click(function() {
+		$("#file").trigger("click");
+	});
+
 	function change_profil(){
 
-		var formData = {
-			'email'				: $('input[name=email]').val(),
-			'login'				: $('input[name=login]').val(),
-			'first_name'		: $('input[name=first_name]').val(),
-			'last_name'			: $('input[name=last_name]').val(),
-			'submit'			: "change_profil"
-		};
+		var data = new FormData();
+
+		data.append('email', $('input[name=email]').val());
+		data.append('login', $('input[name=login]').val());
+		data.append('first_name', $('input[name=first_name]').val());
+		data.append('last_name', $('input[name=last_name]').val());
+		data.append('submit', 'change_profil');
+		data.append('image', image);
 
 		$.ajax({
 			type		: 'POST',
 			url			: 'php/setting.php',
-			data		: formData,
-			encode		: true,
+			data		: data,
+			processData	: false,
+			contentType	: false,
 			success		: function(data){
 				$('#alert').html(data);
 			}

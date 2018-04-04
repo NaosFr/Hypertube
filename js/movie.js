@@ -16,17 +16,37 @@ function setVideo(hash)
 			}
 			else
 			{
-				let type = "video/mp4";
-				let src = "films/" + code_html;
-				$('#video').attr('controls', true);
-				$('#video').html('<source src="' + src + '" type="' + type + '">');
-				$('#video').attr('autoplay', true);
+				let iframe = '<iframe id="iframe" name="iframe" src="php/player.php?hash=' + hash + '"></iframe>'
+				$('#player').html(iframe);
 			}
 		}
 	});
 }
-function getPath(hash)
+
+function views(hash, id_movie)
 {
+
+	var formData = {
+		'hash'		: hash,
+		'id_movie'	: id_movie
+	};
+
+	$.ajax({
+	   	type        : 'POST',
+	   	url         : 'php/views.php',
+	   	data        : formData,
+	   	encode      : true,
+	   	success		: function(data){
+
+	   	}
+	})
+}
+
+
+function getPath(hash, id_movie)
+{
+	views(hash, id_movie);
+
 	$.ajax(
 	{
 		url : '/php/getPath.php',
@@ -41,11 +61,8 @@ function getPath(hash)
 			}
 			else
 			{
-				let type = "video/mp4";
-				let src = "films/" + code_html;
-				$('#video').attr('controls', true);
-				$('#video').html('<source src="' + src + '" type="' + type + '">');
-				$('#video').attr('autoplay', true);
+				let iframe = '<iframe id="iframe" name="iframe" src="php/player.php?hash=' + hash + '"></iframe>'
+				$('#player').html(iframe);
 			}
 		}
 	});

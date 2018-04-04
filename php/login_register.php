@@ -45,10 +45,19 @@ else if ($_POST['submit'] === "register") {
 	 && isset($_POST['password_conf']) && $_POST['password_conf'] != ""
 	 && isset($_POST['email']) && $_POST['email'] != ""
 	 && isset($_POST['first_name']) && $_POST['first_name'] != ""
-	 && isset($_POST['last_name']) && $_POST['last_name'] != "")
-	{	
-		
-			if ($_POST['password'] != $_POST['password_conf'])
+	 && isset($_POST['last_name']) && $_POST['last_name'] != ""
+	 && isset($_FILES['image']))
+	{
+			$fileName = $_FILES['image']['name'];
+			$fileLoc = $_FILES['image']['tmp_name'];
+			$fileType = $_FILES['image']['type'];
+			$fileSize = $_FILES['image']['size'];
+			$extension = pathinfo($fileName, PATHINFO_EXTENSION);
+			if ((($extension != "png" || $fileType != "image/png") && ($extension != "jpg" || $fileType != "image/jpeg")) || $fileSize > 1000000)
+			{
+				echo '<div id="alert_div"><p id="text_alert">'.$lang['login_register_image'].'</p><span class="closebtn" onclick="del_alert()">&times;</span></div>';
+			}
+			else if ($_POST['password'] != $_POST['password_conf'])
 			{
 				echo '<div id="alert_div"><p id="text_alert">'.$lang['login_register_match'].'</p><span class="closebtn" onclick="del_alert()">&times;</span></div>';
 			}
@@ -78,6 +87,7 @@ else if ($_POST['submit'] === "register") {
 				$passwd_conf = htmlspecialchars($_POST['password_conf']);
 				$passwd = hash("whirlpool", htmlspecialchars($passwd));
 				$passwd_conf = hash("whirlpool", htmlspecialchars($passwd_conf));
+				$path = '../data/'.md5(microtime(TRUE)*100000).'.'.$extension;
 				
 				$req = $bdd->prepare('SELECT id_user FROM users WHERE login = ?');
 				$req->execute(array($login));
@@ -85,7 +95,11 @@ else if ($_POST['submit'] === "register") {
 				$req2 = $bdd->prepare('SELECT id_user FROM users WHERE email = ?');
 				$req2->execute(array($email));
 
-				if($req->rowCount() > 0)
+				if (!move_uploaded_file($fileLoc, $path))
+				{
+					echo '<div id="alert_div"><p id="text_alert">'.$lang['login_register_move'].'</p><span class="closebtn" onclick="del_alert()">&times;</span></div>';
+				}
+				else if($req->rowCount() > 0)
 				{
 					echo '<div id="alert_div"><p id="text_alert">'.$lang['login_register_used_login'].'</p><span class="closebtn" onclick="del_alert()">&times;</span></div>';
 				}
@@ -100,14 +114,15 @@ else if ($_POST['submit'] === "register") {
 					
 					$cle = md5(microtime(TRUE)*100000);
 
-					$req = $bdd->prepare('INSERT INTO users (email, login, first_name, last_name, passwd, confirm, cle) VALUES (:email, :login, :first_name, :last_name, :passwd, 0, :cle)');
+					$req = $bdd->prepare('INSERT INTO users (email, login, first_name, last_name, passwd, confirm, cle, image) VALUES (:email, :login, :first_name, :last_name, :passwd, 0, :cle, :image)');
 					$req->execute(array(
 						'email' => $email,
 						'login' => $login,
 						'first_name' => $first_name,
 						'last_name' => $last_name,
 						'passwd' => $passwd,
-						'cle' => $cle
+						'cle' => $cle,
+						'image' => substr($path, 1)
 						));
 
 					ini_set( 'display_errors', 1 );
@@ -127,14 +142,12 @@ else if ($_POST['submit'] === "register") {
 
 					mail($email, $sujet, $message, $header);
 
-					$id = $bdd->lastInsertId();
-					mkdir('../data/'.$id.'');
-					copy('../data/user.jpg', '../data/'.$id.'/user.jpg');
-
 					exit;
 			}
 		}
 	}
+	else
+		echo '<div id="alert_div"><p id="text_alert">'.$lang['login_register_missing'].'</p><span class="closebtn" onclick="del_alert()">&times;</span></div>';
 }
 
 else if ($_POST['submit'] === "forgot") {

@@ -18,7 +18,12 @@ if (isset($_POST['password']) && $_POST['password'] != "" && isset($_POST['email
 	if($req->rowCount() == 1)
 	{
 		$data = $req->fetch();
+		if (file_exists($data['image']))
+			unlink($data['image']);
 		$req2 = $bdd->prepare('DELETE FROM users WHERE id_user=:id');
+		$req2->bindParam(':id', $data['id_user'], PDO::PARAM_INT);
+		$req2->execute();
+		$req2 = $bdd->prepare('DELETE FROM comments WHERE id_user=:id');
 		$req2->bindParam(':id', $data['id_user'], PDO::PARAM_INT);
 		$req2->execute();
 		header('Location: php/logout.php');
@@ -56,7 +61,7 @@ if (isset($_POST['password']) && $_POST['password'] != "" && isset($_POST['email
 <!-- ******* FORMULAIRE ***************** -->
 	<section class="template_delete">
 		<!-- Form -->
-			<form action="#" onsubmit="return false" accept-charset="utf-8" class="form">
+			<form action="account_delete.php" method="post" accept-charset="utf-8" class="form">
 
 			<label for="email"><p><?php echo $lang['account_delete_email'] ?></p></label>
 			<br/>
@@ -67,7 +72,7 @@ if (isset($_POST['password']) && $_POST['password'] != "" && isset($_POST['email
 			<input type="password" name="password" maxlength="20" required />
 
 			<!-- SIGN IN -->
-			<input type="submit" name="go_delete_account" value="<?php echo $lang['account_delete_delete'] ?>" class="submit" style="margin-top: 25px;" onclick="del_account()" />
+			<input type="submit" name="go_delete_account" value="<?php echo $lang['account_delete_delete'] ?>" class="submit transition" style="margin-top: 25px;" />
 			</form>
 			<!-- /end Form -->
 	</section>

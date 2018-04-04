@@ -25,10 +25,22 @@ if ($_POST['submit'] === "search")
 	{
 		foreach ($content["data"]["movies"] as $el)
 		{
-			echo '<a href="/movie.php?id='.$el['imdb_code'].'"><div>
-					<img src="'.$el["large_cover_image"].'" />
-					<div class="info_movie transition">
-						<p>'.$el["year"].'</p>
+
+			echo '<a href="/movie.php?id='.$el['imdb_code'].'"><div><img src="'.$el["large_cover_image"].'" />
+					<div class="info_movie transition">';
+
+			$req = $bdd->prepare('SELECT * FROM views WHERE id_user = ? AND id_movie = ?');
+			$req->execute(array($_SESSION['id'], $el['imdb_code']));
+			
+			if($req->rowCount() != 0)
+			{
+				echo '<p class="movie_views">✔</p>';
+			}
+			else{
+				
+			}
+
+			echo '<p>'.$el["year"].'</p>
 						<p>'.$el["rating"].'</p>
 					</div>
 				</div></a>';

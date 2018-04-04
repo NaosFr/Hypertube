@@ -30,7 +30,7 @@ function register_user($user, $bdd) {
 
 	$cle = md5(microtime(TRUE)*100000);
 
-	$req = $bdd->prepare('INSERT INTO users (email, login, first_name, last_name, passwd, confirm, cle) VALUES (:email, :login, :first_name, :last_name, :passwd, 0, :cle)');
+	$req = $bdd->prepare('INSERT INTO users (email, login, first_name, last_name, passwd, confirm, cle, image) VALUES (:email, :login, :first_name, :last_name, :passwd, 0, :cle, :image)');
 	
 	$req->execute(array(
 	    'email' => $user['email'],
@@ -38,7 +38,8 @@ function register_user($user, $bdd) {
 	    'first_name' => $user['first_name'],
 	    'last_name' => $user['last_name'],
 	    'passwd' => md5(microtime(TRUE)*100000),
-	    'cle' => $cle
+	    'cle' => $cle,
+		'image' => $user['image']
 	    ));
 
 	return true;

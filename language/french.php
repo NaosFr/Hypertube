@@ -30,6 +30,9 @@ $lang['login_register_reset_title'] = 'Réinitialiser le mot de passe';
 $lang['login_register_reset_text'] = 'Pour changer votre mot de passe, veuillez cliquer sur le lien ci-dessous ou copiez / collez-le dans votre navigateur.';
 $lang['login_register_automatic'] = 'Ceci est un email automatique, merci de ne pas répondre.';
 $lang['login_register_sent'] = 'SUCCÈS : Email envoyé !';
+$lang['login_register_image'] = 'ERREUR : Image invalide !';
+$lang['login_register_move'] = 'ERREUR : Le transfert a échoué !';
+$lang['login_register_missing'] = 'ERREUR : Merci de remplir tout les champs !';
 
 // NEW_PASSWD
 $lang['new_passwd_password'] = 'MOT DE PASSE';
@@ -61,6 +64,9 @@ $lang['setting_modify'] = 'MODIFIER';
 $lang['setting_old'] = 'ANCIEN MOT DE PASSE';
 $lang['setting_new'] = 'NOUVEAU MOT DE PASSE';
 $lang['setting_delete'] = 'SUPPRIMER LE COMPTE';
+$lang['setting_image'] = 'IMAGE';
+$lang['setting_image_invalid'] = 'ERREUR : Image invalide !';
+$lang['setting_move'] = 'ERREUR : Le transfert a échoué !';
 
 // ACCOUNT_DELETE
 $lang['account_delete_wrong'] = "ERREUR : Email ou mot de passe faux !";
@@ -89,6 +95,7 @@ $lang['passwd_forgot_register'] = 'INSCRIPTION';
 $lang['passwd_forgot_send'] = 'ENVOYER';
 
 // SIGNIN
+$lang['signin_email'] = 'EMAIL';
 $lang['signin_login'] = 'PSEUDO';
 $lang['signin_password'] = 'MOT DE PASSE';
 $lang['signin_forgot'] = 'MOT DE PASSE OUBLIÉ';
@@ -100,7 +107,7 @@ $lang['signin_create'] = 'CRÉER LE COMPTE';
 $lang['signin_send'] = 'ENVOYER';
 $lang['signin_facebook'] = 'CONNEXION AVEC FACEBOOK';
 $lang['signin_42'] = 'CONNEXION AVEC 42';
-
+$lang['signin_image'] = 'IMAGE';
 
 // COMMENT
 $lang['comment_button'] = 'COMMENTER';
@@ -109,6 +116,15 @@ $lang['comment_title'] = 'Pas de commentaire pour le moment';
 $lang['comment_subtitle'] = 'Sois le premier à poster un commentaire !';
 
 
+
+// MOVIE
+$lang['movie_placeholder'] = 'Votre commentaire';
+$lang['movie_button'] = 'COMMENTER';
+$lang['movie_author'] = 'Pas de commentaires';
+$lang['movie_content'] = 'Soyez le premier à commenter';
+$lang['movie_empty'] = 'Aucun torrent disponible';
+$lang['movie_rating'] = 'Score :';
+$lang['movie_year'] = 'Année :';
 
 
 

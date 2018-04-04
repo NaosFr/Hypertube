@@ -11,6 +11,11 @@ $req_form = $bdd->prepare('SELECT * FROM users WHERE login = ?');
 $req_form->execute(array($_GET['login']));
 $profile = $req_form->fetch();
 
+if($req_form->rowCount() == 0)
+{
+	header('Location: /');
+}
+
 if (!isset($profile['image']) || $profile['image'] == '')
 {
 	$profile['image'] = './data/user.jpg';
@@ -31,6 +36,13 @@ if (!isset($profile['image']) || $profile['image'] == '')
 	<script type="text/javascript" src="js/jquery.js"></script>
 	<script type="text/javascript" src="js/movie.js"></script>
 	<script type="text/javascript" src="js/main.js"></script>
+
+	<style type="text/css">
+		.search_form{
+			display: none;
+		}
+	</style>
+
 </head>
 <body>
 	<?php include_once('header.php'); ?>
@@ -48,9 +60,8 @@ if (!isset($profile['image']) || $profile['image'] == '')
 		<img class="c-profile-picture" src="<?php echo $profile['image']?>" alt="photo">
 		<div class="c-profile-desc">
 			<div class="l-profile-desc">
-				<p class="c-profile-name"><?php echo $profile['first_name']?>, <?php echo $profile['last_name']?></p>
+				<p class="c-profile-name"><?php echo $profile['first_name']?> <?php echo $profile['last_name']?></p>
 				<p class="c-profile-login">@<?php echo $profile['login']?></p>
-				<p class="c-profile-lang">English</p>
 			</div>
 		</div>
 	</div>

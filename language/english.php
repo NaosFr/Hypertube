@@ -30,6 +30,9 @@ $lang['login_register_reset_title'] = 'Reset password';
 $lang['login_register_reset_text'] = 'To change your password, please click on the link below or copy / paste it in your browser.';
 $lang['login_register_automatic'] = 'This is an automatic email, please do not reply.';
 $lang['login_register_sent'] = 'SUCCESS : Email sent !';
+$lang['login_register_image'] = 'ERROR : Invalid image !';
+$lang['login_register_move'] = 'ERROR : Upload failed !';
+$lang['login_register_missing'] = 'ERROR : Please fill all field !';
 
 // NEW_PASSWD
 $lang['new_passwd_password'] = 'PASSWORD';
@@ -61,6 +64,9 @@ $lang['setting_modify'] = 'MODIFY';
 $lang['setting_old'] = 'OLD PASSWORD';
 $lang['setting_new'] = 'NEW PASSWORD';
 $lang['setting_delete'] = 'DELETE ACCOUNT';
+$lang['setting_image'] = 'IMAGE';
+$lang['setting_image_invalid'] = 'ERROR : Invalid image !';
+$lang['setting_move'] = 'ERROR : Upload failed !';
 
 // ACCOUNT_DELETE
 $lang['account_delete_wrong'] = "ERROR : Email or password wrong !";
@@ -89,6 +95,7 @@ $lang['passwd_forgot_register'] = 'REGISTER';
 $lang['passwd_forgot_send'] = 'SEND';
 
 // SIGNIN
+$lang['signin_email'] = 'EMAIL';
 $lang['signin_login'] = 'LOGIN';
 $lang['signin_password'] = 'PASSWORD';
 $lang['signin_forgot'] = 'PASSWORD FORGOT';
@@ -100,6 +107,7 @@ $lang['signin_create'] = 'CREATE ACCOUNT';
 $lang['signin_send'] = 'SEND';
 $lang['signin_facebook'] = 'CONNECT WITH FACEBOOK';
 $lang['signin_42'] = 'CONNECT WITH 42';
+$lang['signin_image'] = 'IMAGE';
 
 // COMMENT
 $lang['comment_button'] = 'COMMENT';
@@ -107,9 +115,14 @@ $lang['comment_placeholder'] = "What's on your mind ?";
 $lang['comment_title'] = 'No comments yet';
 $lang['comment_subtitle'] = 'Be the first to write a comment !';
 
-
-
-
+// MOVIE
+$lang['movie_placeholder'] = 'Your comment';
+$lang['movie_button'] = 'COMMENT';
+$lang['movie_author'] = 'No comments yet';
+$lang['movie_content'] = 'Be the first to write a comment !';
+$lang['movie_empty'] = 'No torrent available';
+$lang['movie_rating'] = 'Rating :';
+$lang['movie_year'] = 'Year :';
 
 
 
