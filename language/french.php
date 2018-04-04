@@ -113,6 +113,8 @@ $lang['movie_button'] = 'COMMENTER';
 $lang['movie_author'] = 'Pas de commentaires';
 $lang['movie_content'] = 'Soyez le premier à commenter';
 $lang['movie_empty'] = 'Aucun torrent disponible';
+$lang['movie_rating'] = 'Score :';
+$lang['movie_year'] = 'Année :';
 
 
 

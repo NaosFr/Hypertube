@@ -22,6 +22,15 @@ if ($_SESSION['id'] == "" || $_SESSION['login'] == "") {
 
 <!-- ******* ALERT ***************** -->
 	<div id="alert" class="alert"></div>';
+
+	echo '<!-- ******* NAV MOBILE ***************** -->
+			<footer>
+				<img src="assets/icon/search.svg" alt="search" id="cross"/>
+				<a href="index.php"><img src="assets/icon/home.svg" alt="home" /></a>
+				<a href="signin.php?el=register"><img src="assets/icon/register.svg" alt="register" /></a>
+				<a href="signin.php"><img src="assets/icon/sign-in.svg" alt="sign-in" /></a>
+			</footer>';
+
 }
 else{
 	echo '<!-- ******* HEADER ***************** -->
@@ -45,15 +54,16 @@ else{
 
 <!-- ******* ALERT ***************** -->
 	<div id="alert" class="alert"></div>';
+
+	echo '<!-- ******* NAV MOBILE ***************** -->
+			<footer>
+				<img src="assets/icon/search.svg" alt="search" id="cross"/>
+				<a href="index.php"><img src="assets/icon/home.svg" alt="home" /></a>
+				<a href="setting.php"><img src="assets/icon/settings.svg" alt="setting" /></a>
+				<a href="php/logout.php"><img src="assets/icon/logout.svg" alt="logout" /></a>
+			</footer>';
 }
 
-echo '<!-- ******* NAV MOBILE ***************** -->
-<footer>
-	<img src="assets/icon/search.svg" alt="search" id="cross"/>
-	<a href="index.php"><img src="assets/icon/home.svg" alt="home" /></a>
-	<a href="setting.php"><img src="assets/icon/settings.svg" alt="setting" /></a>
-	<a href="php/logout.php"><img src="assets/icon/logout.svg" alt="logout" /></a>
-</footer>'
 ?>
 
 

@@ -180,6 +180,7 @@ header img:hover{
 	overflow: auto;
 	width: 100%;
 	margin-top: 100px;
+	margin-bottom: 100px;
 	overflow: hidden;
 	text-align: center;
 	justify-content: center;
@@ -192,6 +193,34 @@ header img:hover{
 
 .template_register form .submit, .template_passwd_forgot form .submit {
 	margin-top: 25px;
+}
+
+#image_box{
+	cursor: pointer; 
+	background-color: #f3f3f3; 
+	border: 1px solid #e2e2e2; 
+	border-radius: 5px; 
+	width: 360px; 
+	height: 360px; 
+	margin: 0 auto;
+	text-align: center;
+    justify-content: center;
+    -webkit-justify-content: center;
+    align-items: center;
+    -webkit-align-items: center;
+    display: -webkit-flex;
+}
+
+#image{
+	display: none; 
+	width: 360px; 
+	height: 360px;
+}
+
+.icon_more_img{
+    width: 100px;
+    position: relative;
+    margin: 0 auto;
 }
 
 /*****************************************************************
@@ -369,15 +398,26 @@ header img:hover{
 }
 
 .select{
-	padding: 15px;
 	text-align: left;
 	overflow: auto;
 	width: 300px;
-	height: 470px;
+	height: 500px;
     background-color: white;
 }
 
+
+.div_torrent{
+    cursor: pointer;
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #00000042;
+}
+
+.div_torrent:hover {
+    background-color: #b5b4b4;
+}
 .select span{
+	margin-left: 5px;
 	color: #333333;
 }
 
@@ -398,10 +438,8 @@ header img:hover{
 }
 
 .info{
-	width: 100%;
-	margin-top: 30px;
 	position: relative;
-	height: 350px;
+	margin-left: 5px;
 }
 
 .info::-webkit-scrollbar {
@@ -445,27 +483,15 @@ header img:hover{
 
 .affiche{
 	width: 100%;
-	margin-bottom: 30px;
-	margin-top: 30px;
 }
+
 .info p{
 	color: black;
+	margin-left: 5px;
 }
 
-.icon_info{
-	width: 35px!important;
-}
 
-.div_sous_info{
-    display: inline-block;
-    border: 0px;
-    margin-top: 15px;
-    margin: 10px;
-}
 
-.div_sous_info p{
-    margin-top: 10px;
-}
 /*****************************************************************
 	MOVIES
 *****************************************************************/

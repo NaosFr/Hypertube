@@ -96,8 +96,9 @@ else{
 
 			<label for="image"><p><?php echo $lang['signin_image'] ?></p></label>
 			<br/>
-			<div id="image_box" style="cursor: pointer; background-color: #f3f3f3; border: 1px solid #e2e2e2; border-radius: 5px; width: 360px; height: 360px; margin: 0 auto;">
-				<img id="image" style="display: none; width: 360px; height: 360px;" src="">
+			<div id="image_box">
+				<img src="assets/icon/more.svg" class="icon_more_img" alt="more"/>
+				<img id="image"src="">
 			</div>
 			<input onchange="upload_pic();" id="file" style="height: 0px; width: 0px;" type="file" name="image" />
 			
@@ -153,6 +154,7 @@ else{
 	function upload_pic(id)
 	{
 		var file = document.getElementById("file").files[0];
+		$(".icon_more_img").hide();
 		get_pic(file);
 	}
 

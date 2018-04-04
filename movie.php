@@ -64,9 +64,9 @@ $movie = $content["data"]["movies"][0];
 			if (isset($movie["torrents"]))
 			{
 				foreach ($movie["torrents"] as $el)
-				{
-					echo "<span style='cursor: pointer;' onclick=\"getPath('".$el['hash']."', '".$_GET['id']."')\"> 🔴 ".$movie["title"]." - ".$el["quality"]."</span>";
-					echo "<br />";
+				{	
+
+					echo "<div class=\"div_torrent\"><span style='cursor: pointer;' onclick=\"getPath('".$el['hash']."', '".$_GET['id']."')\">".$movie["title"]." - ".$el["quality"]."</span></div>";
 				}
 			}
 			else
@@ -106,8 +106,8 @@ $movie = $content["data"]["movies"][0];
 						}
 					}
 
-					echo '<div class="div_sous_info"><img src="assets/icon/like.svg" alt="like" class="icon_info"/><p>'.$movie["rating"].'</p></div>';
-					echo '<div class="div_sous_info"><img src="assets/icon/calendar.svg" alt="calendar" class="icon_info"/><p>'.$movie["year"].'</p></div>';
+					echo '<p>'.$lang['movie_rating'].' '.$movie["rating"].'</p>';
+					echo '<p>'.$lang['movie_year'].' '.$movie["year"].'</p>';
 
 				?>
 			</div>
