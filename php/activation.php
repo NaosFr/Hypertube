@@ -2,10 +2,15 @@
 
 include_once('connexion.php');
 
-$comfirm = 0;
+if (!check_get('log') || !check_get('cle'))
+{
+	header('Location: /');
+	exit;
+}
+
+$confirm = 0;
 $login = $_GET['log'];
 $cle = $_GET['cle'];
-$cle = $cle;
 
 $stmt = $bdd->prepare("SELECT * FROM users WHERE login=:login ");
 if ($stmt->execute(array(':login' => $login)) && $row = $stmt->fetch())
@@ -14,24 +19,23 @@ if ($stmt->execute(array(':login' => $login)) && $row = $stmt->fetch())
 	$confirm = $row['confirm'];
 }
 
-echo $confirm;
 if ($confirm == '1')
 {
-	$txt = '<div id="alert_div"><p id="text_alert">Votre compte est déjà actif !</p><span class="closebtn" onclick="del_alert()">&times;</span></div>';
+	$txt = '<div id="alert_div"><p id="text_alert">'.$lang['activation_already'].'</p><span class="closebtn" onclick="del_alert()">&times;</span></div>';
 }
 else
 {
 	if ($cle == $clebdd)
 	{
 		echo "<style>#alert_div { background-color: #568456!important;} </style>";
-		$txt = '<div id="alert_div"><p id="text_alert">Votre compte a bien été activé !</p><span class="closebtn" onclick="del_alert()">&times;</span></div>';
+		$txt = '<div id="alert_div"><p id="text_alert">'.$lang['activation_done'].'</p><span class="closebtn" onclick="del_alert()">&times;</span></div>';
 		$stmt = $bdd->prepare("UPDATE users SET confirm = 1 WHERE login like :login ");
 		$stmt->bindParam(':login', $login);
 		$stmt->execute();
 	}
 	else
 	{
-		$txt = '<div id="alert_div"><p id="text_alert">Erreur ! Votre compte ne peut être activé...</p><span class="closebtn" onclick="del_alert()">&times;</span></div>';
+		$txt = '<div id="alert_div"><p id="text_alert">'.$lang['activation_error'].'</p><span class="closebtn" onclick="del_alert()">&times;</span></div>';
 	}
 }
  
@@ -97,7 +101,7 @@ else
 
 <!-- ******* BACKGROUND CONFIRMATION ***************** -->
 	<section class="background_menu">
-		<h1 class="title_square"><a href="../signin.php">LOGIN HYPERTUBE</a></h1>
+		<h1 class="title_square"><a href="../signin.php"><?php echo $lang['activation_login'] ?></a></h1>
 	</section>
 
 	<script type="text/javascript" src="../js/jquery.js"></script>

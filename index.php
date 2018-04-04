@@ -13,9 +13,23 @@
 	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
+	<style type="text/css">
+		.background_image{
+			background: #292929;
+		    width: 200px;
+		    height: 80px;
+		    text-align: center;
+		    justify-content: center;
+		    -webkit-justify-content: center;
+		    align-items: center;
+		    -webkit-align-items: center;
+		    display: -webkit-flex;
+		}
+	</style>
+
 </head>
 
-<body>
+<body onload="search_movie();">
 
 <?php include_once('header.php'); ?>
 
@@ -23,10 +37,16 @@
 
 <section class="navbar_filter">
 	<div class="theme">
-		<div><p>ACTION</p></div>
-		<div><p>DRAMA</p></div>
-		<div><p>FICTION</p></div>
-		<div><p>POLICE</p></div>
+		<?php
+		$req = $bdd->prepare('SELECT genre FROM genres');
+		$req->execute(array());
+		while ($data = $req->fetch())
+		{
+			?>
+			<div id="<?php echo $data['genre'] ?>" onclick="setGenre('<?php echo $data['genre'] ?>')"><p><?php echo strtoupper($data['genre']) ?></p></div>
+			<?php
+		}
+		?>
 	</div>
 
 	<form action="#" onsubmit="return false" accept-charset="utf-8" id="form_filter">
@@ -39,7 +59,7 @@
 		
 		<div id="slider-score" class="slider"></div>
 
-		<input type="submit" value="FILTER" class="submit_filter transition" onclick="login()" />
+		<input type="submit" value="<?php echo $lang['index_filter'] ?>" class="submit_filter transition" onclick="login()" />
 	</form>
 
 </section>
@@ -49,10 +69,68 @@
 <script type="text/javascript" src="js/main.js"></script>
 <script type="text/javascript">
 	
+	let genre = "";
+	let page = 1;
+	let scroll = 1;
+
+	$(document).ready(function ()
+	{
+		$('#movies').bind('scroll', check_scroll);
+	});
+
+	function check_scroll(e)
+	{
+		var elem = $(e.currentTarget);
+		if (elem[0].scrollHeight - elem.scrollTop() == elem.outerHeight() && scroll == 1)
+		{
+			scroll = 0;
+
+			var formData = {
+				'movie'		: $('input[name=search]').val(),
+				'genre'		: genre,
+				'page'		: page,
+				'submit'	: "search"
+			};
+
+			$.ajax({
+				type		: 'POST',
+				url			: 'php/search.php',
+				data		: formData,
+				encode		: true,
+				success		: function(data){
+					$('#movies').append(data);
+					scroll = 1;
+				}
+			});
+
+			page++;
+		}
+	}
+
+	function setGenre(name)
+	{
+		if ($("#" + genre))
+			$("#" + genre).css('background-color', '');
+		if (genre == name)
+		{
+			genre = '';
+		}
+		else
+		{
+			genre = name;
+			if ($("#" + genre))
+				$("#" + genre).css('background-color', '#353535');
+		}
+		search_movie();
+	}
+
 	function search_movie(){
+		page = 1;
 
 		var formData = {
 			'movie'		: $('input[name=search]').val(),
+			'genre'		: genre,
+			'page'		: page,
 			'submit'	: "search"
 		};
 
@@ -63,8 +141,11 @@
 			encode		: true,
 			success		: function(data){
 				$('#movies').html(data);
+				$('#movies').scrollTop(0);
 			}
-		})
+		});
+
+		page++;
 	}
 
 	// SLIDER YEARS

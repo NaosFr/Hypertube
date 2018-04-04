@@ -20,10 +20,26 @@ $movie = $content["data"]["movies"][0];
 <html>
 <head>
 	<?php include_once('meta.php'); ?>
+
+	<!-- ******* CSS ***************** -->
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<link rel="stylesheet" type="text/css" href="css/form.css">
+	<link rel="stylesheet" type="text/css" href="css/responsive.css">
+	<link rel="stylesheet" type="text/css" href="css/comments.css">
+
 	<script type="text/javascript" src="js/jquery.js"></script>
 	<script type="text/javascript" src="js/movie.js"></script>
+	<script type="text/javascript" src="js/main.js"></script>
 </head>
 <body>
+	<?php include_once('header.php'); ?>
+
+	<div id="alert" class="alert">
+		<div style="display: none;" id="alert_div">
+			<p id="text_alert"></p>
+			<span class="closebtn" onclick="del_alert()">&times;</span>
+		</div>
+	</div>
 	<?php
 	// display movie name
 
@@ -39,7 +55,7 @@ $movie = $content["data"]["movies"][0];
 	}
 
 	?>
-	<video id="video" style="background-color: red; height: 720px; width: 1280px;">
+	<video id="video" style="background-color: black; height: 720px; width: 1280px;">
 	</video>
 
 	<?php
@@ -76,5 +92,16 @@ $movie = $content["data"]["movies"][0];
 	// }
 
 	?>
+	<?php
+		include_once('./movie_comments.php');
+		include_once('./php/getComments.php');
+		$comments = getCommentsByMovieID($_GET['id'], $bdd);
+		movieComments($comments);
+	?>
+	<div style="display:none" id="user-login"><?php echo $_SESSION['login']?></div>
+	<div style="display:none" id="user-first-name"><?php echo 'You'?></div>
+	<div style="display:none" id="user-last-name"><?php echo ''?></div>
+	<div style="display:none" id="movie-id"><?php echo $_GET['id']?></div>
 </body>
+	<script type="text/javascript" src="./js/comments.js"></script>
 </html>

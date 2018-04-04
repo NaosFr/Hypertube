@@ -1,28 +1,29 @@
-async function setVideo(hash)
+function setVideo(hash)
 {
-	let stop = 0;
-	while (stop == 0)
+	$.ajax(
 	{
-		await sleep(1000);
-		$.ajax(
+		url : '/php/getPath.php',
+		type : 'POST',
+		data : 'hash=' + hash,
+		dataType : 'html',
+		success : function(code_html, statut)
 		{
-			url : '/php/getPath.php',
-			type : 'POST',
-			data : 'hash=' + hash,
-			dataType : 'html',
-			success : function(code_html, statut)
+			if (code_html == "error")
 			{
-				if (code_html != "error" && stop == 0)
-				{
-					let type = "video/mp4";
-					let src = "films/" + code_html;
-					$('#video').attr('controls', true);
-					$('#video').html('<source src="' + src + '" type="' + type + '">');
-					stop = 1;
-				}
+				$("#alert_div").css('background-color', '#c13c54');
+				$("#alert_div").css('display', 'block');
+				$("#text_alert").html('Error getting torrent, please try again later');
 			}
-		});
-	}
+			else
+			{
+				let type = "video/mp4";
+				let src = "films/" + code_html;
+				$('#video').attr('controls', true);
+				$('#video').html('<source src="' + src + '" type="' + type + '">');
+				$('#video').attr('autoplay', true);
+			}
+		}
+	});
 }
 function getPath(hash)
 {
@@ -44,11 +45,12 @@ function getPath(hash)
 				let src = "films/" + code_html;
 				$('#video').attr('controls', true);
 				$('#video').html('<source src="' + src + '" type="' + type + '">');
+				$('#video').attr('autoplay', true);
 			}
 		}
 	});
 }
-function getTorrent(hash)
+async function getTorrent(hash)
 {
 	$.ajax(
 	{
@@ -57,6 +59,10 @@ function getTorrent(hash)
 		data : 'hash=' + hash,
 		dataType : 'html'
 	});
+	$("#alert_div").css('background-color', '#568456');
+	$("#alert_div").css('display', 'block');
+	$("#text_alert").html('Downloading... Please wait 30 seconds');
+	await sleep(30000);
 	setVideo(hash);
 }
 function sleep(ms)

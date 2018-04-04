@@ -24,12 +24,49 @@ try
 				confirm BIT NOT NULL DEFAULT 0,
 				cle TEXT NOT NULL,
 				cle_passwd TEXT)");
+	
+	//comments
+	$bdd->query("CREATE TABLE comments(
+				id_comment INT UNSIGNED AUTO_INCREMENT PRIMARY KEY NOT NULL,
+				user_id INT NOT NULL,
+				movie_id TEXT NOT NULL,
+				content TEXT NOT NULL,
+				created_at TEXT NOT NULL)");
+
+	//genres
+	$bdd->query("CREATE TABLE genres(
+				id_genre INT UNSIGNED AUTO_INCREMENT PRIMARY KEY NOT NULL,
+				genre TEXT NOT NULL)");
+
+	$bdd->query("INSERT INTO genres (genre) VALUES
+				('Action'),
+				('Adventure'),
+				('Animation'),
+				('Biography'),
+				('Comedy'),
+				('Crime'),
+				('Documentary'),
+				('Drama'),
+				('Family'),
+				('Fantasy'),
+				('History'),
+				('Horror'),
+				('Music'),
+				('Musical'),
+				('Mystery'),
+				('Romance'),
+				('Sci-Fi'),
+				('Sport'),
+				('Thriller'),
+				('War'),
+				('Western')");
 
 	//hash
 	$bdd->query("CREATE TABLE hash(
-				id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY NOT NULL,
+				id_hash INT UNSIGNED AUTO_INCREMENT PRIMARY KEY NOT NULL,
 				hash TEXT NOT NULL,
-				path TEXT NOT NULL)");
+				path TEXT NOT NULL,
+				downloaded INT UNSIGNED NOT NULL)");
 
 	header('Location: /');
 	exit;

@@ -2,6 +2,12 @@
 
 include_once('connexion.php');
 
+if (!check_get('log') || !check_get('cle'))
+{
+	header('Location: /');
+	exit;
+}
+
 $email_save = $_GET['log'];
 $cle_passwd = $_GET['cle'];
 $cle_passwd = $cle_passwd;
@@ -21,11 +27,11 @@ if($req->rowCount() == 1)
 
 				<input type="hidden" name="email" value="'.$email_save.'">
 
-				<label for="password"><p>PASSWORD</p></label>
+				<label for="password"><p>'.$lang['new_passwd_password'].'</p></label>
 				<br/>
 				<input type="password" name="password" maxlength="20" required />
 
-				<input type="submit" name="go_login_account" value="SEND" class="submit"/>
+				<input type="submit" name="go_login_account" value="'.$lang['new_passwd_send'].'" class="submit"/>
 			</form>
 			<!-- /end Form -->
 		</section>';
@@ -40,11 +46,11 @@ if (isset($_POST['password']) && $_POST['password'] != "" && isset($_POST['email
 
 				<input type="hidden" name="email" value="'.$_POST['email'].'">
 
-				<label for="password"><p>PASSWORD</p></label>
+				<label for="password"><p>'.$lang['new_passwd_password'].'</p></label>
 				<br/>
 				<input type="password" name="password" maxlength="20" required />
 
-				<input type="submit" name="go_login_account" value="SEND" class="submit"/>
+				<input type="submit" name="go_login_account" value="'.$lang['new_passwd_send'].'" class="submit"/>
 			</form>
 			<!-- /end Form -->
 		</section>';
@@ -52,17 +58,17 @@ if (isset($_POST['password']) && $_POST['password'] != "" && isset($_POST['email
 	if (strlen($_POST['password']) < 5)
 	{
 		echo "<style>.alert { display: block!important; } </style>";
-		$txt = "ERROR : Password too short";
+		$txt = $lang['new_passwd_short'];
 	}
 	else if (!preg_match("#[0-9]+#", $_POST['password']))
 	{
 		echo "<style>.alert { display: block!important; } </style>";
-		$txt = "ERROR : Password must include a number";
+		$txt = $lang['new_passwd_number'];
 	}
 	else if (!preg_match("#[a-zA-Z]+#", $_POST['password']))
 	{
 		echo "<style>.alert { display: block!important; } </style>";
-		$txt = "ERROR : Password must include a letter";
+		$txt = $lang['new_passwd_letter'];
 	}
 	else
 	{
@@ -72,7 +78,7 @@ if (isset($_POST['password']) && $_POST['password'] != "" && isset($_POST['email
 		$stmt->execute();
 
 		echo "<style>#alert_div { background-color: #568456!important;} </style>";
-		$txt =  '<div id="alert_div"><p id="text_alert">Password Change</p><span class="closebtn" onclick="del_alert()">&times;</span></div>';
+		$txt =  '<div id="alert_div"><p id="text_alert">'.$lang['new_passwd_changed'].'</p><span class="closebtn" onclick="del_alert()">&times;</span></div>';
 	}
 }
 ?>
