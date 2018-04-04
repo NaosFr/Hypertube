@@ -14,7 +14,8 @@ if ($_POST['submit'] === "change_profil") {
 if (isset($_POST['email']) && $_POST['email'] != "" 
 	&& isset($_POST['login']) && $_POST['login'] != ""
 	&& isset($_POST['first_name']) && $_POST['first_name'] != ""
-	&& isset($_POST['last_name']) && $_POST['last_name'] != "")
+	&& isset($_POST['last_name']) && $_POST['last_name'] != ""
+	&& isset($_FILES['image']))
 {
 		$email = htmlspecialchars($_POST['email']);
 		$login = htmlspecialchars($_POST['login']);
@@ -29,7 +30,16 @@ if (isset($_POST['email']) && $_POST['email'] != ""
 		$req_email = $bdd->prepare('SELECT id_user FROM users WHERE email = ? AND id_user != '.$_SESSION['id'].'');
 		$req_email->execute(array($email));
 
-		if($req_login->rowCount() > 0)
+		$fileName = $_FILES['image']['name'];
+		$fileLoc = $_FILES['image']['tmp_name'];
+		$fileType = $_FILES['image']['type'];
+		$fileSize = $_FILES['image']['size'];
+		$extension = pathinfo($fileName, PATHINFO_EXTENSION);
+		if ((($extension != "png" || $fileType != "image/png") && ($extension != "jpg" || $fileType != "image/jpeg")) || $fileSize > 1000000)
+		{
+			echo '<div id="alert_div"><p id="text_alert">'.$lang['setting_image_invalid'].'</p><span class="closebtn" onclick="del_alert()">&times;</span></div>';
+		}
+		else if($req_login->rowCount() > 0)
 		{
 			echo '<div id="alert_div"><p id="text_alert">'.$lang['setting_used_login'].'</p><span class="closebtn" onclick="del_alert()">&times;</span></div>';
 		}
@@ -40,9 +50,14 @@ if (isset($_POST['email']) && $_POST['email'] != ""
 			$req = $bdd->prepare('SELECT * FROM users WHERE login = ? AND id_user = ?');
 			$req->execute(array($_SESSION['login'] , $_SESSION['id']));
 
-			if($req->rowCount() == 1)
+			if ($req->rowCount() == 1)
 			{
-
+				$value = $req->fetch();
+				if (!move_uploaded_file($fileLoc, ".".$value['image']))
+				{
+					echo '<div id="alert_div"><p id="text_alert">'.$lang['setting_move'].'</p><span class="closebtn" onclick="del_alert()">&times;</span></div>';
+					exit;
+				}
 				$stmt = $bdd->prepare("UPDATE users SET 
 					email=:email, 
 					login=:login, 

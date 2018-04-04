@@ -30,6 +30,9 @@ $lang['login_register_reset_title'] = 'Reset password';
 $lang['login_register_reset_text'] = 'To change your password, please click on the link below or copy / paste it in your browser.';
 $lang['login_register_automatic'] = 'This is an automatic email, please do not reply.';
 $lang['login_register_sent'] = 'SUCCESS : Email sent !';
+$lang['login_register_image'] = 'ERROR : Invalid image !';
+$lang['login_register_move'] = 'ERROR : Upload failed !';
+$lang['login_register_missing'] = 'ERROR : Please fill all field !';
 
 // NEW_PASSWD
 $lang['new_passwd_password'] = 'PASSWORD';
@@ -61,6 +64,9 @@ $lang['setting_modify'] = 'MODIFY';
 $lang['setting_old'] = 'OLD PASSWORD';
 $lang['setting_new'] = 'NEW PASSWORD';
 $lang['setting_delete'] = 'DELETE ACCOUNT';
+$lang['setting_image'] = 'IMAGE';
+$lang['setting_image_invalid'] = 'ERROR : Invalid image !';
+$lang['setting_move'] = 'ERROR : Upload failed !';
 
 // ACCOUNT_DELETE
 $lang['account_delete_wrong'] = "ERROR : Email or password wrong !";
@@ -99,6 +105,7 @@ $lang['signin_last_name'] = 'LAST NAME';
 $lang['signin_confirmation'] = 'CONFIRMATION';
 $lang['signin_create'] = 'CREATE ACCOUNT';
 $lang['signin_send'] = 'SEND';
+$lang['signin_image'] = 'IMAGE';
 
 // MOVIE
 $lang['movie_placeholder'] = 'Your comment';

@@ -23,7 +23,8 @@ try
 				first_name TEXT NOT NULL,
 				confirm BIT NOT NULL DEFAULT 0,
 				cle TEXT NOT NULL,
-				cle_passwd TEXT)");
+				cle_passwd TEXT,
+				image TEXT NOT NULL)");
 	
 	//comments
 	$bdd->query("CREATE TABLE comments(

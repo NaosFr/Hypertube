@@ -30,6 +30,9 @@ $lang['login_register_reset_title'] = 'Réinitialiser le mot de passe';
 $lang['login_register_reset_text'] = 'Pour changer votre mot de passe, veuillez cliquer sur le lien ci-dessous ou copiez / collez-le dans votre navigateur.';
 $lang['login_register_automatic'] = 'Ceci est un email automatique, merci de ne pas répondre.';
 $lang['login_register_sent'] = 'SUCCÈS : Email envoyé !';
+$lang['login_register_image'] = 'ERREUR : Image invalide !';
+$lang['login_register_move'] = 'ERREUR : Le transfert a échoué !';
+$lang['login_register_missing'] = 'ERREUR : Merci de remplir tout les champs !';
 
 // NEW_PASSWD
 $lang['new_passwd_password'] = 'MOT DE PASSE';
@@ -61,6 +64,9 @@ $lang['setting_modify'] = 'MODIFIER';
 $lang['setting_old'] = 'ANCIEN MOT DE PASSE';
 $lang['setting_new'] = 'NOUVEAU MOT DE PASSE';
 $lang['setting_delete'] = 'SUPPRIMER LE COMPTE';
+$lang['setting_image'] = 'IMAGE';
+$lang['setting_image_invalid'] = 'ERREUR : Image invalide !';
+$lang['setting_move'] = 'ERREUR : Le transfert a échoué !';
 
 // ACCOUNT_DELETE
 $lang['account_delete_wrong'] = "ERREUR : Email ou mot de passe faux !";
@@ -99,6 +105,7 @@ $lang['signin_last_name'] = 'NOM';
 $lang['signin_confirmation'] = 'CONFIRMATION';
 $lang['signin_create'] = 'CRÉER LE COMPTE';
 $lang['signin_send'] = 'ENVOYER';
+$lang['signin_image'] = 'IMAGE';
 
 // MOVIE
 $lang['movie_placeholder'] = 'Votre commentaire';
