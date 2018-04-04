@@ -98,8 +98,15 @@ $lang['signin_last_name'] = 'NOM';
 $lang['signin_confirmation'] = 'CONFIRMATION';
 $lang['signin_create'] = 'CRÉER LE COMPTE';
 $lang['signin_send'] = 'ENVOYER';
+$lang['signin_facebook'] = 'CONNEXION AVEC FACEBOOK';
+$lang['signin_42'] = 'CONNEXION AVEC 42';
 
 
+// COMMENT
+$lang['comment_button'] = 'COMMENTER';
+$lang['comment_placeholder'] = "Un avis sur le film ?";
+$lang['comment_title'] = 'Pas de commentaire pour le moment';
+$lang['comment_subtitle'] = 'Sois le premier à poster un commentaire !';
 
 
 

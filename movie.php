@@ -96,7 +96,7 @@ $movie = $content["data"]["movies"][0];
 		include_once('./movie_comments.php');
 		include_once('./php/getComments.php');
 		$comments = getCommentsByMovieID($_GET['id'], $bdd);
-		movieComments($comments);
+		movieComments($comments, $lang);
 	?>
 	<div style="display:none" id="user-login"><?php echo $_SESSION['login']?></div>
 	<div style="display:none" id="user-first-name"><?php echo 'You'?></div>

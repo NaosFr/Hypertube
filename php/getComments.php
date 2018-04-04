@@ -2,7 +2,7 @@
 function getCommentsByMovieID ($id, $bdd) {
 	$comments = [
 			[
-				'last_name'=>'No comments yet',
+				'last_name'=> 'Comments' ,
 				'first_name'=>'',
 				'login'=>'',
 				'date'=>'',

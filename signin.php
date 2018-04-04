@@ -67,14 +67,14 @@ else{
 		<div class="l-landing-button-wrapper">
 			<a href="/php/facebook_connect.php" target="_blank">
 				<button class="o-button--fb o-button--large transition">
-				CONNECT WITH FACEBOOK
+					<?php echo $lang['signin_facebook'] ?>
 				</button>
 			</a>
 		</div>
 		<div class="l-landing-button-wrapper">
-			<a href="/php/42_connect.php" target="_blank">
+			<a href="https://api.intra.42.fr/oauth/authorize?client_id=99679e81eca11d015b7d8318cc286c6a8582d37cce7ab2c7e6f1134629e01061&redirect_uri=http%3A%2F%2Flocalhost%3A8080%2Fredirect%2F42.php&response_type=code" target="_blank">
 				<button class="o-button--42 o-button--large transition">
-					CONNECT WITH 42
+					<?php echo $lang['signin_42'] ?>
 				</button>
 			</a>
 		</div>

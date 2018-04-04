@@ -1,15 +1,15 @@
 <?php
-function createMessages($comments) {
+function createMessages($comments, $lang) {
 	$commentsHTML = '';
 
-	if ($comments[0]['last_name'] == 'No comments yet')
+	if ($comments[0]['last_name'] == 'Comments' || $comments[0]['last_name'] == 'Commentaires')
 	{
 		return '
 			<div class="message">
 				<div class="message-head">
 					<div class="message-head--content">
 						<p class="author">
-							'.$comments[0]['last_name'].'
+							'. $lang['comment_title'] .'
 						</p>
 						<a href="#">
 							<p class="login">
@@ -20,7 +20,7 @@ function createMessages($comments) {
 					</div>
 				</div>
 				<p class="content">
-					Be the first to write a comment !
+					'. $lang['comment_subtitle'] .'
 				</p>
 			</div>
 
@@ -54,8 +54,8 @@ function createMessages($comments) {
 	return $commentsHTML;
 }
 
-function movieComments($comments) {
-	$commentsHTML = createMessages($comments);
+function movieComments($comments, $lang) {
+	$commentsHTML = createMessages($comments, $lang);
 
 	echo '
 
@@ -64,9 +64,9 @@ function movieComments($comments) {
 				<div class="new-message">
 					
 					<div class="message-form">
-						<textarea id="new-message" class="message-input" placeholder="What`s on your mind ?"></textarea>
+						<textarea id="new-message" class="message-input" placeholder="'. $lang['comment_placeholder'] .'"></textarea>
 								<div class="send-button">
-									<input id="comment-button" type="submit" value="COMMENT"/>
+									<input id="comment-button" type="submit" value="'. $lang['comment_button'] .'"/>
 								</div>
 					</div>
 				</div>
