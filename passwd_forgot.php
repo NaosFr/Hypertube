@@ -30,8 +30,8 @@ if (isset($_POST['email']) && $_POST['email'] != "")
 									<title>'.$lang['passwd_forgot_reset_subject'].'</title>
 								</head>
 								<body>
-									<img src="http://localhost:8888/assets/icon/favicon.png" style="width: 100px;">
-									<p>'.$lang['passwd_forgot_reset_text'].'<br>http://localhost:8888/php/new_passwd.php?log='.$email.'&cle='.urlencode($cle_passwd).'<br>------------------------------------------------------------------------------------------<br>'.$lang['passwd_forgot_automatic'].'</p>
+									<img src="http://'.$_SERVER['SERVER_NAME'].':'.$_SERVER['SERVER_PORT'].'/assets/icon/favicon.png" style="width: 100px;">
+									<p>'.$lang['passwd_forgot_reset_text'].'<br>http://'.$_SERVER['SERVER_NAME'].':'.$_SERVER['SERVER_PORT'].'/php/new_passwd.php?log='.$email.'&cle='.urlencode($cle_passwd).'<br>------------------------------------------------------------------------------------------<br>'.$lang['passwd_forgot_automatic'].'</p>
 								</body>
 							</html>';
 

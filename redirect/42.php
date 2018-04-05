@@ -17,7 +17,7 @@ function extract_user_data($user_JSON) {
 
 if (isset($_GET['code'])) {
 	$url = 'https://api.intra.42.fr/oauth/token';
-	$myvars = 'grant_type=authorization_code&redirect_uri=http://localhost:8080/redirect/42.php';
+	$myvars = 'grant_type=authorization_code&redirect_uri=http://'.$_SERVER['SERVER_NAME'].':'.$_SERVER['SERVER_PORT'].'/redirect/42.php';
 	$myvars .= '&client_id=99679e81eca11d015b7d8318cc286c6a8582d37cce7ab2c7e6f1134629e01061';
 	$myvars .= '&client_secret=' . $API_KEY_42;
 	$myvars .= '&code=' . $_GET['code'];
