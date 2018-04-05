@@ -41,7 +41,7 @@ if (isset($_POST['password']) && $_POST['password'] != "" && isset($_POST['email
 		$txt =  '<div id="alert_div"><p id="text_alert">'.$lang['account_delete_wrong'].'</p><span class="closebtn" onclick="del_alert()">&times;</span></div>';
 	}
 }
-else if (isset($_POST['email']) && $_POST['email'] != "" && $user['api'] == 1)
+else if (isset($_POST['email']) && $_POST['email'] != "" && $user['api'] != 0)
 {
 	$email = htmlspecialchars($_POST['email']);
 

@@ -1,10 +1,12 @@
 <?php
 
-function validate_login($login, $bdd) {
+function validate_login($login, $bdd)
+{
 	$req = $bdd->prepare('SELECT id_user FROM users WHERE login = ?');
 	$req->execute(array($login . '_' . $count));
 		
-	if($req->rowCount() == 0) {
+	if ($req->rowCount() == 0)
+	{
 		return $login;
 	}
 
@@ -14,17 +16,21 @@ function validate_login($login, $bdd) {
 	while ($exist)
 	{
 		$req = $bdd->prepare('SELECT id_user FROM users WHERE login = ?');
-		$req->execute(array($login . '_' . $count));
+		$req->execute(array($login.'_'.$count));
 		
-		if($req->rowCount() > 0) {
+		if ($req->rowCount() > 0)
+		{
 			$count += 2;
-		} else {
+		}
+		else
+		{
 			$exist = 0;
 		}
 	}
 }
 
-function register_user($user, $bdd) {
+function register_user($user, $bdd)
+{
 
 	$user['login'] = validate_login($user['login'], $bdd);
 
@@ -38,12 +44,12 @@ function register_user($user, $bdd) {
 
 	if ($req->rowCount() > 0)
 	{
-		header('Location: /error.php');
+		echo '<script>document.location.href="/signin.php?err=login"</script>';
 		exit;
 	}
 	else if ($req2->rowCount() > 0)
 	{
-		header('Location: /error.php');
+		echo '<script>document.location.href="/signin.php?err=email"</script>';
 		exit;
 	}
 
@@ -62,7 +68,8 @@ function register_user($user, $bdd) {
 	return true;
 }
 
-function connect_user($user) {
+function connect_user($user)
+{
 	$_SESSION['id'] = $user['id'];
 	$_SESSION['login'] = $user['login'];
 
@@ -70,7 +77,8 @@ function connect_user($user) {
 	exit;
 }
 
-function user_exist($user, $bdd) {
+function user_exist($user, $bdd)
+{
 	$req = $bdd->prepare('SELECT id_user, confirm FROM users WHERE email = ? AND api = 1');
 	$req->execute(array($user['email']));
 
@@ -82,11 +90,15 @@ function user_exist($user, $bdd) {
 	return false;
 }
 
-function login_or_register($user, $bdd) {
+function login_or_register($user, $bdd)
+{
 	$user['id'] = user_exist($user, $bdd);
-	if ($user['id']) {
+	if ($user['id'])
+	{
 		connect_user($user);
-	} else {
+	}
+	else
+	{
 		register_user($user, $bdd);
 		login_or_register($user, $bdd);
 	}

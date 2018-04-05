@@ -10,14 +10,20 @@ if ($_SESSION['id'] != "" || $_SESSION['login'] != "")
 	exit;
 }
 
-if ($_GET['el'] === "register") {
+if (!check_get('err'))
+	$_GET['err'] = "none";
+
+$type = "";
+if ($_GET['el'] === "register")
+{
 	$type = '<script type="text/javascript">
 				$(".template_login").hide();
 				$(".template_register").show();
 				$(".template_passwd_forgot").hide();
 			</script>';
 }
-else{
+else
+{
 	$type = '<script type="text/javascript">
 				$(".template_login").show();
 				$(".template_register").hide();
@@ -45,7 +51,7 @@ else{
 	
 </head>
 
-<body>
+<body onload="errMessage('<?php echo $_GET['err'] ?>', '<?php echo $lang['html'] ?>')">
 	
 	<?php include_once('header.php'); ?>
 
