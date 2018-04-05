@@ -65,14 +65,14 @@ else{
 			<input type="submit" value="<?php echo $lang['signin_signin'] ?>" class="submit transition" onclick="login()" />
 		</form>
 		<div class="l-landing-button-wrapper">
-			<a href="/php/facebook_connect.php" target="_blank">
+			<a href="/php/facebook_connect.php">
 				<button class="o-button--fb o-button--large transition">
 					<?php echo $lang['signin_facebook'] ?>
 				</button>
 			</a>
 		</div>
 		<div class="l-landing-button-wrapper">
-			<a href="https://api.intra.42.fr/oauth/authorize?client_id=99679e81eca11d015b7d8318cc286c6a8582d37cce7ab2c7e6f1134629e01061&redirect_uri=http%3A%2F%2F<?php echo $_SERVER['SERVER_NAME'].'%3A'.$_SERVER['SERVER_PORT'] ?>%2Fredirect%2F42.php&response_type=code" target="_blank">
+			<a href="https://api.intra.42.fr/oauth/authorize?client_id=99679e81eca11d015b7d8318cc286c6a8582d37cce7ab2c7e6f1134629e01061&redirect_uri=http%3A%2F%2F<?php echo $_SERVER['SERVER_NAME'].'%3A'.$_SERVER['SERVER_PORT'] ?>%2Fredirect%2F42.php&response_type=code">
 				<button class="o-button--42 o-button--large transition">
 					<?php echo $lang['signin_42'] ?>
 				</button>

@@ -114,7 +114,7 @@ else if ($_POST['submit'] === "register") {
 					
 					$cle = md5(microtime(TRUE)*100000);
 
-					$req = $bdd->prepare('INSERT INTO users (email, login, first_name, last_name, passwd, confirm, cle, image) VALUES (:email, :login, :first_name, :last_name, :passwd, 0, :cle, :image)');
+					$req = $bdd->prepare('INSERT INTO users (email, login, first_name, last_name, passwd, confirm, cle, image, api) VALUES (:email, :login, :first_name, :last_name, :passwd, 0, :cle, :image, 0)');
 					$req->execute(array(
 						'email' => $email,
 						'login' => $login,
@@ -123,7 +123,7 @@ else if ($_POST['submit'] === "register") {
 						'passwd' => $passwd,
 						'cle' => $cle,
 						'image' => substr($path, 1)
-						));
+					));
 
 					ini_set( 'display_errors', 1 );
 			    	error_reporting( E_ALL );

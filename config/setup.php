@@ -24,7 +24,8 @@ try
 				confirm BIT NOT NULL DEFAULT 0,
 				cle TEXT NOT NULL,
 				cle_passwd TEXT,
-				image TEXT NOT NULL)");
+				image TEXT NOT NULL,
+				api INT NOT NULL)");
 	
 	//comments
 	$bdd->query("CREATE TABLE comments(

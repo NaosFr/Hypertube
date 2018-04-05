@@ -32,6 +32,23 @@ else if($_SESSION["lang"] == "fr")
 else
 	include_once($_SERVER['DOCUMENT_ROOT']."/language/english.php");
 
+if ($_SESSION['id'] != "" || $_SESSION['login'] != "")
+{
+	$req = $bdd->prepare('SELECT confirm FROM users WHERE login = ? AND id_user = ?');
+	$req->execute(array($_SESSION['login'], $_SESSION['id']));
+	if ($req->rowCount() == 0)
+	{
+		header('Location: /php/logout.php');
+		exit;
+	}
+	$verif = $req->fetch();
+	if ($verif['confirm'] == 0)
+	{
+		header('Location: /php/logout.php');
+		exit;
+	}
+}
+
 function check_post($var)
 {
 	if (!isset($_POST[$var]))
