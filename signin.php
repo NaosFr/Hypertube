@@ -1,5 +1,6 @@
 <?php 
 include_once('php/connexion.php');
+include_once('config/secret.php');
 
 if (!isset($_GET['el']))
 	$_GET['el'] = "";
@@ -71,9 +72,9 @@ else
 			<input type="submit" value="<?php echo $lang['signin_signin'] ?>" class="submit transition" onclick="login()" />
 		</form>
 		<div class="l-landing-button-wrapper">
-			<a href="/php/facebook_connect.php">
+			<a href="https://github.com/login/oauth/authorize?scope=read:user&client_id=<?php echo $CLIENT_ID_GITHUB ?>" target="_blank">
 				<button class="o-button--fb o-button--large transition">
-					<?php echo $lang['signin_facebook'] ?>
+					<?php echo $lang['signin_github'] ?>
 				</button>
 			</a>
 		</div>

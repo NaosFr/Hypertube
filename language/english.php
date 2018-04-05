@@ -105,7 +105,7 @@ $lang['signin_last_name'] = 'LAST NAME';
 $lang['signin_confirmation'] = 'CONFIRMATION';
 $lang['signin_create'] = 'CREATE ACCOUNT';
 $lang['signin_send'] = 'SEND';
-$lang['signin_facebook'] = 'CONNECT WITH FACEBOOK';
+$lang['signin_github'] = 'CONNECT WITH GITHUB';
 $lang['signin_42'] = 'CONNECT WITH 42';
 $lang['signin_image'] = 'IMAGE';
 
