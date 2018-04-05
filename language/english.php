@@ -109,12 +109,6 @@ $lang['signin_github'] = 'CONNECT WITH GITHUB';
 $lang['signin_42'] = 'CONNECT WITH 42';
 $lang['signin_image'] = 'IMAGE';
 
-// COMMENT
-$lang['comment_button'] = 'COMMENT';
-$lang['comment_placeholder'] = "What's on your mind ?";
-$lang['comment_title'] = 'No comments yet';
-$lang['comment_subtitle'] = 'Be the first to write a comment !';
-
 // MOVIE
 $lang['movie_placeholder'] = 'Your comment';
 $lang['movie_button'] = 'COMMENT';

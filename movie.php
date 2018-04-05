@@ -77,7 +77,7 @@ $movie = $content["data"]["movies"][0];
 
 			echo '<img src="'.$movie["large_cover_image"].'" alt=miniature class="affiche"/>';
 
-			echo "<span>".$movie['synopsis']."</span>";
+			echo "<p class=\"synopsis\">".$movie['synopsis']."</p>";
 
 			?>
 
@@ -85,9 +85,6 @@ $movie = $content["data"]["movies"][0];
 				<?php
 					$content = json_decode(file_get_contents('https://api.themoviedb.org/3/movie/'.$_GET['id'].'/credits?api_key=68a139112eb59bd80702070df4874941'), true);
 					$i = 0;
-
-	
-					
 
 					foreach ($content["cast"] as $el)
 					{

@@ -11,14 +11,20 @@ if ($_SESSION['id'] != "" || $_SESSION['login'] != "")
 	exit;
 }
 
-if ($_GET['el'] === "register") {
+if (!check_get('err'))
+	$_GET['err'] = "none";
+
+$type = "";
+if ($_GET['el'] === "register")
+{
 	$type = '<script type="text/javascript">
 				$(".template_login").hide();
 				$(".template_register").show();
 				$(".template_passwd_forgot").hide();
 			</script>';
 }
-else{
+else
+{
 	$type = '<script type="text/javascript">
 				$(".template_login").show();
 				$(".template_register").hide();
@@ -46,7 +52,7 @@ else{
 	
 </head>
 
-<body>
+<body onload="errMessage('<?php echo $_GET['err'] ?>', '<?php echo $lang['html'] ?>')">
 	
 	<?php include_once('header.php'); ?>
 
@@ -73,7 +79,7 @@ else{
 			</a>
 		</div>
 		<div class="l-landing-button-wrapper">
-			<a href="https://api.intra.42.fr/oauth/authorize?client_id=99679e81eca11d015b7d8318cc286c6a8582d37cce7ab2c7e6f1134629e01061&redirect_uri=http%3A%2F%2F<?php echo $_SERVER['SERVER_NAME'].'%3A'.$_SERVER['SERVER_PORT'] ?>%2Fredirect%2F42.php&response_type=code" target="_blank">
+			<a href="https://api.intra.42.fr/oauth/authorize?client_id=99679e81eca11d015b7d8318cc286c6a8582d37cce7ab2c7e6f1134629e01061&redirect_uri=http%3A%2F%2F<?php echo $_SERVER['SERVER_NAME'].'%3A'.$_SERVER['SERVER_PORT'] ?>%2Fredirect%2F42.php&response_type=code">
 				<button class="o-button--42 o-button--large transition">
 					<?php echo $lang['signin_42'] ?>
 				</button>
@@ -112,7 +118,7 @@ else{
 			<br/>
 			<div id="image_box">
 				<img id="more" src="assets/icon/more.svg" class="icon_more_img" alt="more"/>
-				<img id="image" src="">
+				<img style="display: none;" id="image" src="">
 			</div>
 			<input onchange="upload_pic();" id="file" style="height: 0px; width: 0px;" type="file" name="image" />
 			

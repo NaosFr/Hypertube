@@ -7,7 +7,13 @@ if ($_SESSION['id'] == "" || $_SESSION['login'] == "")
 	exit;
 }
 
-if (isset($_POST['password']) && $_POST['password'] != "" && isset($_POST['email']) && $_POST['email'] != "")
+$txt = "";
+
+$req = $bdd->prepare('SELECT api FROM users WHERE login = ? AND id_user = ?');
+$req->execute(array($_SESSION['login'], $_SESSION['id']));
+$user = $req->fetch();
+
+if (isset($_POST['password']) && $_POST['password'] != "" && isset($_POST['email']) && $_POST['email'] != "" && $user['api'] == 0)
 {
 	$email = htmlspecialchars($_POST['email']);
 	$passwd = htmlspecialchars($_POST['password']);
@@ -15,10 +21,10 @@ if (isset($_POST['password']) && $_POST['password'] != "" && isset($_POST['email
 
 	$req = $bdd->prepare('SELECT * FROM users WHERE email = ? AND passwd = ? AND id_user = ?');
 	$req->execute(array($email, $passwd, $_SESSION['id']));
-	if($req->rowCount() == 1)
+	if ($req->rowCount() == 1)
 	{
 		$data = $req->fetch();
-		if (file_exists($data['image']))
+		if (substr($data['image'], 0, 1) == "." && file_exists($data['image']))
 			unlink($data['image']);
 		$req2 = $bdd->prepare('DELETE FROM users WHERE id_user=:id');
 		$req2->bindParam(':id', $data['id_user'], PDO::PARAM_INT);
@@ -28,8 +34,36 @@ if (isset($_POST['password']) && $_POST['password'] != "" && isset($_POST['email
 		$req2->execute();
 		header('Location: php/logout.php');
 	}
-	else{
+	else
+	{
 		echo "<style>#alert_div { background-color: #568456!important;} </style>";
+		echo "<style>#alert_div { display: block!important;} </style>";
+		$txt =  '<div id="alert_div"><p id="text_alert">'.$lang['account_delete_wrong'].'</p><span class="closebtn" onclick="del_alert()">&times;</span></div>';
+	}
+}
+else if (isset($_POST['email']) && $_POST['email'] != "" && $user['api'] != 0)
+{
+	$email = htmlspecialchars($_POST['email']);
+
+	$req = $bdd->prepare('SELECT * FROM users WHERE email = ? AND id_user = ?');
+	$req->execute(array($email, $_SESSION['id']));
+	if ($req->rowCount() == 1)
+	{
+		$data = $req->fetch();
+		if (substr($data['image'], 0, 1) == "." && file_exists($data['image']))
+			unlink($data['image']);
+		$req2 = $bdd->prepare('DELETE FROM users WHERE id_user=:id');
+		$req2->bindParam(':id', $data['id_user'], PDO::PARAM_INT);
+		$req2->execute();
+		$req2 = $bdd->prepare('DELETE FROM comments WHERE id_user=:id');
+		$req2->bindParam(':id', $data['id_user'], PDO::PARAM_INT);
+		$req2->execute();
+		header('Location: php/logout.php');
+	}
+	else
+	{
+		echo "<style>#alert_div { background-color: #568456!important;} </style>";
+		echo "<style>#alert_div { display: block!important;} </style>";
 		$txt =  '<div id="alert_div"><p id="text_alert">'.$lang['account_delete_wrong'].'</p><span class="closebtn" onclick="del_alert()">&times;</span></div>';
 	}
 }
@@ -58,6 +92,11 @@ if (isset($_POST['password']) && $_POST['password'] != "" && isset($_POST['email
 
 <?php include_once('header.php'); ?>
 
+<!-- ******* ALERT ***************** -->
+	<div id="alert" class="alert">
+		<?php echo $txt ?>
+	</div>
+
 <!-- ******* FORMULAIRE ***************** -->
 	<section class="template_delete">
 		<!-- Form -->
@@ -67,9 +106,16 @@ if (isset($_POST['password']) && $_POST['password'] != "" && isset($_POST['email
 			<br/>
 			<input type="email" name="email" maxlength="40" required />
 			
-			<label for="password"><p><?php echo $lang['account_delete_password'] ?></p></label>
-			<br/>
-			<input type="password" name="password" maxlength="20" required />
+			<?php
+			if ($user['api'] == 0)
+			{
+				?>
+				<label for="password"><p><?php echo $lang['account_delete_password'] ?></p></label>
+				<br/>
+				<input type="password" name="password" maxlength="20" required />
+				<?php
+			}
+			?>
 
 			<!-- SIGN IN -->
 			<input type="submit" name="go_delete_account" value="<?php echo $lang['account_delete_delete'] ?>" class="submit transition" style="margin-top: 25px;" />

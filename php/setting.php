@@ -53,16 +53,20 @@ if (isset($_POST['email']) && $_POST['email'] != ""
 			if ($req->rowCount() == 1)
 			{
 				$value = $req->fetch();
-				if (!move_uploaded_file($fileLoc, ".".$value['image']))
+				$path = '../data/'.md5(microtime(TRUE)*100000).'.'.$extension;
+				if (!move_uploaded_file($fileLoc, $path))
 				{
 					echo '<div id="alert_div"><p id="text_alert">'.$lang['setting_move'].'</p><span class="closebtn" onclick="del_alert()">&times;</span></div>';
 					exit;
 				}
+				if (substr($value['image'], 0, 1) == "." && file_exists(".".$value['image']))
+					unlink(".".$value['image']);
 				$stmt = $bdd->prepare("UPDATE users SET 
 					email=:email, 
 					login=:login, 
 					first_name=:first_name,
-					last_name=:last_name
+					last_name=:last_name,
+					image=:image
 					WHERE id_user like :id");
 
 				$stmt->bindParam(':id', $_SESSION['id']);
@@ -70,6 +74,7 @@ if (isset($_POST['email']) && $_POST['email'] != ""
 				$stmt->bindParam(':login', $_SESSION['login']);
 				$stmt->bindParam(':first_name', $first_name);
 				$stmt->bindParam(':last_name', $last_name);
+				$stmt->bindParam(':image', substr($path, 1));
 				$stmt->execute();
 		
 				echo "<style>#alert_div { background-color: #568456!important;} </style>";
