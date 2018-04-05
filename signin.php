@@ -111,7 +111,7 @@ else{
 			<br/>
 			<div id="image_box">
 				<img id="more" src="assets/icon/more.svg" class="icon_more_img" alt="more"/>
-				<img id="image" src="">
+				<img style="display: none;" id="image" src="">
 			</div>
 			<input onchange="upload_pic();" id="file" style="height: 0px; width: 0px;" type="file" name="image" />
 			
