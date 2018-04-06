@@ -1,53 +1,76 @@
 <?php
 include_once('connexion.php');
 
-if (!isset($_POST['submit']) || !isset($_POST['movie']) || !isset($_POST['genre']) || !isset($_POST['page']))
+if (!isset($_POST['submit']) || !isset($_POST['movie']) || !isset($_POST['genre']) || !isset($_POST['start']) || !check_post('rating') || !check_post('year'))
 	exit;
 
 if ($_POST['submit'] === "search")
 {
 	$title = htmlspecialchars($_POST['movie']);
-	$title = urlencode($title);
 	$genre = htmlspecialchars($_POST['genre']);
-	$genre = urlencode($genre);
-	$page = htmlspecialchars($_POST['page']);
-	$page = urlencode($page);
-	$url = 'https://yts.am/api/v2/list_movies.json?limit=50';
-	$url .= '&page='.$page;
-	if (!empty($title))
-		$url .= '&sort_by=title&order_by=asc&query_term='.$title;
-	else
-		$url .= '&sort_by=rating&order_by=desc';
+	$start = htmlspecialchars($_POST['start']);
+	$rating = htmlspecialchars($_POST['rating']);
+	$rating = explode(' - ', $rating);
+	if (count($rating) != 2)
+		exit;
+	$year = htmlspecialchars($_POST['year']);
+	$year = explode(' - ', $year);
+	if (count($year) != 2)
+		exit;
+
+	$data = [];
+
+	$sql = "SELECT * FROM movies WHERE";
+	$sql .= " year >= ? AND year <= ?";
+	$sql .= " AND rating >= ? AND rating <= ?";
+
+	$data[] = intval($year[0]);
+	$data[] = intval($year[1]);
+	$data[] = intval($rating[0]);
+	$data[] = intval($rating[1]);
+
 	if (!empty($genre))
-		$url .= '&genre='.$genre;
-	$content = json_decode(file_get_contents($url), true);
-	if ($content["data"]["movie_count"] > 0 && $content["data"]["movies"])
 	{
-		foreach ($content["data"]["movies"] as $el)
-		{
-
-			echo '<a href="/movie.php?id='.$el['imdb_code'].'"><div><img src="'.$el["large_cover_image"].'" />
-					<div class="info_movie transition">';
-
-			$req = $bdd->prepare('SELECT * FROM views WHERE id_user = ? AND id_movie = ?');
-			$req->execute(array($_SESSION['id'], $el['imdb_code']));
-			
-			if($req->rowCount() != 0)
-			{
-				echo '<p class="movie_views">✔</p>';
-			}
-			else{
-				
-			}
-
-			echo '<p>'.$el["year"].'</p>
-						<p>'.$el["rating"].'</p>
-					</div>
-				</div></a>';
-		}
+		$sql .= " AND genres LIKE ?";
+		$data[] = "%,".$genre.",%";
 	}
-	else if ($page == 1)
-		echo '<p class="no_result">'.$lang['search_empty'].'</p>';
+
+	if (!empty($title))
+	{
+		$sql .= " AND title LIKE ? ORDER BY title ASC";
+		$data[] = "%".$title."%";
+	}
+	else
+		$sql .= " ORDER BY rating DESC";
+
+	$sql .= " LIMIT ?, 50";
+	$data[] = intval($start);
+
+	$bdd->setAttribute(PDO::ATTR_EMULATE_PREPARES, FALSE);
+	$req = $bdd->prepare($sql);
+	$req->execute($data);
+
+	$ret = [];
+
+	$ret[0] = 0;
+	$ret[1] = "";
+	while ($movie = $req->fetch())
+	{
+		$ret[1] .= '<a href="/movie.php?id='.$movie['imdb_code'].'"><div><img src="'.$movie["image"].'" /><div class="info_movie transition">';
+		$reqb = $bdd->prepare('SELECT * FROM views WHERE id_user = ? AND id_movie = ?');
+		$reqb->execute(array($_SESSION['id'], $movie['imdb_code']));
+		if ($reqb->rowCount() != 0)
+		{
+			$ret[1] .= '<p class="movie_views">✔</p>';
+		}
+		$ret[1] .= '<p>'.$movie['year'].'</p><p>'.$movie['rating'].'</p></div></div></a>';
+		$ret[0]++;
+	}
+
+	if ($ret[0] == 0 && $start == 0)
+		$ret[1] = '<p class="no_result">'.$lang['search_empty'].'</p>';
+
+	echo json_encode($ret);
 }
 
 ?>

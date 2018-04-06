@@ -72,7 +72,7 @@ else
 			<input type="submit" value="<?php echo $lang['signin_signin'] ?>" class="submit transition" onclick="login()" />
 		</form>
 		<div class="l-landing-button-wrapper">
-			<a href="https://github.com/login/oauth/authorize?scope=read:user&client_id=<?php echo $CLIENT_ID_GITHUB ?>" target="_blank">
+			<a href="https://github.com/login/oauth/authorize?scope=read:user&client_id=<?php echo $CLIENT_ID_GITHUB ?>">
 				<button class="o-button--fb o-button--large transition">
 					<?php echo $lang['signin_github'] ?>
 				</button>

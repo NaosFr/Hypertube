@@ -71,7 +71,7 @@ include_once('php/connexion.php');
 		
 		<div id="slider-score" class="slider"></div>
 
-		<input type="submit" value="<?php echo $lang['index_filter'] ?>" class="submit_filter transition" onclick="login()" />
+		<input type="submit" value="<?php echo $lang['index_filter'] ?>" class="submit_filter transition" onclick="search_movie()" />
 	</form>
 
 </section>
@@ -82,7 +82,7 @@ include_once('php/connexion.php');
 <script type="text/javascript">
 	
 	let genre = "";
-	let page = 1;
+	let start = 0;
 	let scroll = 1;
 
 	$(document).ready(function ()
@@ -100,7 +100,9 @@ include_once('php/connexion.php');
 			var formData = {
 				'movie'		: $('input[name=search]').val(),
 				'genre'		: genre,
-				'page'		: page,
+				'start'		: start,
+				'rating'	: $('#score').val(),
+				'year'		: $('#years').val(),
 				'submit'	: "search"
 			};
 
@@ -110,12 +112,20 @@ include_once('php/connexion.php');
 				data		: formData,
 				encode		: true,
 				success		: function(data){
-					$('#movies').append(data);
+					if (data && data != "error")
+					{
+						var arr = JSON.parse(data);
+						if (Number.isInteger(arr[0]) && arr[1])
+						{
+							start += arr[0];
+							$('#movies').append(arr[1]);
+						}
+					}
 					scroll = 1;
 				}
 			});
 
-			page++;
+			start++;
 		}
 	}
 
@@ -137,12 +147,14 @@ include_once('php/connexion.php');
 	}
 
 	function search_movie(){
-		page = 1;
+		start = 0;
 
 		var formData = {
 			'movie'		: $('input[name=search]').val(),
 			'genre'		: genre,
-			'page'		: page,
+			'start'		: start,
+			'rating'	: $('#score').val(),
+			'year'		: $('#years').val(),
 			'submit'	: "search"
 		};
 
@@ -152,12 +164,21 @@ include_once('php/connexion.php');
 			data		: formData,
 			encode		: true,
 			success		: function(data){
-				$('#movies').html(data);
-				$('#movies').scrollTop(0);
+				console.log(data);
+				if (data && data != "error")
+				{
+					var arr = JSON.parse(data);
+					if (Number.isInteger(arr[0]) && arr[1])
+					{
+						start += arr[0];
+						$('#movies').html(arr[1]);
+						$('#movies').scrollTop(0);
+					}
+				}
 			}
 		});
 
-		page++;
+		start++;
 	}
 
 	// SLIDER YEARS

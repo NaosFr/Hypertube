@@ -77,6 +77,49 @@ try
 				id_movie TEXT NOT NULL,
 				hash_movie TEXT NOT NULL)");
 
+	//movies
+	$bdd->query("CREATE TABLE movies(
+				id_movie INT UNSIGNED AUTO_INCREMENT PRIMARY KEY NOT NULL,
+				imdb TEXT NOT NULL,
+				title TEXT NOT NULL,
+				rating FLOAT NOT NULL,
+				year INT NOT NULL,
+				image TEXT NOT NULL,
+				genres TEXT NOT NULL)");
+
+	$url = 'https://yts.am/api/v2/list_movies.json?limit=50&page=';
+	$i = 1;
+	while (1)
+	{
+		$content = json_decode(file_get_contents($url.urlencode($i)), true);
+		if ($content["data"]["movie_count"] > 0 && $content["data"]["movies"])
+		{
+			foreach ($content["data"]["movies"] as $el)
+			{
+				$req = $bdd->prepare('SELECT id_movie FROM movies WHERE imdb = ?');
+				$req->execute(array(htmlspecialchars($el['imdb_code'])));
+				if ($req->rowCount() != 0)
+					continue ;
+				$genres = "";
+				if ($el["genres"])
+					$genres = ",".implode(',', $el["genres"]).",";
+				$req = $bdd->prepare('INSERT INTO movies (imdb, title, rating, year, image, genres) VALUES (:imdb, :title, :rating, :year, :image, :genres)');
+				$req->execute(array(
+					'imdb' => htmlspecialchars($el['imdb_code']),
+					'title' => htmlspecialchars($el['title']),
+					'rating' => floatval(htmlspecialchars($el['rating'])),
+					'year' => intval(htmlspecialchars($el['year'])),
+					'image' => htmlspecialchars($el['large_cover_image']),
+					'genres' => htmlspecialchars($genres)
+				));
+			}
+			$i++;
+			continue ;
+		}
+		else
+			break ;
+	}
+
 	header('Location: /');
 	exit;
 }
