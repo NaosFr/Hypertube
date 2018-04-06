@@ -56,9 +56,9 @@ if ($_POST['submit'] === "search")
 	$ret[1] = "";
 	while ($movie = $req->fetch())
 	{
-		$ret[1] .= '<a href="/movie.php?id='.$movie['imdb_code'].'"><div><img src="'.$movie["image"].'" /><div class="info_movie transition">';
+		$ret[1] .= '<a href="/movie.php?id='.$movie['imdb'].'"><div><img src="'.$movie["image"].'" /><div class="info_movie transition">';
 		$reqb = $bdd->prepare('SELECT * FROM views WHERE id_user = ? AND id_movie = ?');
-		$reqb->execute(array($_SESSION['id'], $movie['imdb_code']));
+		$reqb->execute(array($_SESSION['id'], $movie['imdb']));
 		if ($reqb->rowCount() != 0)
 		{
 			$ret[1] .= '<p class="movie_views">✔</p>';
