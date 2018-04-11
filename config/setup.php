@@ -26,7 +26,7 @@ try
 				cle_passwd TEXT,
 				image TEXT NOT NULL,
 				api INT NOT NULL)");
-	
+
 	//comments
 	$bdd->query("CREATE TABLE comments(
 				id_comment INT UNSIGNED AUTO_INCREMENT PRIMARY KEY NOT NULL,
@@ -68,7 +68,8 @@ try
 				id_hash INT UNSIGNED AUTO_INCREMENT PRIMARY KEY NOT NULL,
 				hash TEXT NOT NULL,
 				path TEXT NOT NULL,
-				downloaded INT UNSIGNED NOT NULL)");
+				downloaded INT UNSIGNED NOT NULL,
+				date LONG NOT NULL)");
 
 	//views
 	$bdd->query("CREATE TABLE views(

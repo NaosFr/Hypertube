@@ -30,9 +30,13 @@ else
 		engine.files.forEach(function(file) {
 			if (file.name.substr(file.name.length - 3) == 'mkv' || file.name.substr(file.name.length - 3) == 'mp4')
 			{
-				let sql = "INSERT INTO hash (hash, path, downloaded) VALUES ?";
+				var d = new Date();
+    			var n = d.getTime();
+    			n = Math.floor(n / 1000);
+
+				let sql = "INSERT INTO hash (hash, path, downloaded, date) VALUES ?";
 				let values = [
-					[hash, file.path, 0]
+					[hash, file.path, 0, n]
 				];
 				con.query(sql, [values], function (err, result) {
 					if (err) throw err;
