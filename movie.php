@@ -104,9 +104,9 @@ $movie = $content["data"]["movies"][0];
 							echo '<div class="person" style="background-image:url(http://image.tmdb.org/t/p/w500'.$el["profile_path"].');"><p style="color: white;">'.$el["name"].' '.$el["job"].'</p></div>';
 						}
 					}
-
 					echo '<p>'.$lang['movie_rating'].' '.$movie["rating"].'</p>';
 					echo '<p>'.$lang['movie_year'].' '.$movie["year"].'</p>';
+					echo '<p>'.$lang['movie_duration'].' '.$movie["runtime"].' min</p>';;
 
 				?>
 			</div>
