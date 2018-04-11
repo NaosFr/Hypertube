@@ -164,7 +164,6 @@ include_once('php/connexion.php');
 			data		: formData,
 			encode		: true,
 			success		: function(data){
-				console.log(data);
 				if (data && data != "error")
 				{
 					var arr = JSON.parse(data);
@@ -184,9 +183,9 @@ include_once('php/connexion.php');
 	// SLIDER YEARS
 		$("#slider-years").slider({
 			range: true,
-			min: 1990,
-			max: 2018,
-			values: [ 1990, 2018 ],
+			min: 1900,
+			max: 2020,
+			values: [ 1900, 2020 ],
 			slide: function( event, ui ) {
 				$( "#years" ).val(ui.values[ 0 ] + " - " + ui.values[ 1 ] );
 			}

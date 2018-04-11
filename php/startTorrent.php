@@ -17,7 +17,7 @@ if ($req->rowCount() != 0)
 	exit;
 }
 
-exec("/usr/local/Cellar/node/9.8.0/bin/node ../js/torrent.js ".$_POST['hash']." > /dev/null 2>/dev/null &");
-// exec("~/.brew/bin/node ../js/torrent.js ".$_POST['hash']." > /dev/null 2>/dev/null &");
+// exec("/usr/local/Cellar/node/9.8.0/bin/node ../js/torrent.js ".$_POST['hash']." > /dev/null 2>/dev/null &");
+exec("~/.brew/bin/node ../js/torrent.js ".$_POST['hash']." > /dev/null 2>/dev/null &");
 
 ?>

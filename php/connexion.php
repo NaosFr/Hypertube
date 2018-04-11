@@ -13,6 +13,19 @@ catch (Exception $e)
 	exit;
 }
 
+$req = $bdd->prepare('SELECT path, id_hash FROM hash WHERE date <= ? - ?');
+$req->execute(array(time(), 2629746));
+
+while ($data = $req->fetch())
+{
+	$path = substr($data['path'], 0, strpos($data['path'], "/"));
+	if ($path == "")
+		continue ;
+	delete_folder($_SERVER['DOCUMENT_ROOT']."/films/".$path);
+	$reqb = $bdd->prepare('DELETE FROM hash WHERE id_hash = ?');
+	$reqb->execute(array($data['id_hash']));
+}
+
 session_start();
 
 if (!isset($_SESSION['id']))
@@ -46,6 +59,22 @@ if ($_SESSION['id'] != "" || $_SESSION['login'] != "")
 	{
 		header('Location: /php/logout.php');
 		exit;
+	}
+}
+
+function delete_folder($dir)
+{
+	if (file_exists($dir) && is_dir($dir))
+	{
+		$files = glob($dir.'/*', GLOB_MARK);
+		foreach ($files as $file)
+		{
+			if (is_dir($file))
+				delete_folder($file);
+			else
+				unlink($file);
+		}
+		rmdir($dir);
 	}
 }
 

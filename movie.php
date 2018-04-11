@@ -66,7 +66,7 @@ $movie = $content["data"]["movies"][0];
 				foreach ($movie["torrents"] as $el)
 				{	
 
-					echo "<div class=\"div_torrent\"><span style='cursor: pointer;' onclick=\"getPath('".$el['hash']."', '".$_GET['id']."')\">".$movie["title"]." - ".$el["quality"]."</span></div>";
+					echo "<div class=\"div_torrent\" onclick=\"getPath('".$el['hash']."', '".$_GET['id']."')\"><span>".$movie["title"]." - ".$el["quality"]."</span></div>";
 				}
 			}
 			else
