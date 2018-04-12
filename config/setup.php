@@ -86,7 +86,9 @@ try
 				rating FLOAT NOT NULL,
 				year INT NOT NULL,
 				image TEXT NOT NULL,
-				genres TEXT NOT NULL)");
+				genres TEXT NOT NULL,
+				magnet TEXT NULL,
+				hash TEXT NULL)");
 
 	$url = 'https://yts.am/api/v2/list_movies.json?limit=50&page=';
 	$i = 1;
@@ -120,6 +122,33 @@ try
 		else
 			break ;
 	}
+
+	// second movie API
+	$JSON = exec('node '.dirname(__FILE__).'/../js/scrapper.js');
+	//var_dump(json_decode($JSON, true));
+	$scrappedMovies = json_decode($JSON, true);
+	if (count($scrappedMovies) > 0 && $scrappedMovies)
+	{
+		foreach ($scrappedMovies as $el)
+		{
+			$req = $bdd->prepare('SELECT id_movie FROM movies WHERE imdb = ?');
+			$req->execute(array(htmlspecialchars($el['imdb'])));
+			if ($req->rowCount() != 0)
+				continue ;
+			$req = $bdd->prepare('INSERT INTO movies (imdb, title, rating, year, image, genres, magnet, hash) VALUES (:imdb, :title, :rating, :year, :image, :genres, :magnet, :hash)');
+			$req->execute(array(
+				'imdb' => htmlspecialchars($el['imdb']),
+				'title' => htmlspecialchars($el['title']),
+				'rating' => floatval(htmlspecialchars($el['rating'])),
+				'year' => intval(htmlspecialchars($el['year'])),
+				'image' => htmlspecialchars($el['image']),
+				'genres' => htmlspecialchars($el['genres']),
+				'magnet' => htmlspecialchars($el['magnet']),
+				'hash' => htmlspecialchars($el['hash'])
+			));
+		}
+	}
+
 
 	header('Location: /');
 	exit;
