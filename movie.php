@@ -78,7 +78,7 @@ if (strlen($_GET['hash']) > 0) {
 				foreach ($movie["torrents"] as $el)
 				{	
 
-					echo "<div class=\"div_torrent\"><span style='cursor: pointer;' onclick=\"getPath('".$el['hash']."', '".$_GET['id']."')\">".$movie["title"]." - ".$el["quality"]."</span></div>";
+					echo "<div class=\"div_torrent\" onclick=\"getPath('".$el['hash']."', '".$_GET['id']."')\"><span>".$movie["title"]." - ".$el["quality"]."</span></div>";
 				}
 			}
 			else
@@ -116,9 +116,9 @@ if (strlen($_GET['hash']) > 0) {
 							echo '<div class="person" style="background-image:url(http://image.tmdb.org/t/p/w500'.$el["profile_path"].');"><p style="color: white;">'.$el["name"].' '.$el["job"].'</p></div>';
 						}
 					}
-
 					echo '<p>'.$lang['movie_rating'].' '.$movie["rating"].'</p>';
 					echo '<p>'.$lang['movie_year'].' '.$movie["year"].'</p>';
+					echo '<p>'.$lang['movie_duration'].' '.$movie["runtime"].' min</p>';;
 
 				?>
 			</div>

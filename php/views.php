@@ -13,6 +13,16 @@ $movie = htmlspecialchars($_POST['id_movie']);
 $hash = htmlspecialchars($_POST['hash']);
 $id = $_SESSION['id'];
 
+$stmt = $bdd->prepare("UPDATE hash SET 
+		date=:date
+		WHERE hash=:hash");
+
+$date = time();
+
+$stmt->bindParam(':date', $date);
+$stmt->bindParam(':hash', $hash);
+$stmt->execute();
+
 $req = $bdd->prepare('SELECT * FROM views WHERE id_user = ? AND hash_movie = ? AND id_movie = ?');
 $req->execute(array($id, $hash, $movie));
 		
@@ -25,4 +35,5 @@ if($req->rowCount() == 0)
 		'id_movie' => $movie
 	));
 }	
+
 ?>
