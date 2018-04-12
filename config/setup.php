@@ -94,7 +94,12 @@ try
 	$i = 1;
 	while (1)
 	{
-		$content = json_decode(file_get_contents($url.urlencode($i)), true);
+		@$content = json_decode(file_get_contents($url.urlencode($i)), true);
+		if (!$content)
+		{
+			header('Location: /error.php');
+			exit;
+		}
 		if ($content["data"]["movie_count"] > 0 && $content["data"]["movies"])
 		{
 			foreach ($content["data"]["movies"] as $el)

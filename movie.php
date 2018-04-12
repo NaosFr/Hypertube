@@ -7,7 +7,13 @@ if (!check_get('id'))
 	exit;
 }
 
-$content = json_decode(file_get_contents('https://yts.am/api/v2/list_movies.json?sort_by=title&order_by=asc&query_term='.$_GET['id']), true);
+@$content = json_decode(file_get_contents('https://yts.am/api/v2/list_movies.json?sort_by=title&order_by=asc&query_term='.$_GET['id']), true);
+
+if (!$content)
+{
+	header('Location: /error.php');
+	exit;
+}
 
 if ($content["data"]["movie_count"] != 1 && strlen($_GET['hash']) == 0)
 {
@@ -17,14 +23,20 @@ if ($content["data"]["movie_count"] != 1 && strlen($_GET['hash']) == 0)
 $movie = $content["data"]["movies"][0];
 
 if (strlen($_GET['hash']) > 0) {
-	$movie_data = json_decode(file_get_contents('http://www.omdbapi.com/?i='. $_GET['id'] .'&apikey=6570dfea'));
+	@$movie_data = json_decode(file_get_contents('http://www.omdbapi.com/?i='. $_GET['id'] .'&apikey=6570dfea'));
+	if (!$movie_data)
+	{
+		header('Location: /error.php');
+		exit;
+	}
 	$movie = [
 		"title" => $movie_data->Title,
 		"large_cover_image" => $movie_data->Poster,
 		"synopsis" => $movie_data->Plot,
 		"rating" => $movie_data->imdbRating,
 		"year" => $movie_data->Year,		
-		"torrents" => [["hash" => $_GET['hash'], "quality" => "start"]]
+		"torrents" => [["hash" => $_GET['hash']]],
+		"runtime" => explode(' ', $movie_data->Runtime)[0]
 	];
 }
 ?>
@@ -78,7 +90,10 @@ if (strlen($_GET['hash']) > 0) {
 				foreach ($movie["torrents"] as $el)
 				{	
 
-					echo "<div class=\"div_torrent\" onclick=\"getPath('".$el['hash']."', '".$_GET['id']."')\"><span>".$movie["title"]." - ".$el["quality"]."</span></div>";
+					echo "<div class=\"div_torrent\" onclick=\"getPath('".$el['hash']."', '".$_GET['id']."')\"><span>".$movie["title"];
+					if ($el["quality"])
+						echo " - ".$el["quality"];
+					echo "</span></div>";
 				}
 			}
 			else
@@ -95,7 +110,12 @@ if (strlen($_GET['hash']) > 0) {
 
 			<div class="info">
 				<?php
-					$content = json_decode(file_get_contents('https://api.themoviedb.org/3/movie/'.$_GET['id'].'/credits?api_key=68a139112eb59bd80702070df4874941'), true);
+					@$content = json_decode(file_get_contents('https://api.themoviedb.org/3/movie/'.$_GET['id'].'/credits?api_key=68a139112eb59bd80702070df4874941'), true);
+					if (!$content)
+					{
+						header('Location: /error.php');
+						exit;
+					}
 					$i = 0;
 
 					foreach ($content["cast"] as $el)
