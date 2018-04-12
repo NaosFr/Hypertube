@@ -124,7 +124,7 @@ try
 	}
 
 	// second movie API
-	$JSON = exec('node ../js/scrapper.js');
+	$JSON = exec('node '.dirname(__FILE__).'/../js/scrapper.js');
 	//var_dump(json_decode($JSON, true));
 	$scrappedMovies = json_decode($JSON, true);
 	if (count($scrappedMovies) > 0 && $scrappedMovies)
