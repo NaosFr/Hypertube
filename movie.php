@@ -9,12 +9,24 @@ if (!check_get('id'))
 
 $content = json_decode(file_get_contents('https://yts.am/api/v2/list_movies.json?sort_by=title&order_by=asc&query_term='.$_GET['id']), true);
 
-if ($content["data"]["movie_count"] != 1)
+if ($content["data"]["movie_count"] != 1 && strlen($_GET['hash']) == 0)
 {
 	header('Location: /');
 	exit;
 }
 $movie = $content["data"]["movies"][0];
+
+if (strlen($_GET['hash']) > 0) {
+	$movie_data = json_decode(file_get_contents('http://www.omdbapi.com/?i='. $_GET['id'] .'&apikey=6570dfea'));
+	$movie = [
+		"title" => $movie_data->Title,
+		"large_cover_image" => $movie_data->Poster,
+		"synopsis" => $movie_data->Plot,
+		"rating" => $movie_data->imdbRating,
+		"year" => $movie_data->Year,		
+		"torrents" => [["hash" => $_GET['hash'], "quality" => "start"]]
+	];
+}
 ?>
 <!DOCTYPE html>
 <html>
