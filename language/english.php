@@ -118,6 +118,7 @@ $lang['movie_empty'] = 'No torrent available';
 $lang['movie_rating'] = 'Rating :';
 $lang['movie_year'] = 'Year :';
 $lang['movie_duration'] = 'Duration :';
+$lang['movie_subtitle'] = 'subtitle';
 
 
 

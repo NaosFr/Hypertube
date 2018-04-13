@@ -558,6 +558,14 @@ header img:hover{
     text-align: center;
 }
 
+.subtitle_eng{
+	margin-left: 4px;
+}
+
+.subtitle span{
+	cursor: pointer;
+}
+
 /*****************************************************************
   NAV MOBILE
 *****************************************************************/
