@@ -1,7 +1,11 @@
 let torrentStream = require('torrent-stream');
 let mysql = require('mysql');
 
-if (process.argv[2] == undefined)
+var subtitles = require("./subtitles.js");
+
+let times = 0;
+
+if (process.argv[2] == undefined || process.argv[3] == undefined)
 {
 	console.log("error");
 }
@@ -28,7 +32,7 @@ else
 	let engine = torrentStream(magnet, {path: '../films'});
 	engine.on('ready', function() {
 		engine.files.forEach(function(file) {
-			if (file.name.substr(file.name.length - 3) == 'mkv' || file.name.substr(file.name.length - 3) == 'mp4')
+			if ((file.name.substr(file.name.length - 3) == 'mkv' || file.name.substr(file.name.length - 3) == 'mp4') && times == 0)
 			{
 				var d = new Date();
     			var n = d.getTime();
@@ -50,6 +54,10 @@ else
 
 				firstPiece = Math.floor(fileStart / pieceLength);
 				lastPiece = Math.floor((fileEnd - 1) / pieceLength);
+				times = 1;
+				var path = file.path;
+				path = path.split('/')[0];
+				subtitles.dlSubtitles(process.argv[2], process.argv[3], path);
 			}
 		});
 	});

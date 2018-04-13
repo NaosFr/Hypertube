@@ -8,7 +8,7 @@ if (!check_post('hash'))
 	exit;
 }
 
-$req = $bdd->prepare('SELECT path FROM hash WHERE hash = ?');
+$req = $bdd->prepare('SELECT path, downloaded FROM hash WHERE hash = ?');
 $req->execute(array($_POST['hash']));
 
 if ($req->rowCount() != 1)
@@ -18,6 +18,12 @@ if ($req->rowCount() != 1)
 }
 
 $data = $req->fetch();
+
+if ($data['downloaded'] < 10)
+{
+	echo "error";
+	exit;
+}
 
 echo $data['path'];
 

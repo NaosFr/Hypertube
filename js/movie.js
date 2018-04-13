@@ -57,7 +57,7 @@ function getPath(hash, id_movie)
 		{
 			if (code_html == "error")
 			{
-				getTorrent(hash);
+				getTorrent(hash, id_movie);
 			}
 			else
 			{
@@ -67,13 +67,13 @@ function getPath(hash, id_movie)
 		}
 	});
 }
-async function getTorrent(hash)
+async function getTorrent(hash, id_movie)
 {
 	$.ajax(
 	{
 		url : '/php/startTorrent.php',
 		type : 'POST',
-		data : 'hash=' + hash,
+		data : 'hash=' + hash + '&imdb=' + id_movie,
 		dataType : 'html'
 	});
 	$("#alert_div").css('background-color', '#568456');
