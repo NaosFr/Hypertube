@@ -141,10 +141,6 @@ if (strlen($_GET['hash']) > 0) {
 					echo '<p>'.$lang['movie_duration'].' '.$movie["runtime"].' min</p>';;
 
 				?>
-
-				<p class="subtitle"><?php echo $lang['movie_subtitle'];?> :
-					<span class="subtitle_eng" onclick="">ENG</span> | <span onclick="">FR</span></p>
-				</p>
 			</div>
 		</div>
 		<div id="player"></div>

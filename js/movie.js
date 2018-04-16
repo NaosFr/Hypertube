@@ -1,3 +1,29 @@
+async function setSub(path)
+{
+	await sleep(1000);
+	var arr = JSON.parse(path);
+	var video = document.getElementById("iframe");
+	if (video)
+		video = video.contentDocument;
+	if (video)
+		video = video.getElementsByName("media");
+	if (video)
+		video = video[0];
+	if (video)
+	{
+		var track;
+		if (arr[1] == 1)
+		{
+			track = "<track src='../films/" + arr[0] + "/en.vtt' kind='subtitles' srclang='en' label='English'>";
+			video.insertAdjacentHTML('beforeend', track);
+		}
+		if (arr[2] == 1)
+		{
+			track = "<track src='../films/" + arr[0] + "/fr.vtt' kind='subtitles' srclang='fr' label='French'>";
+			video.insertAdjacentHTML('beforeend', track);
+		}
+	}
+}
 function setVideo(hash)
 {
 	$.ajax(
@@ -18,6 +44,7 @@ function setVideo(hash)
 			{
 				let iframe = '<iframe id="iframe" name="iframe" src="php/player.php?hash=' + hash + '"></iframe>'
 				$('#player').html(iframe);
+				setSub(code_html);
 			}
 		}
 	});
@@ -63,6 +90,7 @@ function getPath(hash, id_movie)
 			{
 				let iframe = '<iframe id="iframe" name="iframe" src="php/player.php?hash=' + hash + '"></iframe>'
 				$('#player').html(iframe);
+				setSub(code_html);
 			}
 		}
 	});

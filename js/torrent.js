@@ -57,7 +57,7 @@ else
 				times = 1;
 				var path = file.path;
 				path = path.split('/')[0];
-				subtitles.dlSubtitles(process.argv[2], process.argv[3], path);
+				subtitles.dlSubtitles(process.argv[2], process.argv[3], path, file.path, file.name);
 			}
 		});
 	});

@@ -19,12 +19,24 @@ if ($req->rowCount() != 1)
 
 $data = $req->fetch();
 
-if ($data['downloaded'] < 10)
+if ($data['downloaded'] < 1)
 {
 	echo "error";
 	exit;
 }
 
-echo $data['path'];
+$arr = [];
+
+$arr[0] = explode('/', $data['path'])[0];
+
+$arr[1] = 0;
+if (file_exists("../films/".$arr[0]."/en.vtt"))
+	$arr[1] = 1;
+
+$arr[2] = 0;
+if (file_exists("../films/".$arr[0]."/fr.vtt"))
+	$arr[2] = 1;
+
+echo json_encode($arr);
 
 ?>
