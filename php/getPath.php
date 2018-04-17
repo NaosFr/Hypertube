@@ -19,6 +19,12 @@ if ($req->rowCount() != 1)
 
 $data = $req->fetch();
 
+if (substr($data['path'], -4) == ".avi")
+{
+	echo "error";
+	exit;
+}
+
 if ($data['downloaded'] < 1)
 {
 	echo "error";

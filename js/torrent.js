@@ -32,7 +32,8 @@ else
 	let engine = torrentStream(magnet, {path: '../films'});
 	engine.on('ready', function() {
 		engine.files.forEach(function(file) {
-			if ((file.name.substr(file.name.length - 3) == 'mkv' || file.name.substr(file.name.length - 3) == 'mp4') && times == 0)
+			if ((file.name.substr(file.name.length - 3) == 'mkv' || file.name.substr(file.name.length - 3) == 'mp4' ||
+				file.name.substr(file.name.length - 3) == 'avi') && times == 0 && file.name.toLowerCase().substr(0 , 6) != "sample")
 			{
 				var d = new Date();
     			var n = d.getTime();
