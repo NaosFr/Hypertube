@@ -1,6 +1,12 @@
 <?php
 include_once('connexion.php');
 
+if ($_SESSION['id'] == "" || $_SESSION['login'] == "")
+{
+	header('Location: /signin.php');
+	exit;
+}
+
 if (!check_get('hash'))
 	exit;
 

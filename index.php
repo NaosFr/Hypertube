@@ -1,11 +1,10 @@
 <?php
-session_start();
+include_once('php/connexion.php');
 if ($_SESSION['id'] == "" || $_SESSION['login'] == "")
 {
 	header('Location: /signin.php');
 	exit;
 }
-include_once('php/connexion.php');
 ?>
 <!DOCTYPE html>
 <html lang="<?php echo $lang['html'] ?>">
